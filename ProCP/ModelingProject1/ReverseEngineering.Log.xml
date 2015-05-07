@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 11.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2015-05-03T11:16:36" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: '2d105806-9921-4c51-aab7-35f1670a5ddf' -  (ClassifierTemplateParameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Boolean' -  (PrimitiveType)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'Integer' -  (PrimitiveType)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP' -  (Package)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::Car' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::Car::carId' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::Car::color' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::Car::lane' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::Car::speed' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::carId' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::CarId' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::color' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::Color' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::currentLane' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::CurrentLane' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::DriveLane' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::getLane' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::getPosition' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::speed' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::Speed' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::Stop' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Car::SwitchLane' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::Crossing' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::Crossing::crossingId' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::Crossing::lanes' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::Crossing::position' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::crossingId' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::CrossingId' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::lanes' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::position' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Crossing::Position' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Form1' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Form1::components' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Form1::Dispose' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Form1::Dispose::disposing' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Form1::Form1' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Form1::InitializeComponent' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane::GetCrossing' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane::isFull' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane::IsFull' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane::Lane' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane::Lane::isFull' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane::Lane::points' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane::points' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Lane::Points' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light::Light' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light::Light::state' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light::Light::time' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light::LightSwitchEvent' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light::state' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light::State' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light::time' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Light::Time' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::LightSwitch' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::LightSwitch::Invoke' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::LightSwitch::Invoke::state' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::LightSwitch::Invoke::time' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::color' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Color' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::getLane' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::getPosition' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::lane' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Lane' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Pedestrian' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Pedestrian::color' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Pedestrian::lane' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Pedestrian::pedId' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Pedestrian::speed' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::pedId' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::PedId' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::speed' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Speed' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Pedestrian::Walk' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::empty' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::Empty' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::isEmpty' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::isEmpty::lane' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::PedestrianLane' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::PedestrianLane::isFull' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::PedestrianLane::pLights' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::PedestrianLane::points' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::pLights' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLane::PLights' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLight' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLight::PedestrianLight' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLight::PedestrianLight::sensor' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLight::PedestrianLight::state' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLight::PedestrianLight::time' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLight::sensor' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLight::Sensor' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::PedestrianLight::sensorPressed' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Program' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::Program::Main' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane' -  (Class)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::cars' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::Cars' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::direction' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::Direction' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::GetConnectingLanes' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::lanes' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::Lanes' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::laneType' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::LaneType' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLane' -  (Operation)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLane::cars' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLane::direction' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLane::isFull' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLane::lanes' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLane::laneType' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLane::points' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLane::trafficLights' -  (Parameter)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::trafficLights' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::ProCP::TrafficLane::TrafficLights' -  (Property)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System' -  (Package)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections' -  (Package)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic' -  (Package)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;Car‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;Lane‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;Light‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;PedestrianLight‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;Point‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Collections::Generic::List&lt;TrafficLane‎&gt;' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::ComponentModel' -  (Package)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::ComponentModel::IContainer' -  (Interface)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Drawing' -  (Package)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Drawing::Color' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Drawing::Point' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::TimeSpan' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows' -  (Package)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows::Forms' -  (Package)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'ModelingProject1::System::Windows::Forms::Form' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::Form1 to ModelingProject1::System::Windows::Forms::Form (Generalization)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::Lane to ModelingProject1::System::Collections::Generic::List&lt;Point‎&gt; (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::Light to ModelingProject1::System::TimeSpan (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::Pedestrian to ModelingProject1::System::Drawing::Color (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::Pedestrian to ModelingProject1::ProCP::PedestrianLane (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::PedestrianLane to ModelingProject1::System::Collections::Generic::List&lt;PedestrianLight‎&gt; (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::PedestrianLane to ModelingProject1::ProCP::Lane (Generalization)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::PedestrianLight to ModelingProject1::ProCP::Light (Generalization)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::TrafficLane to ModelingProject1::System::Collections::Generic::List&lt;Car‎&gt; (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::TrafficLane to ModelingProject1::System::Collections::Generic::List&lt;TrafficLane‎&gt; (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::TrafficLane to ModelingProject1::System::Collections::Generic::List&lt;Light‎&gt; (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::TrafficLane to ModelingProject1::ProCP::Lane (Generalization)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::Car to ModelingProject1::System::Drawing::Color (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::Car to ModelingProject1::ProCP::TrafficLane (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: ModelingProject1::ProCP::Crossing to ModelingProject1::System::Drawing::Point (Association)" />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="High" Text="(11) type(s) fully reverse engineered." />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="High" Text="(12) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2015-05-03T11:16:40" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+</Log>
