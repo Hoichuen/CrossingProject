@@ -203,3 +203,6 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+*.cache
+ProCP/ProCP/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+ProCP/ProCP/obj/Debug/ProCP.csproj.FileListAbsolute.txt
