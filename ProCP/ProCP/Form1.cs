@@ -12,21 +12,32 @@ namespace ProCP
 {
     public partial class Form1 : Form
     {
-        const int PICTUREBOX_ORIGINAL_WIDTH = 448;
-        const int PICTUREBOX_ORIGINAL_HEIGHT = 306;
+        const int PICTUREBOX_ORIGINAL_WIDTH = 225;
         PictureBox selectedPicBox = null;
 
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private void togglePictureBoxSelection(PictureBox pBox)
         {
-            if (null != selectedPicBox) {
-                applyStylesToPicBox(selectedPicBox, false);
-                selectedPicBox = null;
-                applyStylesToPicBox(pBox, false);
+            if (null != selectedPicBox)
+            {
+                if (selectedPicBox.Equals(pBox))
+                {
+                    selectedPicBox = null;
+                    applyStylesToPicBox(pBox, false);
+                }
+                else
+                {
+                    applyStylesToPicBox(selectedPicBox, false);
+
+                    selectedPicBox = pBox;
+                    applyStylesToPicBox(pBox, true);
+                }
+
+                return;
             }
 
             selectedPicBox = pBox;
@@ -53,6 +64,32 @@ namespace ProCP
             PictureBox self = (PictureBox) sender;
             togglePictureBoxSelection(self);
             return;
+        }
+
+        private void removeCrossing(object sender, EventArgs e) {
+            if (null == selectedPicBox) {
+                MessageBox.Show(
+                    "Please, select a crossing before removing it.",
+                    "No crossing selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                return;
+            }
+
+            if (null == selectedPicBox.Image) {
+                MessageBox.Show(
+                    "Please, add a crossing to this space before removing it.",
+                    "There is no crossing in this tile",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                return;
+            }
+
+            throw new NotImplementedException();
         }
     }
 }
