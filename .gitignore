@@ -206,3 +206,6 @@ FakesAssemblies/
 *.cache
 ProCP/ProCP/obj/Debug/DesignTimeResolveAssemblyReferences.cache
 ProCP/ProCP/obj/Debug/ProCP.csproj.FileListAbsolute.txt
+*.suo
+*.txt
+ProCP/ProCP/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
