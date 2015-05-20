@@ -8,10 +8,10 @@ namespace ProCP
 {
     enum Direction
     {
-        SOUTH = 0,
-        WEST = 1,
-        NORTH = 2,
-        EAST = 3
+        NORTH = 0,
+        EAST = 1,
+        SOUTH = 2,
+        WEST = 3
 
     }
 }

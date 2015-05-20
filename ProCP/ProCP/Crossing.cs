@@ -12,7 +12,8 @@ namespace ProCP
         //Fields
         int crossingId = 0;
         Point position;
-        List<TrafficLane> lanes;
+        List<TrafficLane> lanes = new List<TrafficLane>();
+        //this.Lanes = new List<TrafficLane>();
 
         //Properties
 
@@ -38,18 +39,43 @@ namespace ProCP
             set { position = value; }
         }
 
+        public List<TrafficLane> Lanes
+        {
+            get { return lanes; }
+            set { lanes = value; }
+        }
+
+
+
 
         //Constructor
-        public Crossing(int crossingId, Point position, List<TrafficLane> lanes)
+        //public Crossing(int crossingId, Point position, List<TrafficLane> lanes)
+        public Crossing(int crossingId, Point position)
         {
             this.CrossingId = crossingId++;
             this.Position = position;
 
-            this.lanes = new List<TrafficLane>();
+            
+            //this.Lanes = lanes;
             //Need to figure out the lists
         }
 
         //Methods
+
+        public List<TrafficLane> LanesInDirection(Direction direction)
+        {
+            List<TrafficLane> temp = new List<TrafficLane>();
+
+            foreach (TrafficLane i in Lanes)
+            {
+                if ((i.LaneType == null) && (i.Direction == direction) && (i.ToFromCross))
+                {
+                    temp.Add(i);
+                }
+            }
+
+            return temp;
+        }
 
     }
 }

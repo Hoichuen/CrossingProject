@@ -9,13 +9,16 @@ namespace ProCP
 {
     class Crossing_A:Crossing
     {
-        private List<TrafficLane> tLanes;
+        
 
         /// <summary>
         /// The crossing type A constructor
         /// </summary>
-        public Crossing_A(int crossingId, Point position, List<TrafficLane> lanes) : base(crossingId, position, lanes)
+        public Crossing_A(int crossingId, Point position) : base(crossingId, position)
         {
+            List<TrafficLane> lanes = new List<TrafficLane>();
+            List<TrafficLane> tLanes;
+
             lanes = new List<TrafficLane>();
 
             tLanes = new List<TrafficLane>();
@@ -59,7 +62,7 @@ namespace ProCP
             lanes.Add(new TrafficLane(11, true, Direction.EAST, null, false, null, tLanes));
             tLanes.Clear();
 
-            //Something we need to figure out
+            base.Lanes.AddRange(lanes);
         }
     }
 }

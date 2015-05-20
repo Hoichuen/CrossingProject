@@ -96,13 +96,11 @@ namespace ProCP
               if ((Image)e.Data.GetData(DataFormats.Bitmap) == pictureBox17.Image)
               {
                   Simulation.AddCrossing(new Crossing_A(GetNumberOfPicturebox(self),
-                                                      new Point(self.Location.X, self.Location.Y),
-                                                      null), GetNumberOfPicturebox(self));
+                                                      new Point(self.Location.X, self.Location.Y)));
               }
               else {
                   Simulation.AddCrossing(new Crossing_B(GetNumberOfPicturebox(self),
-                                                         new Point(self.Location.X, self.Location.Y),
-                                                         null), GetNumberOfPicturebox(self));
+                                                         new Point(self.Location.X, self.Location.Y)));
               }
             }
             else MessageBox.Show("Remove the crossing first to be able to add another one on this tile",
@@ -119,6 +117,12 @@ namespace ProCP
             DoDragDrop(pictureBox17.Image, DragDropEffects.Copy);
             
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Simulation.MarkLanes();
+            Simulation.LaneCrossingConnection();
         }
 
     }

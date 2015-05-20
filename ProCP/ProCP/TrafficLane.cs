@@ -80,6 +80,7 @@ namespace ProCP
             this.ToFromCross = toFromCross;
             this.Direction = direction;
             this.Lanes = lanes;
+            this.LaneType = null;
             //Need to figure out the lists
         }
 
