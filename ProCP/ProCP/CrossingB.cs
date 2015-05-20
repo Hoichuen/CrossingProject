@@ -12,7 +12,8 @@ namespace ProCP
         /// <summary>
         /// The crossing type B constructor
         /// </summary>
-        public Crossing_B(int crossingId,Point position,List<Lane>lanes):base(crossingId,position,lanes)
+        public Crossing_B(int crossingId, Point position, List<TrafficLane> lanes)
+            : base(crossingId, position, lanes)
         {
             //Something we need to figure out
         }

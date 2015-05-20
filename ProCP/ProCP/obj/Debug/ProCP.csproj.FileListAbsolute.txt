@@ -30,3 +30,8 @@ C:\Users\Dragan\Desktop\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csprojResol
 C:\Users\Dragan\Desktop\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Form1.resources
 C:\Users\Dragan\Desktop\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources
 C:\Users\Dragan\Desktop\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache
+C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Form1.resources
+C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources
+C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache
+C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe
+C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\bin\Debug\ProCP.pdb

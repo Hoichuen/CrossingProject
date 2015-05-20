@@ -12,7 +12,7 @@ namespace ProCP
         //Fields
         int crossingId = 0;
         Point position;
-        List<Lane> lanes;
+        List<TrafficLane> lanes;
 
         //Properties
 
@@ -40,12 +40,12 @@ namespace ProCP
 
 
         //Constructor
-        public Crossing(int crossingId, Point position, List<Lane> lanes)
+        public Crossing(int crossingId, Point position, List<TrafficLane> lanes)
         {
             this.CrossingId = crossingId++;
             this.Position = position;
 
-            this.lanes = new List<Lane>();
+            this.lanes = new List<TrafficLane>();
             //Need to figure out the lists
         }
 

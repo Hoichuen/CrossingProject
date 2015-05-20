@@ -9,11 +9,17 @@ namespace ProCP
     class Lane
     {
         //Fields
+        int iD;
         bool isFull;
         List<Point> points;
 
 
         //Properties
+        public int ID
+        {
+            get { return iD; }
+            set { iD = value; }
+        }
 
         public List<Point> Points
         {
@@ -32,8 +38,9 @@ namespace ProCP
 
 
         //Constructor
-        public Lane(List<Point> points, bool isFull)
+        public Lane(int iD, List<Point> points, bool isFull)
         {
+            this.ID = iD++;
             this.Points = new List<Point>();
             this.IsFull = IsFull;
             //Need to figure out the lists

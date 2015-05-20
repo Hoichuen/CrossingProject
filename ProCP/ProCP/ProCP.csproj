@@ -45,9 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
-    <Compile Include="Crossing A.cs" />
-    <Compile Include="Crossing B.cs" />
+    <Compile Include="CrossingA.cs" />
+    <Compile Include="CrossingB.cs" />
     <Compile Include="Crossing.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
