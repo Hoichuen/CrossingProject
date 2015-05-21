@@ -181,8 +181,6 @@ namespace ProCP
 
             picBox.Image = null;
             Simulation.RemoveCrossing(GetNumberOfPicturebox(picBox));
-
-            // throw new NotImplementedException();
         }
     }
 }
