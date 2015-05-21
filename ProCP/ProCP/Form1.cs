@@ -12,8 +12,6 @@ namespace ProCP
 {
     public partial class Form1 : Form
     {
-        const int PICTUREBOX_ORIGINAL_WIDTH = 448;
-        const int PICTUREBOX_ORIGINAL_HEIGHT = 306;
         PictureBox selectedPicBox = null;
 
         /// <summary>
@@ -48,17 +46,18 @@ namespace ProCP
         {
             if (selected)
             {
-                pBox.Width = 150;
+                // Styles... 
                 return;
             }
 
-            pBox.Width = PICTUREBOX_ORIGINAL_WIDTH;
+            // Styles...
         }
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
             PictureBox self = (PictureBox) sender;
             togglePictureBoxSelection(self);
+
             return;
         }
 
