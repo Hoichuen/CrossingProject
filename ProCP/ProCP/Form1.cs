@@ -62,8 +62,6 @@ namespace ProCP
                 case "pictureBox15": return 15;
                 case "pictureBox16": return 16;
                 default: return 0;
-
-
             }
         }
         /// <summary>
@@ -73,9 +71,9 @@ namespace ProCP
         {
             pictureBox17.MouseDown += pictureBox17_MouseDown;
             pictureBox18.MouseDown += pictureBox18_MouseDown;
+            
             foreach (Control c in ControlList)
             {
-
                 c.AllowDrop = true;
                 c.DragDrop += c_DragDrop;
                 c.DragEnter += c_DragEnter;
@@ -179,7 +177,12 @@ namespace ProCP
                 return;
             }
 
-            throw new NotImplementedException();
+            PictureBox picBox = selectedPicBox;
+
+            picBox.Image = null;
+            Simulation.RemoveCrossing(GetNumberOfPicturebox(picBox));
+
+            // throw new NotImplementedException();
         }
     }
 }

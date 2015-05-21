@@ -12,15 +12,23 @@ namespace ProCP
         private int time;
         
         private Crossing[] Crossings;
+        
         public Simulation()
         {
             Crossings = new Crossing[16];
         }
+
         public void Start() { }
         public void Stop() { }
+
         public void AddCrossing(Crossing Crossing,int where)
         {
             Crossings[where - 1] = Crossing; 
+        }
+
+        public void RemoveCrossing(int position)
+        {
+            Array.Clear(Crossings, position - 1, 1); 
         }
     }
 }
