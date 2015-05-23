@@ -58,6 +58,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.gBSettings = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btLock = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericTrafficTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid16)).BeginInit();
@@ -251,9 +252,9 @@
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(9, 571);
+            this.btnPlay.Location = new System.Drawing.Point(9, 607);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(388, 82);
+            this.btnPlay.Size = new System.Drawing.Size(388, 46);
             this.btnPlay.TabIndex = 11;
             this.btnPlay.Text = "PLAY";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -370,11 +371,21 @@
             this.panel1.Size = new System.Drawing.Size(900, 640);
             this.panel1.TabIndex = 6;
             // 
+            // btLock
+            // 
+            this.btLock.Location = new System.Drawing.Point(9, 571);
+            this.btLock.Name = "btLock";
+            this.btLock.Size = new System.Drawing.Size(388, 30);
+            this.btLock.TabIndex = 12;
+            this.btLock.Text = "Lock Grid";
+            this.btLock.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1313, 666);
+            this.Controls.Add(this.btLock);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnToggleLight);
             this.Controls.Add(this.gBCrossingType);
@@ -446,6 +457,7 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.GroupBox gBSettings;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btLock;
 
 
     }
