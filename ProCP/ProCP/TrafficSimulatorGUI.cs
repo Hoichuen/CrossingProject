@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProCP
 {
-    public partial class Form1 : Form
+    public partial class TrafficSimulatorGUI : Form
     {
-        public Form1()
+        public TrafficSimulatorGUI()
         {
             InitializeComponent();
         }

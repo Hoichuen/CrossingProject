@@ -27,3 +27,9 @@ C:\Users\JChan\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.pdb
 C:\Users\J\github\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe.config
 C:\Users\J\github\crossing-project\ProCP\ProCP\obj\Debug\ProCP.exe
 C:\Users\J\github\crossing-project\ProCP\ProCP\obj\Debug\ProCP.pdb
+C:\Users\J\github\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe
+C:\Users\J\github\crossing-project\ProCP\ProCP\bin\Debug\ProCP.pdb
+C:\Users\J\github\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csprojResolveAssemblyReference.cache
+C:\Users\J\github\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources
+C:\Users\J\github\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache
+C:\Users\J\github\crossing-project\ProCP\ProCP\obj\Debug\ProCP.TrafficSimulatorGUI.resources
