@@ -69,8 +69,8 @@ namespace ProCP
         /// </summary>
         private void AddDragDropToPictureBoxes()
         {
-            pictureBox17.MouseDown += pictureBox17_MouseDown;
-            pictureBox18.MouseDown += pictureBox18_MouseDown;
+            crossingType1.MouseDown += crossingType1_MouseDown;
+            crossingType2.MouseDown += crossingType2_MouseDown;
             foreach (Control c in ControlList )
             {
                
@@ -92,7 +92,7 @@ namespace ProCP
             if (self.Image == null)
             {
                 self.Image = (Image)e.Data.GetData(DataFormats.Bitmap);
-              if ((Image)e.Data.GetData(DataFormats.Bitmap) == pictureBox17.Image)
+                if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
               {
                   Simulation.AddCrossing(new Crossing_A(GetNumberOfPicturebox(self),
                                                       new Point(self.Location.X, self.Location.Y)));
@@ -106,14 +106,14 @@ namespace ProCP
                 "There is already a crossing there");
         }
 
-        void pictureBox18_MouseDown(object sender, MouseEventArgs e)
+        void crossingType2_MouseDown(object sender, MouseEventArgs e)
         {
-            DoDragDrop(pictureBox18.Image, DragDropEffects.Copy);
+            DoDragDrop(crossingType2.Image, DragDropEffects.Copy);
         }
 
-        void pictureBox17_MouseDown(object sender, MouseEventArgs e)
+        void crossingType1_MouseDown(object sender, MouseEventArgs e)
         {
-            DoDragDrop(pictureBox17.Image, DragDropEffects.Copy);
+            DoDragDrop(crossingType1.Image, DragDropEffects.Copy);
             
 
         }

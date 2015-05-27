@@ -104,6 +104,7 @@
             this.crossingGrid14.Location = new System.Drawing.Point(224, 479);
             this.crossingGrid14.Name = "crossingGrid14";
             this.crossingGrid14.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid14.TabIndex = 16;
             this.crossingGrid14.TabStop = false;
             // 
@@ -113,6 +114,7 @@
             this.crossingGrid16.Location = new System.Drawing.Point(674, 479);
             this.crossingGrid16.Name = "crossingGrid16";
             this.crossingGrid16.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid16.TabIndex = 15;
             this.crossingGrid16.TabStop = false;
             // 
@@ -122,6 +124,7 @@
             this.crossingGrid15.Location = new System.Drawing.Point(449, 479);
             this.crossingGrid15.Name = "crossingGrid15";
             this.crossingGrid15.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid15.TabIndex = 14;
             this.crossingGrid15.TabStop = false;
             // 
@@ -131,6 +134,7 @@
             this.crossingGrid13.Location = new System.Drawing.Point(-1, 479);
             this.crossingGrid13.Name = "crossingGrid13";
             this.crossingGrid13.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid13.TabIndex = 13;
             this.crossingGrid13.TabStop = false;
             // 
@@ -140,6 +144,7 @@
             this.crossingGrid10.Location = new System.Drawing.Point(224, 319);
             this.crossingGrid10.Name = "crossingGrid10";
             this.crossingGrid10.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid10.TabIndex = 12;
             this.crossingGrid10.TabStop = false;
             // 
@@ -149,6 +154,7 @@
             this.crossingGrid12.Location = new System.Drawing.Point(674, 319);
             this.crossingGrid12.Name = "crossingGrid12";
             this.crossingGrid12.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid12.TabIndex = 11;
             this.crossingGrid12.TabStop = false;
             // 
@@ -158,6 +164,7 @@
             this.crossingGrid11.Location = new System.Drawing.Point(449, 319);
             this.crossingGrid11.Name = "crossingGrid11";
             this.crossingGrid11.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid11.TabIndex = 10;
             this.crossingGrid11.TabStop = false;
             // 
@@ -167,6 +174,7 @@
             this.crossingGrid9.Location = new System.Drawing.Point(-1, 319);
             this.crossingGrid9.Name = "crossingGrid9";
             this.crossingGrid9.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid9.TabIndex = 9;
             this.crossingGrid9.TabStop = false;
             // 
@@ -176,6 +184,7 @@
             this.crossingGrid6.Location = new System.Drawing.Point(224, 159);
             this.crossingGrid6.Name = "crossingGrid6";
             this.crossingGrid6.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid6.TabIndex = 8;
             this.crossingGrid6.TabStop = false;
             // 
@@ -219,6 +228,7 @@
             this.crossingGrid8.Location = new System.Drawing.Point(674, 159);
             this.crossingGrid8.Name = "crossingGrid8";
             this.crossingGrid8.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid8.TabIndex = 7;
             this.crossingGrid8.TabStop = false;
             // 
@@ -228,6 +238,7 @@
             this.crossingGrid7.Location = new System.Drawing.Point(449, 159);
             this.crossingGrid7.Name = "crossingGrid7";
             this.crossingGrid7.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid7.TabIndex = 6;
             this.crossingGrid7.TabStop = false;
             // 
@@ -237,6 +248,7 @@
             this.crossingGrid5.Location = new System.Drawing.Point(-1, 159);
             this.crossingGrid5.Name = "crossingGrid5";
             this.crossingGrid5.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid5.TabIndex = 5;
             this.crossingGrid5.TabStop = false;
             // 
@@ -246,6 +258,7 @@
             this.crossingGrid2.Location = new System.Drawing.Point(224, -1);
             this.crossingGrid2.Name = "crossingGrid2";
             this.crossingGrid2.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid2.TabIndex = 4;
             this.crossingGrid2.TabStop = false;
             // 
@@ -280,22 +293,27 @@
             this.crossingGrid4.Location = new System.Drawing.Point(674, -1);
             this.crossingGrid4.Name = "crossingGrid4";
             this.crossingGrid4.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid4.TabIndex = 2;
             this.crossingGrid4.TabStop = false;
             // 
             // crossingType2
             // 
+            this.crossingType2.Image = global::ProCP.Properties.Resources.Crossing_b;
             this.crossingType2.Location = new System.Drawing.Point(98, 166);
             this.crossingType2.Name = "crossingType2";
             this.crossingType2.Size = new System.Drawing.Size(202, 144);
+            this.crossingType2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingType2.TabIndex = 1;
             this.crossingType2.TabStop = false;
             // 
             // crossingType1
             // 
+            this.crossingType1.Image = global::ProCP.Properties.Resources.Crossing_a;
             this.crossingType1.Location = new System.Drawing.Point(98, 16);
             this.crossingType1.Name = "crossingType1";
             this.crossingType1.Size = new System.Drawing.Size(202, 144);
+            this.crossingType1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingType1.TabIndex = 0;
             this.crossingType1.TabStop = false;
             // 
@@ -316,6 +334,7 @@
             this.crossingGrid3.Location = new System.Drawing.Point(449, -1);
             this.crossingGrid3.Name = "crossingGrid3";
             this.crossingGrid3.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid3.TabIndex = 1;
             this.crossingGrid3.TabStop = false;
             // 
@@ -325,6 +344,7 @@
             this.crossingGrid1.Location = new System.Drawing.Point(-1, -1);
             this.crossingGrid1.Name = "crossingGrid1";
             this.crossingGrid1.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid1.TabIndex = 0;
             this.crossingGrid1.TabStop = false;
             // 
@@ -409,18 +429,18 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(97, 6);
             // 
             // fileToolStripMenuItem1
             // 
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(100, 22);
             this.fileToolStripMenuItem1.Text = "Save";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem.Text = "Load";
             // 
             // TrafficSimulatorGUI
