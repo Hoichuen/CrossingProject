@@ -84,15 +84,5 @@ namespace ProCP
             //Need to figure out the lists
         }
 
-        //Methods
-
-        /// <summary>
-        /// Returns a list of lanes that can connect to this one aka same direction
-        /// </summary>
-        /// <returns></returns>
-       public List<Lane> GetConnectingLanes()
-        {
-            return null;
-        }
     }
 }

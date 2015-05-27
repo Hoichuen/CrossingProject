@@ -98,8 +98,9 @@ namespace ProCP
                 self.Image = (Image)e.Data.GetData(DataFormats.Bitmap);
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
               {
-                  Simulation.AddCrossing(new Crossing_A(GetNumberOfPicturebox(self),
-                                                      new Point(self.Location.X, self.Location.Y)));
+                   Crossing_A test1 = new Crossing_A(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y));
+                   Simulation.AddCrossing(test1);
+                      
               }
               else {
                   Simulation.AddCrossing(new Crossing_B(GetNumberOfPicturebox(self),
@@ -242,7 +243,7 @@ namespace ProCP
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-
+            Simulation.CreateCars();
         }
 
     }

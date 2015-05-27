@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace ProCP
 {
@@ -12,6 +13,7 @@ namespace ProCP
         //private Crossing[] Crossings;
 
         private List<Crossing> Crossings;
+        private List<Car> cars;
 
         public Simulation()
         {
@@ -20,6 +22,7 @@ namespace ProCP
 
         public void Start() { }
         public void Stop() { }
+
         public void AddCrossing(Crossing Crossing)
         {
             Crossings.Add(Crossing);
@@ -181,5 +184,26 @@ namespace ProCP
         {
             Crossings.Remove(Crossings.Find(x => x.CrossingId == (id)));
         }
+
+        public void CreateCars()
+        {
+            cars = new List<Car>();
+            List<TrafficLane> tmp = new List<TrafficLane>();
+            Random rnd = new Random();
+            int count=1;
+
+            foreach (Crossing item in Crossings)
+            {
+                tmp.AddRange(item.Lanes.FindAll(x => x.LaneType == true));
+
+                for (int i = 0; i < item.NumCars; i++)
+                {
+                    cars.Add(new Car(count, Color.FromArgb(rnd.Next()), tmp.ElementAt(rnd.Next(tmp.Count()))));
+                    count++;
+                }
+            }
+            Console.WriteLine("Haha");
+        }
+
     }
 }
