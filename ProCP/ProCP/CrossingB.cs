@@ -9,12 +9,23 @@ namespace ProCP
 {
     class Crossing_B:Crossing
     {
+
+        int numPeds;
+
+        public int NumPeds
+        {
+            get { return numPeds; }
+            set { numPeds = value; }
+        }
+
         /// <summary>
         /// The crossing type B constructor
         /// </summary>
         public Crossing_B(int crossingId, Point position)
             : base(crossingId, position)
         {
+            this.NumPeds = 0;
+
             List<TrafficLane> lanes = new List<TrafficLane>();
             List<TrafficLane> tLanes;
             lanes = new List<TrafficLane>();

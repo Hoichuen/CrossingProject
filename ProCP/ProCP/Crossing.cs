@@ -13,9 +13,24 @@ namespace ProCP
         int crossingId = 0;
         Point position;
         List<TrafficLane> lanes = new List<TrafficLane>();
-        //this.Lanes = new List<TrafficLane>();
+
+        TimeSpan time;
+        int numCars;
+
 
         //Properties
+
+        public TimeSpan Time
+        {
+            get { return time; }
+            set { time = value; }
+        }
+
+        public int NumCars
+        {
+            get { return numCars; }
+            set { numCars = value; }
+        }
 
         /// <summary>
         /// Each crossing is unique and cannot have more than 12
@@ -55,6 +70,8 @@ namespace ProCP
             this.CrossingId = crossingId++;
             this.Position = position;
 
+            this.Time = TimeSpan.Zero;
+            this.NumCars = 0;
             
             //this.Lanes = lanes;
             //Need to figure out the lists

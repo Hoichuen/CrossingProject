@@ -9,9 +9,6 @@ namespace ProCP
 {
     class Simulation
     {
-        private int time;
-        
-        
         //private Crossing[] Crossings;
 
         private List<Crossing> Crossings;
@@ -131,8 +128,58 @@ namespace ProCP
                         }
                     }
                 }
-                Console.Write("Haha");
             }
+        }
+
+      
+        public void EditCrossing(int id, int numCars, int time, int numPeds)
+        {
+            Crossing cr = Crossings.Find(x => x.CrossingId == (id));
+
+            if (cr.GetType() == typeof(Crossing_A))
+            {
+                cr.NumCars = numCars;
+                cr.Time = new TimeSpan(0, 0, time);
+            }
+
+            else
+            {
+                Crossing_B cr1 = (Crossing_B)cr;
+                cr1.NumCars = numCars;
+                cr1.Time = new TimeSpan(0,0,time);
+                cr1.NumPeds = numPeds;
+ 
+            }
+
+        }
+
+        public void getProperties(int id, ref int nCars, ref int time, ref int nPed)
+        {
+            Crossing cr = Crossings.Find(x => x.CrossingId == (id));
+
+            nCars = cr.NumCars;
+            time = cr.Time.Seconds;
+
+            if (cr.GetType() == typeof(Crossing_B))
+            {
+                Crossing_B cr1 = (Crossing_B)cr;
+                nPed = cr1.NumPeds;   
+            }
+            else
+            {
+                nPed = 0;
+            }
+        }
+
+
+        public bool CrossingExist(int id)
+        {
+         return Crossings.Exists(x => x.CrossingId == (id));
+        }
+
+        public void RemoveCrossing(int id)
+        {
+            Crossings.Remove(Crossings.Find(x => x.CrossingId == (id)));
         }
     }
 }

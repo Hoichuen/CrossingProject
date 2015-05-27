@@ -16,8 +16,12 @@ namespace ProCP
         /// A list of controls
         /// </summary>
         List<Control> ControlList = new List<Control>();
+        PictureBox selectedPicBox = null;
         Crossing CurrentCrossing;
         Simulation Simulation;
+
+        int selectedID;
+        bool isLocked;
 
         public TrafficSimulatorGUI()
         {
@@ -43,22 +47,22 @@ namespace ProCP
         {
             switch (self.Name)
             {
-                case "pictureBox1": return 1;
-                case "pictureBox2": return 2;
-                case "pictureBox3": return 3;
-                case "pictureBox4": return 4;
-                case "pictureBox5": return 5;
-                case "pictureBox6": return 6;
-                case "pictureBox7": return 7;
-                case "pictureBox8": return 8;
-                case "pictureBox9": return 9;
-                case "pictureBox10": return 10;
-                case "pictureBox11": return 11;
-                case "pictureBox12": return 12;
-                case "pictureBox13": return 13;
-                case "pictureBox14": return 14;
-                case "pictureBox15": return 15;
-                case "pictureBox16": return 16;
+                case "crossingGrid1": return 1;
+                case "crossingGrid2": return 2;
+                case "crossingGrid3": return 3;
+                case "crossingGrid4": return 4;
+                case "crossingGrid5": return 5;
+                case "crossingGrid6": return 6;
+                case "crossingGrid7": return 7;
+                case "crossingGrid8": return 8;
+                case "crossingGrid9": return 9;
+                case "crossingGrid10": return 10;
+                case "crossingGrid11": return 11;
+                case "crossingGrid12": return 12;
+                case "crossingGrid13": return 13;
+                case "crossingGrid14": return 14;
+                case "crossingGrid15": return 15;
+                case "crossingGrid16": return 16;
                 default:return 0;
 
             
@@ -113,15 +117,132 @@ namespace ProCP
 
         void crossingType1_MouseDown(object sender, MouseEventArgs e)
         {
-            DoDragDrop(crossingType1.Image, DragDropEffects.Copy);
-            
-
+            DoDragDrop(crossingType1.Image, DragDropEffects.Copy);  
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void togglePictureBoxSelection(PictureBox pBox)
+        {
+            if (null != selectedPicBox)
+            {
+                applyStylesToPicBox(selectedPicBox, false);
+                selectedPicBox = null;
+                applyStylesToPicBox(pBox, false);
+            }
+
+            selectedPicBox = pBox;
+            applyStylesToPicBox(pBox, true);
+        }
+
+        private void applyStylesToPicBox(PictureBox pBox, Boolean selected)
+        {
+            if (selected)
+            {
+                // Styles... 
+                return;
+            }
+
+            // Styles...
+        }
+
+
+
+
+        private void pictureBoxOnClick(object sender, EventArgs e)
+        {
+            int x = 1;
+            int y = 2;
+            int z = 3;
+
+            PictureBox self = (PictureBox)sender;
+            togglePictureBoxSelection(self);
+
+            selectedID = GetNumberOfPicturebox(self);
+
+            if (!Simulation.CrossingExist(selectedID))
+            {
+                selectedID = 0;
+                MessageBox.Show("No crossing selected.");
+                return;
+            }
+
+            if (!isLocked)
+            {
+                return;
+            }
+
+            if (self.Image == crossingType1.Image)
+            {
+                Simulation.getProperties(selectedID, ref x, ref y, ref z);
+                numericCars.Value = x;
+                numericTrafficTime.Value = y;
+                numericPedestrians.Enabled = false;
+
+            }
+            else
+            {
+                Simulation.getProperties(selectedID, ref x, ref y, ref z);
+                numericCars.Value = x;
+                numericTrafficTime.Value = y;
+                numericPedestrians.Value = z;
+                numericPedestrians.Enabled = true;
+            }
+
+
+            return;
+        }
+
+        private void btnFinishCrossing_Click(object sender, EventArgs e)
+        {
+            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (int)numericPedestrians.Value);
+        }
+
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (null == selectedPicBox)
+            {
+                MessageBox.Show(
+                    "Please, select a crossing before removing it.",
+                    "No crossing selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                return;
+            }
+
+            if (null == selectedPicBox.Image)
+            {
+                MessageBox.Show(
+                    "Please, add a crossing to this space before removing it.",
+                    "There is no crossing in this tile",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                return;
+            }
+
+            PictureBox picBox = selectedPicBox;
+
+            picBox.Image = null;
+            Simulation.RemoveCrossing(GetNumberOfPicturebox(picBox));
+        }
+
+        private void btLock_Click(object sender, EventArgs e)
         {
             Simulation.MarkLanes();
             Simulation.LaneCrossingConnection();
+            isLocked = true;
+
+            this.numericCars.Enabled = true;
+            this.numericPedestrians.Enabled = true;
+            this.numericTrafficTime.Enabled = true;
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
