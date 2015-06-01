@@ -11,8 +11,6 @@ namespace ProCP
     class Simulation
     {
         private int time;
-        
-        private Crossing[] Crossings;
 
         private List<Crossing> Crossings;
         private List<Car> cars;
@@ -28,11 +26,6 @@ namespace ProCP
         public void AddCrossing(Crossing Crossing)
         {
             Crossings.Add(Crossing);
-        }
-
-        public void RemoveCrossing(int position)
-        {
-            Array.Clear(Crossings, position - 1, 1); 
         }
 
         /// <summary>

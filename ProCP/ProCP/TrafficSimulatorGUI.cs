@@ -145,9 +145,6 @@ namespace ProCP
             // Styles...
         }
 
-
-
-
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
             int x = 1;
@@ -188,7 +185,6 @@ namespace ProCP
                 numericPedestrians.Enabled = true;
             }
 
-
             return;
         }
 
@@ -196,7 +192,6 @@ namespace ProCP
         {
             Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (int)numericPedestrians.Value);
         }
-
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
@@ -245,6 +240,5 @@ namespace ProCP
         {
             Simulation.CreateCars();
         }
-
     }
 }
