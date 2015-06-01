@@ -10,18 +10,13 @@ namespace ProCP
 {
     class Simulation
     {
-<<<<<<< HEAD
         private int time;
         
         private Crossing[] Crossings;
-        
-=======
-        //private Crossing[] Crossings;
 
         private List<Crossing> Crossings;
         private List<Car> cars;
 
->>>>>>> origin/master
         public Simulation()
         {
             Crossings = new List<Crossing>();
@@ -30,21 +25,16 @@ namespace ProCP
         public void Start() { }
         public void Stop() { }
 
-<<<<<<< HEAD
-        public void AddCrossing(Crossing Crossing,int where)
-=======
         public void AddCrossing(Crossing Crossing)
->>>>>>> origin/master
         {
             Crossings.Add(Crossing);
         }
 
-<<<<<<< HEAD
         public void RemoveCrossing(int position)
         {
             Array.Clear(Crossings, position - 1, 1); 
         }
-=======
+
         /// <summary>
         /// Will determine whether lanes are sink or feeders or normal lanes.
         /// </summary>
@@ -221,7 +211,5 @@ namespace ProCP
             }
             Console.WriteLine("Haha");
         }
-
->>>>>>> origin/master
     }
 }
