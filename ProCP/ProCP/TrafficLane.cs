@@ -10,7 +10,7 @@ namespace ProCP
     class TrafficLane : Lane
     {
          //Fields
-        bool? laneType;
+        bool? laneType = null;
         bool toFromCross;
         Direction direction;
         List<Light> trafficLights;
@@ -80,7 +80,18 @@ namespace ProCP
             this.ToFromCross = toFromCross;
             this.Direction = direction;
             this.Lanes = lanes;
-            this.LaneType = null;
+
+            //Need to figure out the lists
+        }
+
+        public TrafficLane(int iD, bool toFromCross, Direction direction, List<Light> trafficLights, List<TrafficLane> connLanes) : base(iD)
+        {
+            this.ID = iD;
+            this.ToFromCross = toFromCross;
+            this.Direction = direction;
+            this.Lanes = connLanes;
+
+            this.IsFull = false;
             //Need to figure out the lists
         }
 
