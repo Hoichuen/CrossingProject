@@ -31,6 +31,7 @@ namespace ProCP
             Simulation = new Simulation();
 
         }
+        
         /// <summary>
         /// a method to populate the list of controls with pictureboxes
         /// </summary>
@@ -43,6 +44,7 @@ namespace ProCP
                 if (c is PictureBox) ControlList.Add(c);
             }
         }
+        
         private int GetNumberOfPicturebox(PictureBox self)
         {
             switch (self.Name)
@@ -68,6 +70,7 @@ namespace ProCP
             
             }
         }
+        
         /// <summary>
         /// Adds the drag/drop events and makes the pictureboxes allowing drop
         /// </summary>
@@ -75,9 +78,9 @@ namespace ProCP
         {
             crossingType1.MouseDown += crossingType1_MouseDown;
             crossingType2.MouseDown += crossingType2_MouseDown;
+            
             foreach (Control c in ControlList )
             {
-               
                 c.AllowDrop = true;
                 c.DragDrop += c_DragDrop;
                 c.DragEnter += c_DragEnter;
@@ -93,22 +96,24 @@ namespace ProCP
         void c_DragDrop(object sender, DragEventArgs e)
         {
             PictureBox self = (PictureBox)sender;
+
             if (self.Image == null)
             {
                 self.Image = (Image)e.Data.GetData(DataFormats.Bitmap);
+
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
-              {
-                   Crossing_A test1 = new Crossing_A(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y));
-                   Simulation.AddCrossing(test1);
-                      
-              }
-              else {
-                  Simulation.AddCrossing(new Crossing_B(GetNumberOfPicturebox(self),
-                                                         new Point(self.Location.X, self.Location.Y)));
-              }
+                {
+                   Simulation.AddCrossing(new Crossing_A(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y)));
+                }
+                else 
+                {
+                   Simulation.AddCrossing(new Crossing_B(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y)));
+                }
+
+                return;
             }
-            else MessageBox.Show("Remove the crossing first to be able to add another one on this tile",
-                "There is already a crossing there");
+            
+            MessageBox.Show("Remove the crossing first to be able to add another one on this tile", "There is already a crossing there");
         }
 
         void crossingType2_MouseDown(object sender, MouseEventArgs e)
@@ -174,7 +179,6 @@ namespace ProCP
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 numericPedestrians.Enabled = false;
-
             }
             else
             {

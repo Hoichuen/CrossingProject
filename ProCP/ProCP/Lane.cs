@@ -13,7 +13,6 @@ namespace ProCP
         bool isFull;
         List<Point> points;
 
-
         //Properties
         public int ID
         {
@@ -54,7 +53,6 @@ namespace ProCP
         /// <returns></returns>
        public Crossing GetCrossing()
         {
-
             return null;
         }
 
