@@ -15,6 +15,8 @@ namespace ProCP
         int speed = 50;
         TrafficLane currentLane;
 
+        List<TrafficLane> route;
+
         //Properties
 
         /// <summary>
@@ -52,14 +54,21 @@ namespace ProCP
             set { currentLane = value; }
         }
 
+        public List<TrafficLane> Route
+        {
+            get { return route; }
+            set { route = value; }
+        }
+
 
         //Constructor
-        public Car(int carId, Color color, int speed, TrafficLane lane)
+        public Car(int carId, Color color, TrafficLane startingLane)
         {
             this.CarId = carId++;
             this.Color = color;
-            this.Speed = speed; //Speed might be fixed to we can change that
-            this.CurrentLane = lane;
+            this.CurrentLane = startingLane;
+            this.Route = CreateRoute(startingLane);
+
         }
 
         //Methods
@@ -105,6 +114,35 @@ namespace ProCP
         void Stop()
         {
 
+        }
+
+        public List<TrafficLane> CreateRoute(TrafficLane startingLane)
+        {
+            bool finished = false;
+            Random rnd = new Random();
+
+            List<TrafficLane> tempRoute = new List<TrafficLane>();
+            List<TrafficLane> temp = new List<TrafficLane>();
+
+            TrafficLane tmp;
+
+            tempRoute.Add(startingLane);
+            temp = startingLane.Lanes;
+
+            while (!finished)
+            {
+                tmp = temp.ElementAt(rnd.Next(temp.Count));
+                tempRoute.Add(tmp);
+
+                if (tmp.LaneType == false)
+                {
+                    finished = true;
+                }
+
+                temp = tmp.Lanes;
+            }
+
+            return tempRoute;
         }
 
     }

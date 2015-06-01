@@ -9,6 +9,7 @@ namespace ProCP
     class Light
     {
         TimeSpan time;
+        
         bool state;
         public delegate void LightSwitch(TimeSpan time, bool state);
         public event LightSwitch LightSwitchEvent;

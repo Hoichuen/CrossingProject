@@ -10,8 +10,9 @@ namespace ProCP
     class TrafficLane : Lane
     {
          //Fields
-        bool laneType;
-        int direction;
+        bool? laneType;
+        bool toFromCross;
+        Direction direction;
         List<Light> trafficLights;
         List<Car> cars;
         List<TrafficLane> lanes;
@@ -21,10 +22,16 @@ namespace ProCP
         /// <summary>
         /// Feeder or end lane, or just a connecting lane
         /// </summary>
-        public bool LaneType
+        public bool? LaneType
         {
             get { return laneType; }
             set { laneType = value; }
+        }
+
+        public bool ToFromCross
+        {
+            get { return toFromCross; }
+            set { toFromCross = value; }
         }
 
         /// <summary>
@@ -58,7 +65,7 @@ namespace ProCP
         /// Which direction the lane is going much easier as an int as we can do 0 is left to right
         /// 1 is right to left, 2 is up to down, and 3 is down to up.
         /// </summary>
-        public int Direction
+        public Direction Direction
         {
             get { return direction; }
             set { direction = value; }
@@ -66,23 +73,16 @@ namespace ProCP
 
 
         //Constructor
-        public TrafficLane(List<Point> points, bool isFull, bool laneType, int direction, List<Car> cars, List<Light> trafficLights, List<Lane> lanes): base(points, isFull)
+        public TrafficLane(int iD, bool toFromCross, Direction direction, List<Point> points, bool isFull, List<Light> trafficLights, List<TrafficLane> lanes)
+            : base(iD, points, isFull)
         {
-            this.LaneType = laneType;
+            this.ID = iD;
+            this.ToFromCross = toFromCross;
             this.Direction = direction;
-
+            this.Lanes = lanes;
+            this.LaneType = null;
             //Need to figure out the lists
         }
 
-        //Methods
-
-        /// <summary>
-        /// Returns a list of lanes that can connect to this one aka same direction
-        /// </summary>
-        /// <returns></returns>
-       public List<Lane> GetConnectingLanes()
-        {
-            return null;
-        }
     }
 }
