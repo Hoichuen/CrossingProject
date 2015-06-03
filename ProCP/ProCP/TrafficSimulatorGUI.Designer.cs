@@ -110,6 +110,7 @@
             this.crossingGrid14.TabIndex = 16;
             this.crossingGrid14.TabStop = false;
             this.crossingGrid14.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid14.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid16
             // 
