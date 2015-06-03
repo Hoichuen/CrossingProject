@@ -101,16 +101,20 @@ namespace ProCP
 
             if (self.Image == null)
             {
-                self.Image = (Image)e.Data.GetData(DataFormats.Bitmap);
+                bool result = false;
+                int picBoxNumber = GetNumberOfPicturebox(self);
 
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
                 {
-                    Simulation.AddCrossing(new Crossing_A(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y)));
+                    result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
                 }
                 else 
                 {
-                    Simulation.AddCrossing(new Crossing_B(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y)));
+                    result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
                 }
+
+                if (result)
+                    self.Image = (Image)e.Data.GetData(DataFormats.Bitmap);
 
                 return;
             }
@@ -254,6 +258,8 @@ namespace ProCP
             {
                 PictureBox self = (PictureBox)sender;
                 int picBoxNum = GetNumberOfPicturebox(self);
+
+                bool test = Simulation.CrossingExist(picBoxNum);
 
                 if (Simulation.CrossingExist(picBoxNum))
                 {

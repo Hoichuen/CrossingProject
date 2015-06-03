@@ -23,9 +23,16 @@ namespace ProCP
         public void Start() { }
         public void Stop() { }
 
-        public void AddCrossing(Crossing Crossing)
+        public bool AddCrossing(Crossing Crossing)
         {
-            Crossings.Add(Crossing);
+            if (Crossings.Count < 12)
+            {
+                Crossings.Add(Crossing);
+                return true;
+            }
+
+            MessageBox.Show("Remove a crossing to be able to add another one. You can have only 12 crossings at the same time.", "Crossing limit reached");
+            return false;
         }
 
         /// <summary>

@@ -121,6 +121,7 @@
             this.crossingGrid16.TabIndex = 15;
             this.crossingGrid16.TabStop = false;
             this.crossingGrid16.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid16.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid15
             // 
@@ -132,6 +133,7 @@
             this.crossingGrid15.TabIndex = 14;
             this.crossingGrid15.TabStop = false;
             this.crossingGrid15.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid15.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid13
             // 
@@ -143,6 +145,7 @@
             this.crossingGrid13.TabIndex = 13;
             this.crossingGrid13.TabStop = false;
             this.crossingGrid13.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid13.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid10
             // 
@@ -154,6 +157,7 @@
             this.crossingGrid10.TabIndex = 12;
             this.crossingGrid10.TabStop = false;
             this.crossingGrid10.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid10.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid12
             // 
@@ -165,6 +169,7 @@
             this.crossingGrid12.TabIndex = 11;
             this.crossingGrid12.TabStop = false;
             this.crossingGrid12.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid12.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid11
             // 
@@ -176,6 +181,7 @@
             this.crossingGrid11.TabIndex = 10;
             this.crossingGrid11.TabStop = false;
             this.crossingGrid11.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid11.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid9
             // 
@@ -187,6 +193,7 @@
             this.crossingGrid9.TabIndex = 9;
             this.crossingGrid9.TabStop = false;
             this.crossingGrid9.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid9.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid6
             // 
@@ -198,6 +205,7 @@
             this.crossingGrid6.TabIndex = 8;
             this.crossingGrid6.TabStop = false;
             this.crossingGrid6.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid6.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // numericCars
             // 
@@ -244,6 +252,7 @@
             this.crossingGrid8.TabIndex = 7;
             this.crossingGrid8.TabStop = false;
             this.crossingGrid8.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid8.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid7
             // 
@@ -255,6 +264,7 @@
             this.crossingGrid7.TabIndex = 6;
             this.crossingGrid7.TabStop = false;
             this.crossingGrid7.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid7.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid5
             // 
@@ -266,6 +276,7 @@
             this.crossingGrid5.TabIndex = 5;
             this.crossingGrid5.TabStop = false;
             this.crossingGrid5.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid5.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid2
             // 
@@ -316,6 +327,7 @@
             this.crossingGrid4.TabIndex = 2;
             this.crossingGrid4.TabStop = false;
             this.crossingGrid4.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid4.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingType2
             // 
@@ -358,6 +370,7 @@
             this.crossingGrid3.TabIndex = 1;
             this.crossingGrid3.TabStop = false;
             this.crossingGrid3.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid3.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // crossingGrid1
             // 
