@@ -134,7 +134,6 @@ namespace ProCP
             }
         }
 
-      
         public void EditCrossing(int id, int numCars, int time, int numPeds)
         {
             Crossing cr = Crossings.Find(x => x.CrossingId == (id));
@@ -174,10 +173,9 @@ namespace ProCP
             }
         }
 
-
         public bool CrossingExist(int id)
         {
-         return Crossings.Exists(x => x.CrossingId == (id));
+            return Crossings.Exists(x => x.CrossingId == (id));
         }
 
         public void RemoveCrossing(int id)
@@ -203,6 +201,11 @@ namespace ProCP
                 }
             }
             Console.WriteLine("Haha");
+        }
+
+        public Crossing getCrossing(int id)
+        {
+            return Crossings.Find(x => x.CrossingId == (id));
         }
     }
 }

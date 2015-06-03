@@ -277,6 +277,7 @@
             this.crossingGrid2.TabIndex = 4;
             this.crossingGrid2.TabStop = false;
             this.crossingGrid2.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid2.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // numericPedestrians
             // 
@@ -368,6 +369,7 @@
             this.crossingGrid1.TabIndex = 0;
             this.crossingGrid1.TabStop = false;
             this.crossingGrid1.Click += new System.EventHandler(this.pictureBoxOnClick);
+            this.crossingGrid1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
             // 
             // btnRemove
             // 

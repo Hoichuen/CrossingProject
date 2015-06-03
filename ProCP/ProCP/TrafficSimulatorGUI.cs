@@ -12,6 +12,8 @@ namespace ProCP
 {
     public partial class TrafficSimulatorGUI : Form
     {
+        bool debug = true;
+
         /// <summary>
         /// A list of controls
         /// </summary>
@@ -103,11 +105,11 @@ namespace ProCP
 
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
                 {
-                   Simulation.AddCrossing(new Crossing_A(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y)));
+                    Simulation.AddCrossing(new Crossing_A(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y)));
                 }
                 else 
                 {
-                   Simulation.AddCrossing(new Crossing_B(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y)));
+                    Simulation.AddCrossing(new Crossing_B(GetNumberOfPicturebox(self), new Point(self.Location.X, self.Location.Y)));
                 }
 
                 return;
@@ -243,6 +245,30 @@ namespace ProCP
         private void btnPlay_Click(object sender, EventArgs e)
         {
             Simulation.CreateCars();
+        }
+
+        private void pictureBoxOnPaint(object sender, PaintEventArgs e)
+        {
+            // enable/disable in the beginning of the class
+            if (debug)
+            {
+                PictureBox self = (PictureBox)sender;
+                int picBoxNum = GetNumberOfPicturebox(self);
+
+                if (Simulation.CrossingExist(picBoxNum))
+                {
+                    Crossing crossing = Simulation.getCrossing(picBoxNum);
+                    List<TrafficLane> lanes = new List<TrafficLane>(crossing.Lanes);
+
+                    foreach(TrafficLane t in lanes) 
+                    {
+                        foreach (Point p in t.Points)
+                        {
+                            e.Graphics.DrawEllipse(new Pen(Color.Red, 2), p.X, p.Y, 2, 2);
+                        }
+                    }
+                }
+            }
         }
     }
 }

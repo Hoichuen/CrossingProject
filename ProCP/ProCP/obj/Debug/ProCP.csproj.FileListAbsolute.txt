@@ -27,7 +27,6 @@ C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\Pro
 C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe
 C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\bin\Debug\ProCP.pdb
 C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csprojResolveAssemblyReference.cache
-C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Form1.resources
 C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources
 C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache
 C:\Users\Dragan\Desktop\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe.config
