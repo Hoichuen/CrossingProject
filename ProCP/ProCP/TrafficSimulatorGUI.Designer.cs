@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrafficSimulatorGUI));
             this.numericTrafficTime = new System.Windows.Forms.NumericUpDown();
             this.crossingGrid14 = new System.Windows.Forms.PictureBox();
             this.crossingGrid16 = new System.Windows.Forms.PictureBox();
@@ -62,16 +63,18 @@
             this.btnLock = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutTrafficSimulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutTrafficSimulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cBPedTraffic = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericTrafficTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid16)).BeginInit();
@@ -102,9 +105,9 @@
             // numericTrafficTime
             // 
             this.numericTrafficTime.Enabled = false;
-            this.numericTrafficTime.Location = new System.Drawing.Point(253, 64);
+            this.numericTrafficTime.Location = new System.Drawing.Point(83, 41);
             this.numericTrafficTime.Name = "numericTrafficTime";
-            this.numericTrafficTime.Size = new System.Drawing.Size(120, 20);
+            this.numericTrafficTime.Size = new System.Drawing.Size(78, 20);
             this.numericTrafficTime.TabIndex = 5;
             // 
             // crossingGrid14
@@ -218,35 +221,39 @@
             // numericCars
             // 
             this.numericCars.Enabled = false;
-            this.numericCars.Location = new System.Drawing.Point(253, 29);
+            this.numericCars.Location = new System.Drawing.Point(101, 15);
             this.numericCars.Name = "numericCars";
-            this.numericCars.Size = new System.Drawing.Size(120, 20);
+            this.numericCars.Size = new System.Drawing.Size(58, 20);
             this.numericCars.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 66);
+            this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 44);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(134, 13);
+            this.label3.Size = new System.Drawing.Size(79, 14);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Traffic Timing (in seconds):";
+            this.label3.Text = "Green time (s):";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 29);
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.Size = new System.Drawing.Size(89, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Number of Cars:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 99);
+            this.label1.Enabled = false;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(221, 167);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 13);
+            this.label1.Size = new System.Drawing.Size(123, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Number of Pedestrians:";
             // 
@@ -301,29 +308,39 @@
             // numericPedestrians
             // 
             this.numericPedestrians.Enabled = false;
-            this.numericPedestrians.Location = new System.Drawing.Point(253, 97);
+            this.numericPedestrians.Location = new System.Drawing.Point(347, 166);
             this.numericPedestrians.Name = "numericPedestrians";
-            this.numericPedestrians.Size = new System.Drawing.Size(120, 20);
+            this.numericPedestrians.Size = new System.Drawing.Size(35, 20);
             this.numericPedestrians.TabIndex = 4;
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(9, 627);
+            this.btnPlay.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPlay.BackgroundImage")));
+            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPlay.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
+            this.btnPlay.Location = new System.Drawing.Point(9, 431);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(388, 46);
+            this.btnPlay.Size = new System.Drawing.Size(388, 30);
             this.btnPlay.TabIndex = 11;
-            this.btnPlay.Text = "PLAY";
+            this.btnPlay.Text = "PLAY SIMULATION";
             this.btnPlay.UseVisualStyleBackColor = true;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // btnToggleLight
             // 
-            this.btnToggleLight.Location = new System.Drawing.Point(10, 519);
+            this.btnToggleLight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnToggleLight.BackgroundImage")));
+            this.btnToggleLight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnToggleLight.Enabled = false;
+            this.btnToggleLight.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnToggleLight.Image = ((System.Drawing.Image)(resources.GetObject("btnToggleLight.Image")));
+            this.btnToggleLight.Location = new System.Drawing.Point(9, 395);
             this.btnToggleLight.Name = "btnToggleLight";
-            this.btnToggleLight.Size = new System.Drawing.Size(387, 30);
+            this.btnToggleLight.Size = new System.Drawing.Size(388, 30);
             this.btnToggleLight.TabIndex = 9;
             this.btnToggleLight.Text = "Toggle Light";
             this.btnToggleLight.UseVisualStyleBackColor = true;
+            this.btnToggleLight.Click += new System.EventHandler(this.btnToggleLight_Click);
             // 
             // crossingGrid4
             // 
@@ -340,7 +357,7 @@
             // crossingType2
             // 
             this.crossingType2.Image = global::ProCP.Properties.Resources.Crossing_b;
-            this.crossingType2.Location = new System.Drawing.Point(98, 166);
+            this.crossingType2.Location = new System.Drawing.Point(10, 166);
             this.crossingType2.Name = "crossingType2";
             this.crossingType2.Size = new System.Drawing.Size(202, 144);
             this.crossingType2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -350,7 +367,7 @@
             // crossingType1
             // 
             this.crossingType1.Image = global::ProCP.Properties.Resources.Crossing_a;
-            this.crossingType1.Location = new System.Drawing.Point(98, 16);
+            this.crossingType1.Location = new System.Drawing.Point(10, 16);
             this.crossingType1.Name = "crossingType1";
             this.crossingType1.Size = new System.Drawing.Size(202, 144);
             this.crossingType1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -359,8 +376,15 @@
             // 
             // gBCrossingType
             // 
+            this.gBCrossingType.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.gBCrossingType.BackColor = System.Drawing.Color.Transparent;
             this.gBCrossingType.Controls.Add(this.crossingType2);
             this.gBCrossingType.Controls.Add(this.crossingType1);
+            this.gBCrossingType.Controls.Add(this.numericPedestrians);
+            this.gBCrossingType.Controls.Add(this.gBSettings);
+            this.gBCrossingType.Controls.Add(this.label1);
+            this.gBCrossingType.Controls.Add(this.btnRemove);
+            this.gBCrossingType.ForeColor = System.Drawing.Color.White;
             this.gBCrossingType.Location = new System.Drawing.Point(9, 33);
             this.gBCrossingType.Name = "gBCrossingType";
             this.gBCrossingType.Size = new System.Drawing.Size(388, 320);
@@ -394,9 +418,13 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(10, 555);
+            this.btnRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemove.BackgroundImage")));
+            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRemove.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.ForeColor = System.Drawing.Color.Black;
+            this.btnRemove.Location = new System.Drawing.Point(218, 280);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(388, 30);
+            this.btnRemove.Size = new System.Drawing.Size(164, 30);
             this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -404,27 +432,34 @@
             // 
             // gBSettings
             // 
+            this.gBSettings.BackColor = System.Drawing.Color.Transparent;
+            this.gBSettings.Controls.Add(this.label4);
+            this.gBSettings.Controls.Add(this.cBPedTraffic);
             this.gBSettings.Controls.Add(this.btnFinishCrossing);
             this.gBSettings.Controls.Add(this.numericTrafficTime);
-            this.gBSettings.Controls.Add(this.numericPedestrians);
             this.gBSettings.Controls.Add(this.numericCars);
             this.gBSettings.Controls.Add(this.label3);
             this.gBSettings.Controls.Add(this.label2);
-            this.gBSettings.Controls.Add(this.label1);
-            this.gBSettings.Location = new System.Drawing.Point(10, 360);
+            this.gBSettings.ForeColor = System.Drawing.Color.White;
+            this.gBSettings.Location = new System.Drawing.Point(215, 16);
             this.gBSettings.Name = "gBSettings";
-            this.gBSettings.Size = new System.Drawing.Size(387, 153);
+            this.gBSettings.Size = new System.Drawing.Size(167, 144);
             this.gBSettings.TabIndex = 8;
             this.gBSettings.TabStop = false;
-            this.gBSettings.Text = "Settings";
+            this.gBSettings.Text = "Crossing Settings";
             // 
             // btnFinishCrossing
             // 
-            this.btnFinishCrossing.Location = new System.Drawing.Point(9, 123);
+            this.btnFinishCrossing.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFinishCrossing.BackgroundImage")));
+            this.btnFinishCrossing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFinishCrossing.FlatAppearance.BorderSize = 0;
+            this.btnFinishCrossing.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinishCrossing.ForeColor = System.Drawing.Color.Red;
+            this.btnFinishCrossing.Location = new System.Drawing.Point(6, 113);
             this.btnFinishCrossing.Name = "btnFinishCrossing";
-            this.btnFinishCrossing.Size = new System.Drawing.Size(372, 24);
+            this.btnFinishCrossing.Size = new System.Drawing.Size(155, 24);
             this.btnFinishCrossing.TabIndex = 10;
-            this.btnFinishCrossing.Text = "Finish crossing";
+            this.btnFinishCrossing.Text = "Lock Crossing";
             this.btnFinishCrossing.UseVisualStyleBackColor = true;
             this.btnFinishCrossing.Click += new System.EventHandler(this.btnFinishCrossing_Click);
             // 
@@ -455,7 +490,11 @@
             // 
             // btnLock
             // 
-            this.btnLock.Location = new System.Drawing.Point(9, 591);
+            this.btnLock.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLock.BackgroundImage")));
+            this.btnLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLock.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLock.Image = ((System.Drawing.Image)(resources.GetObject("btnLock.Image")));
+            this.btnLock.Location = new System.Drawing.Point(9, 359);
             this.btnLock.Name = "btnLock";
             this.btnLock.Size = new System.Drawing.Size(388, 30);
             this.btnLock.TabIndex = 12;
@@ -487,16 +526,39 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.newToolStripMenuItem.Text = "New";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.openToolStripMenuItem.Text = "Open...";
+            // 
             // fileToolStripMenuItem1
             // 
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(123, 22);
             this.fileToolStripMenuItem1.Text = "Save";
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveAsToolStripMenuItem.Text = "Save As...";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(120, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // aboutMeToolStripMenuItem
@@ -515,54 +577,56 @@
             this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.viewHelpToolStripMenuItem.Text = "View help";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(195, 6);
+            // 
             // aboutTrafficSimulatorToolStripMenuItem
             // 
             this.aboutTrafficSimulatorToolStripMenuItem.Name = "aboutTrafficSimulatorToolStripMenuItem";
             this.aboutTrafficSimulatorToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.aboutTrafficSimulatorToolStripMenuItem.Text = "About Traffic Simulator";
             // 
-            // newToolStripMenuItem
+            // cBPedTraffic
             // 
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newToolStripMenuItem.Text = "New";
+            this.cBPedTraffic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBPedTraffic.Enabled = false;
+            this.cBPedTraffic.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cBPedTraffic.FormattingEnabled = true;
+            this.cBPedTraffic.Items.AddRange(new object[] {
+            "Quiet",
+            "Busy"});
+            this.cBPedTraffic.Location = new System.Drawing.Point(6, 81);
+            this.cBPedTraffic.Name = "cBPedTraffic";
+            this.cBPedTraffic.Size = new System.Drawing.Size(152, 26);
+            this.cBPedTraffic.TabIndex = 11;
             // 
-            // openToolStripMenuItem
+            // label4
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.openToolStripMenuItem.Text = "Open...";
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.saveAsToolStripMenuItem.Text = "Save As...";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(195, 6);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 14);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Pedestrian Traffic:";
             // 
             // TrafficSimulatorGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1313, 686);
             this.Controls.Add(this.btnLock);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnToggleLight);
             this.Controls.Add(this.gBCrossingType);
-            this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.gBSettings);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "TrafficSimulatorGUI";
@@ -587,6 +651,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.crossingType2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingType1)).EndInit();
             this.gBCrossingType.ResumeLayout(false);
+            this.gBCrossingType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid1)).EndInit();
             this.gBSettings.ResumeLayout(false);
@@ -645,6 +710,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ComboBox cBPedTraffic;
+        private System.Windows.Forms.Label label4;
 
 
     }

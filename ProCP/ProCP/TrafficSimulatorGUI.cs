@@ -26,6 +26,8 @@ namespace ProCP
         int selectedID;
         bool isLocked;
         bool play;
+        bool crossLocked;
+
 
         public TrafficSimulatorGUI()
         {
@@ -40,7 +42,7 @@ namespace ProCP
             btnFinishCrossing.Enabled = false;
 
         }
-        
+
         /// <summary>
         /// a method to populate the list of controls with pictureboxes
         /// </summary>
@@ -53,7 +55,7 @@ namespace ProCP
                 if (c is PictureBox) ControlList.Add(c);
             }
         }
-        
+
         private int GetNumberOfPicturebox(PictureBox self)
         {
             switch (self.Name)
@@ -74,12 +76,12 @@ namespace ProCP
                 case "crossingGrid14": return 14;
                 case "crossingGrid15": return 15;
                 case "crossingGrid16": return 16;
-                default:return 0;
+                default: return 0;
 
-            
+
             }
         }
-        
+
         /// <summary>
         /// Adds the drag/drop events and makes the pictureboxes allowing drop
         /// </summary>
@@ -88,19 +90,24 @@ namespace ProCP
             crossingType1.MouseDown += crossingType1_MouseDown;
             crossingType2.MouseDown += crossingType2_MouseDown;
 
-            
-            foreach (Control c in ControlList )
+
+            foreach (Control c in ControlList)
             {
                 c.AllowDrop = true;
                 c.DragDrop += c_DragDrop;
                 c.DragEnter += c_DragEnter;
             }
-           
+
         }
 
         void c_DragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.Copy;                
+            if (isLocked)
+            {
+                return;
+            }
+
+            e.Effect = DragDropEffects.Copy;
         }
 
         void c_DragDrop(object sender, DragEventArgs e)
@@ -121,7 +128,7 @@ namespace ProCP
                 {
                     result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
                 }
-                else 
+                else
                 {
                     result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
                 }
@@ -131,7 +138,7 @@ namespace ProCP
 
                 return;
             }
-            
+
             MessageBox.Show("Remove the crossing first to be able to add another one on this tile", "There is already a crossing there");
         }
 
@@ -142,7 +149,7 @@ namespace ProCP
 
         void crossingType1_MouseDown(object sender, MouseEventArgs e)
         {
-            DoDragDrop(crossingType1.Image, DragDropEffects.Copy);  
+            DoDragDrop(crossingType1.Image, DragDropEffects.Copy);
         }
 
         private void togglePictureBoxSelection(PictureBox pBox)
@@ -155,7 +162,7 @@ namespace ProCP
             if (tempPicBox != null && tempPicBox.Equals(pBox))
                 return;
 
-            selectedPicBox = pBox;
+            btnFinishCrossing.Enabled = true;
             pBox.Refresh();
         }
 
@@ -165,6 +172,9 @@ namespace ProCP
             selectedPicBox = null;
             eraseFlag = true;
 
+            btnFinishCrossing.Enabled = false;
+            
+            
             selectedBefore.Refresh();
         }
 
@@ -208,7 +218,17 @@ namespace ProCP
 
         private void btnFinishCrossing_Click(object sender, EventArgs e)
         {
+
+            if (crossLocked)
+            {
+                CrossUnlock();
+            }
+            else
+            {
+                CrossLock();
+            }
             Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (int)numericPedestrians.Value);
+
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -272,19 +292,22 @@ namespace ProCP
         private void Play()
         {
             play = true;
-            btnPlay.Text = "STOP";
+            btnPlay.Text = "STOP SIMULATION";
             btnLock.Enabled = false;
             btnRemove.Enabled = false;
             btnToggleLight.Enabled = false;
             btnFinishCrossing.Enabled = false;
+            btnToggleLight.Enabled = true;
             Simulation.CreateCars();
+
         }
 
         private void Stop()
         {
             play = false;
-            btnPlay.Text = "PLAY";
+            btnPlay.Text = "PLAY SIMULATION";
             btnLock.Enabled = true;
+            btnToggleLight.Enabled = false;
             Unlock();
         }
 
@@ -294,7 +317,8 @@ namespace ProCP
             btnLock.Text = "Unlock Grid";
             btnPlay.Enabled = true;
             btnRemove.Enabled = false;
-            btnToggleLight.Enabled = true;
+            cBPedTraffic.Enabled = true;
+
 
             Simulation.MarkLanes();
             Simulation.LaneCrossingConnection();
@@ -302,7 +326,37 @@ namespace ProCP
             this.numericCars.Enabled = true;
             this.numericPedestrians.Enabled = true;
             this.numericTrafficTime.Enabled = true;
-            btnFinishCrossing.Enabled = true;
+            //btnFinishCrossing.Enabled = true;
+        }
+
+        private void CrossLock()
+        {
+            crossLocked = true;
+
+            btnFinishCrossing.Text = "Unlock Crossing";
+
+            numericCars.Enabled = false;
+            numericPedestrians.Enabled = false;
+            numericTrafficTime.Enabled = false;
+
+            btnPlay.Enabled = true;
+            btnRemove.Enabled = false;
+            cBPedTraffic.Enabled = true;
+        }
+
+        private void CrossUnlock()
+        {
+            crossLocked = false;
+
+            btnFinishCrossing.Text = "Lock Crossing";
+
+            numericCars.Enabled = false;
+            numericPedestrians.Enabled = false;
+            numericTrafficTime.Enabled = false;
+
+            btnPlay.Enabled = true;
+            btnRemove.Enabled = false;
+            cBPedTraffic.Enabled = true;
         }
 
         private void Unlock()
@@ -311,7 +365,7 @@ namespace ProCP
             btnLock.Text = "Lock Grid";
             btnPlay.Enabled = false;
             btnRemove.Enabled = true;
-            btnToggleLight.Enabled = false;
+            cBPedTraffic.Enabled = false;
 
             this.numericCars.Enabled = false;
             this.numericPedestrians.Enabled = false;
@@ -319,7 +373,7 @@ namespace ProCP
             btnFinishCrossing.Enabled = false;
         }
         #endregion
-        
+
         private void pictureBoxOnPaint(object sender, PaintEventArgs e)
         {
             PictureBox self = (PictureBox)sender;
@@ -338,6 +392,7 @@ namespace ProCP
                 }
             }
 
+
             #region Debug
             // enable/disable in the beginning of the class
             if (debug)
@@ -352,7 +407,7 @@ namespace ProCP
                     Crossing crossing = Simulation.getCrossing(picBoxNum);
                     List<TrafficLane> lanes = new List<TrafficLane>(crossing.Lanes);
 
-                    foreach(TrafficLane t in lanes) 
+                    foreach (TrafficLane t in lanes)
                     {
                         foreach (Point p in t.Points)
                         {
@@ -363,7 +418,7 @@ namespace ProCP
                     if (crossing is Crossing_A)
                     {
                         // Car debug
-                        
+
                         #region Vertical Crossings
                         // Lane 4
                         e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 77, 1, 10, 13);
@@ -394,9 +449,9 @@ namespace ProCP
                         e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 134, 111, 10, 13);
                         e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 134, 126, 10, 13);
                         e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 134, 141, 10, 13);
-                        
+
                         #endregion
-                        
+
                         #region Horizontal Crossings
 
                         // Lane 6
@@ -410,7 +465,7 @@ namespace ProCP
                         e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 74, 13, 10);
                         e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 74, 13, 10);
                         e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 74, 13, 10);
-                        
+
                         // Lane 1
                         e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 94, 13, 10);
                         e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 94, 13, 10);
@@ -434,7 +489,7 @@ namespace ProCP
                         e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 94, 13, 10);
                         e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 94, 13, 10);
                         e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 94, 13, 10);
-                        
+
                         #endregion
                     }
 
@@ -508,7 +563,12 @@ namespace ProCP
                 }
             }
         }
-        #endregion
+            #endregion
+
+        private void btnToggleLight_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
     }
