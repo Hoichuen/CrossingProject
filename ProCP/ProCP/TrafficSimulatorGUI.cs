@@ -13,6 +13,7 @@ namespace ProCP
     public partial class TrafficSimulatorGUI : Form
     {
         bool debug = true;
+        bool eraseFlag = false;
 
         /// <summary>
         /// A list of controls
@@ -24,6 +25,7 @@ namespace ProCP
 
         int selectedID;
         bool isLocked;
+        bool play;
 
         public TrafficSimulatorGUI()
         {
@@ -31,6 +33,11 @@ namespace ProCP
             GetAllPictureboxes(panel1);
             AddDragDropToPictureBoxes();
             Simulation = new Simulation();
+            isLocked = false;
+            btnPlay.Enabled = false;
+            btnRemove.Enabled = true;
+            btnToggleLight.Enabled = false;
+            btnFinishCrossing.Enabled = false;
 
         }
         
@@ -134,30 +141,34 @@ namespace ProCP
 
         private void togglePictureBoxSelection(PictureBox pBox)
         {
-            if (null != selectedPicBox)
-            {
-                applyStylesToPicBox(selectedPicBox, false);
-                selectedPicBox = null;
-                applyStylesToPicBox(pBox, false);
-            }
+            PictureBox tempPicBox = selectedPicBox;
+
+            if (selectedPicBox != null)
+                unselectCurrentCrossing();
+
+            if (tempPicBox != null && tempPicBox.Equals(pBox))
+                return;
 
             selectedPicBox = pBox;
-            applyStylesToPicBox(pBox, true);
+            pBox.Refresh();
         }
 
-        private void applyStylesToPicBox(PictureBox pBox, Boolean selected)
+        private void unselectCurrentCrossing()
         {
-            if (selected)
-            {
-                // Styles... 
-                return;
-            }
+            PictureBox selectedBefore = selectedPicBox;
+            selectedPicBox = null;
+            eraseFlag = true;
 
-            // Styles...
+            selectedBefore.Refresh();
         }
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
+            if (isLocked)
+            {
+                return;
+            }
+
             int x = 1;
             int y = 2;
             int z = 3;
@@ -170,12 +181,8 @@ namespace ProCP
             if (!Simulation.CrossingExist(selectedID))
             {
                 selectedID = 0;
+                unselectCurrentCrossing();
                 MessageBox.Show("No crossing selected.");
-                return;
-            }
-
-            if (!isLocked)
-            {
                 return;
             }
 
@@ -233,31 +240,108 @@ namespace ProCP
 
             picBox.Image = null;
             Simulation.RemoveCrossing(GetNumberOfPicturebox(picBox));
+            unselectCurrentCrossing();
         }
 
         private void btLock_Click(object sender, EventArgs e)
         {
-            Simulation.MarkLanes();
-            Simulation.LaneCrossingConnection();
-            isLocked = true;
-
-            this.numericCars.Enabled = true;
-            this.numericPedestrians.Enabled = true;
-            this.numericTrafficTime.Enabled = true;
+            if (!isLocked)
+            {
+                Lock();
+            }
+            else if (isLocked)
+            {
+                Unlock();
+            }
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            if (!play)
+            {
+                Play();
+            }
+            else if (play)
+            {
+                Stop();
+            }
+        }
+
+        #region buttonlogic
+        private void Play()
+        {
+            play = true;
+            btnPlay.Text = "STOP";
+            btnLock.Enabled = false;
+            btnRemove.Enabled = false;
+            btnToggleLight.Enabled = false;
+            btnFinishCrossing.Enabled = false;
             Simulation.CreateCars();
         }
 
+        private void Stop()
+        {
+            play = false;
+            btnPlay.Text = "PLAY";
+            btnLock.Enabled = true;
+            Unlock();
+        }
+
+        private void Lock()
+        {
+            isLocked = true;
+            btnLock.Text = "Unlock Grid";
+            btnPlay.Enabled = true;
+            btnRemove.Enabled = false;
+            btnToggleLight.Enabled = true;
+
+            Simulation.MarkLanes();
+            Simulation.LaneCrossingConnection();
+
+            this.numericCars.Enabled = true;
+            this.numericPedestrians.Enabled = true;
+            this.numericTrafficTime.Enabled = true;
+            btnFinishCrossing.Enabled = true;
+        }
+
+        private void Unlock()
+        {
+            isLocked = false;
+            btnLock.Text = "Lock Grid";
+            btnPlay.Enabled = false;
+            btnRemove.Enabled = true;
+            btnToggleLight.Enabled = false;
+
+            this.numericCars.Enabled = false;
+            this.numericPedestrians.Enabled = false;
+            this.numericTrafficTime.Enabled = false;
+            btnFinishCrossing.Enabled = false;
+        }
+        #endregion
+        
         private void pictureBoxOnPaint(object sender, PaintEventArgs e)
         {
+            PictureBox self = (PictureBox)sender;
+
+            if (null != selectedPicBox)
+            {
+                if (self.Equals(selectedPicBox))
+                {
+                    e.Graphics.DrawRectangle(new Pen(Color.Red, 3), 1, 1, 220, 155);
+                }
+
+                if (eraseFlag)
+                {
+                    eraseFlag = false;
+                    self.Invalidate();
+                }
+            }
+
+            #region Debug
             // enable/disable in the beginning of the class
             if (debug)
             {
                 // Dots debug
-                PictureBox self = (PictureBox)sender;
                 int picBoxNum = GetNumberOfPicturebox(self);
 
                 bool test = Simulation.CrossingExist(picBoxNum);
@@ -423,5 +507,6 @@ namespace ProCP
                 }
             }
         }
+        #endregion
     }
 }
