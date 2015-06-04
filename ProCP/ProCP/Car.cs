@@ -14,7 +14,7 @@ namespace ProCP
         Color color;
         int speed = 50;
         TrafficLane currentLane;
-
+        Point curPoint;
         List<TrafficLane> route;
 
         //Properties
@@ -46,6 +46,15 @@ namespace ProCP
         }
 
         /// <summary>
+        /// Current Point
+        /// </summary>
+        public Point CurPoint
+        {
+            get { return CurPoint; }
+            set { CurPoint = value; }
+        }
+
+        /// <summary>
         /// Cars will be switching lanes a lot, its nice to keep track
         /// </summary>
         public TrafficLane CurrentLane
@@ -67,7 +76,12 @@ namespace ProCP
             this.CarId = carId++;
             this.Color = color;
             this.CurrentLane = startingLane;
+            if (CurrentLane.Points.First().IsEmpty)
+            {
+                this.CurPoint = CurrentLane.Points.First();
+            }
             this.Route = CreateRoute(startingLane);
+            CurrentLane.Cars.Add(this);
 
         }
 
@@ -97,7 +111,24 @@ namespace ProCP
         /// </summary>
         void DriveLane()
         {
-
+            if (this.CurrentLane.TrafficLight.State && this.CurrentLane.GetNextPoint(this.CurPoint).IsEmpty)
+            {
+                if (CurPoint.IsEmpty)
+                {
+                    if (CurrentLane.Cars.ElementAt(CurrentLane.Points.Count()) == this)
+                    {
+                        this.CurPoint = CurrentLane.Points.First();
+                    }
+                }
+                else if (CurPoint == CurrentLane.Points.Last())
+                {
+                    this.SwitchLane();
+                }
+                else
+                {
+                    this.CurPoint = this.CurrentLane.GetNextPoint(this.CurPoint);
+                }
+            }
         }
 
         /// <summary>
@@ -105,7 +136,8 @@ namespace ProCP
         /// </summary>
         void SwitchLane()
         {
-
+            this.Route.RemoveAt(0);
+            this.CurrentLane = Route.First();
         }
 
         /// <summary>

@@ -37,7 +37,7 @@ namespace ProCP
         /// <summary>
         /// List of trafficlights within this lane
         /// </summary>
-        public Light TrafficLights
+        public Light TrafficLight
         {
             get { return trafficLight; }
             set { trafficLight = value; }
@@ -84,5 +84,9 @@ namespace ProCP
             //Need to figure out the lists
         }
 
+        public Point GetNextPoint(Point point)
+        {
+            return this.Points.ElementAt(Points.FindIndex(x => x == point) + 1);
+        }
     }
 }
