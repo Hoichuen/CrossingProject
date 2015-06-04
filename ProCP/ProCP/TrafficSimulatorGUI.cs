@@ -256,6 +256,7 @@ namespace ProCP
             // enable/disable in the beginning of the class
             if (debug)
             {
+                // Dots debug
                 PictureBox self = (PictureBox)sender;
                 int picBoxNum = GetNumberOfPicturebox(self);
 
@@ -270,8 +271,39 @@ namespace ProCP
                     {
                         foreach (Point p in t.Points)
                         {
-                            e.Graphics.DrawEllipse(new Pen(Color.Red, 2), p.X, p.Y, 2, 2);
+                            e.Graphics.DrawEllipse(new Pen(Color.Red, 1), p.X, p.Y, 1, 1);
                         }
+                    }
+
+                    if (crossing is Crossing_A)
+                    {
+                        // Car debug
+
+                        // Lane 2
+                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 77, 1, 10, 13);
+                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 77, 16, 10, 13);
+                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 77, 31, 10, 13);
+
+                        // Lane 5
+                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 104, 1, 10, 13);
+                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 104, 16, 10, 13);
+                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 104, 31, 10, 13);
+
+                        // Lane 0
+                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 134, 1, 10, 13);
+                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 134, 16, 10, 13);
+                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 134, 31, 10, 13);
+
+                        /*
+                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 77, 111, 10, 13);
+                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 77, 127, 10, 13);
+                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 77, 143, 10, 13);
+
+                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 54, 13, 10);
+                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 173, 54, 13, 10);
+                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 189, 54, 13, 10);
+                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 205, 54, 13, 10);
+                        */
                     }
                 }
             }

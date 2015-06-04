@@ -9,7 +9,8 @@ namespace ProCP
 {
     class TrafficLane : Lane
     {
-        const int MAX_POINTS_PER_LANE = 3;
+        const int MAX_POINTS_PER_VERTICAL_LANE = 3;
+        const int MAX_POINTS_PER_HORIZONTAL_LANE = 4;
         const int VERTICAL_SPACE_BETWEEN_POINTS = 15;
          
         //Fields
@@ -115,8 +116,8 @@ namespace ProCP
 
         private List<Point> processAndReturnPointsForCrossingA()
         {
-            int[] xOffset = { 138, 173, 81, 15, 81, 109, 173, 173, 138, 110, 15, 15 };
-            int[] yOffset = { 7, 98, 118, 58, 7, 7, 58, 78, 118, 118, 98, 78 };
+            int[] xOffset = { 134, 173, 77, 15, 77, 104, 173, 173, 134, 104, 15, 15 };
+            int[] yOffset = { 1, 98, 111, 58, 1, 1, 58, 78, 118, 118, 98, 78 };
 
             return getPointList(xOffset, yOffset);
         }
@@ -136,17 +137,19 @@ namespace ProCP
             bool ascending = (this.direction.Equals(Direction.NORTH) || this.direction.Equals(Direction.EAST)) ? true : false;
             bool vertical = (this.direction.Equals(Direction.SOUTH) || this.direction.Equals(Direction.NORTH)) ? true : false;
 
-            for (int i = 0; i < MAX_POINTS_PER_LANE; i++)
+            for (int i = 0; i < MAX_POINTS_PER_HORIZONTAL_LANE; i++)
             {
                 int curOffsetX = xOffset[this.ID], curOffsetY = yOffset[this.ID];
 
-                if (vertical)
+                if (vertical && i < MAX_POINTS_PER_VERTICAL_LANE)
                 {
                     points.Add(new Point(curOffsetX, curOffsetY + (VERTICAL_SPACE_BETWEEN_POINTS * i)));
                     continue;
                 }
 
-                points.Add(new Point(curOffsetX + (VERTICAL_SPACE_BETWEEN_POINTS * i), curOffsetY));
+                if (!vertical) {
+                    points.Add(new Point(curOffsetX + (VERTICAL_SPACE_BETWEEN_POINTS * i), curOffsetY));
+                }
             }
 
             if (!ascending)
