@@ -234,7 +234,7 @@ namespace ProCP
                 cr1.NumCars = numCars;
                 cr1.Time = new TimeSpan(0,0,time);
                 cr1.NumPeds = numPeds;
- 
+                cr1.CreatePedestrians();
             }
 
         }
@@ -286,6 +286,9 @@ namespace ProCP
                 }
             }
         }
-
+        public List<Crossing> GetCrossings()
+        {
+            return Crossings;
+        }
     }
 }

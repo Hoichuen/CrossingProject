@@ -9,7 +9,8 @@ namespace ProCP
 {
     class Crossing_B:Crossing
     {
-
+        public List<PedestrianLane> pLanes;
+        public List<Pedestrian> pedestrians;
         int numPeds;
         List<TrafficLane> tempLanes;
 
@@ -71,6 +72,56 @@ namespace ProCP
             tLanes = new List<TrafficLane>();
 
             base.Lanes.AddRange(lanes);
+
+            //Adding the list of pedestrians
+            pedestrians = new List<Pedestrian>();
+            //Adding the pedestrian lane list and the pedestrian lights
+            pLanes = new List<PedestrianLane>();
+            //top lane
+            PedestrianLight pLight = new PedestrianLight(new TimeSpan(), false, false);//this needs to be fixed after we figure out the timings
+            pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), false, pLight));
+            //bottom lane
+            pLight = new PedestrianLight(new TimeSpan(), false, false);
+            pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), false, pLight));
+            
+        }
+        private List<Point> CalculatePedestrianLanePoints(int ID)
+        {
+            ///225;160
+            /// /4 = rows to add %4 column
+            List<Point> points = new List<Point>();
+            int row, column, x, y;
+            row = this.CrossingId / 4;
+            column = (this.CrossingId % 4) - 1;
+            x = column * 225; y = row * 160;
+            if (ID == 1)//for the top lane;
+            {
+
+                for (int i = 0; i < 4; i++)
+                {
+                    points.Add(new Point(x + 45, y + 20));
+                    x += 45;
+
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    points.Add(new Point(x + 45, y + 135));
+                    x += 45;
+
+                }
+            }
+            return points;
+        }
+        public void CreatePedestrians()
+        {
+            for (int i = 0; i < numPeds; i++)
+            {
+                pedestrians.Add(new Pedestrian(0, Color.Black, 1, this)); //pedid and color are not needed as far as i can see 
+                // but i left them just in case
+            }
         }
     }
 }

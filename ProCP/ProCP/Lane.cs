@@ -41,7 +41,7 @@ namespace ProCP
         public Lane(int iD, List<Point> points, bool isFull)
         {
             this.ID = iD++;
-            this.Points = new List<Point>();
+            this.Points = points;
             this.IsFull = IsFull;
             //Need to figure out the lists
         }

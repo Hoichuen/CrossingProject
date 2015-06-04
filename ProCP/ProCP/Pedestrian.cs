@@ -14,6 +14,9 @@ namespace ProCP
         Color color;
         int speed = 5;
         PedestrianLane lane;
+        Point position = new Point();
+        Crossing_B crossing;
+        Point StartPosition = new Point(); //we need this to calculate the direction of the pedestrian
 
         //Properties
 
@@ -22,7 +25,8 @@ namespace ProCP
         /// </summary>
         public int PedId
         {
-            get; private set;
+            get { return pedId; }
+            private set { }
         }
 
         /// <summary>
@@ -40,7 +44,7 @@ namespace ProCP
         public int Speed
         {
             get { return speed; }
-            set { Speed = value; }
+            set { speed = value; }
         }
 
         /// <summary>
@@ -54,12 +58,15 @@ namespace ProCP
 
 
         //Constructor
-        public Pedestrian(int pedId, Color color, int speed, PedestrianLane lane)
+        public Pedestrian(int pedId, Color color, int speed, Crossing_B Crossing)
         {
             this.PedId = pedId++;
-            this.Color = color;
+            this.Color = color;//thats racism
             this.Speed = speed; //Speed might be fixed to we can change that
-            this.Lane = lane;
+            this.crossing = Crossing;
+            this.StartPosition = WhereToStart(); //this one sets the lane aswell
+            this.position = StartPosition;
+            PressSensor();
         }
 
         //Methods
@@ -68,19 +75,19 @@ namespace ProCP
         /// Returns the Point position of the pedestrian
         /// </summary>
         /// <returns></returns>
-        Point getPosition()
+        public Point getPosition()
         {
-            Point p = new Point();
-            return p;
+
+            return position;
         }
 
         /// <summary>
-        /// Returns the peestrian's lane
+        /// Returns the pedestrian's lane
         /// </summary>
         /// <returns></returns>
         PedestrianLane getLane()
         {
-            return null;
+            return lane;
         }
 
         /// <summary>
@@ -88,8 +95,63 @@ namespace ProCP
         /// </summary>
         void Walk()
         {
+            if (lane.PLight.State) //if the light is on
+            {
+                int indexPosition = 0;
+                for (int i = 0; i < lane.Points.Count; i++)
+                {
+                    if (lane.Points[i] == this.position) indexPosition = i;
+                }
+                try
+                {
+                    if (Direction())
+                    {
+                        position = lane.Points[indexPosition + 1];
+                    }
+                    else position = lane.Points[indexPosition - 1];
+                }
+                catch (Exception)
+                {
+                    Pedestrian p = lane.GetCrossingB().pedestrians.Find(x => x.PedId == this.PedId);
+                    for (int i = 0; i < lane.GetCrossingB().pedestrians.Count; i++)
+                    {
+                        if (lane.GetCrossingB().pedestrians[i] == p) lane.GetCrossingB().pedestrians[i] = null;
+                    }
+                }
+
+            }
 
         }
+        /// <summary>
+        /// Determines the starting position of the pedestrian at random
+        /// A random lane and a random point of the lane
+        /// </summary>
+        private Point WhereToStart()
+        {
+            Random rng = new Random();
+            int startHelper = rng.Next(1, 2);
+            if (startHelper == 1) lane = crossing.pLanes[0];
+            else lane = crossing.pLanes[1];
 
+            startHelper = rng.Next(1, 2);
+            if (startHelper == 1) return lane.Points[0];
+            else return lane.Points[lane.Points.Count - 1];
+
+        }
+        /// <summary>
+        /// Calculates the direction of the pedestrian.
+        /// True = left to right
+        /// False = right to left
+        /// </summary>
+        /// <returns></returns>
+        private bool Direction()
+        {
+            if (StartPosition == lane.Points[0]) return true;
+            else return false;
+        }
+        private void PressSensor()
+        {
+            this.lane.PLight.sensorPressed();
+        }
     }
 }
