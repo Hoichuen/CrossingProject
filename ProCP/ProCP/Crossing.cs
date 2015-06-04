@@ -17,7 +17,6 @@ namespace ProCP
         TimeSpan time;
         int numCars;
 
-
         //Properties
 
         public TimeSpan Time
@@ -38,11 +37,7 @@ namespace ProCP
         public int CrossingId
         {
             get { return crossingId; }
-            set { if (value <= 12)
-	                {
-		             crossingId = value; 
-	                }
-                }
+            set { crossingId = value; }
         }
 
         /// <summary>
@@ -60,14 +55,11 @@ namespace ProCP
             set { lanes = value; }
         }
 
-
-
-
         //Constructor
         //public Crossing(int crossingId, Point position, List<TrafficLane> lanes)
         public Crossing(int crossingId, Point position)
         {
-            this.CrossingId = crossingId++;
+            this.CrossingId = crossingId;
             this.Position = position;
 
             this.Time = TimeSpan.Zero;
