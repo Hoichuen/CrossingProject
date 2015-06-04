@@ -116,16 +116,16 @@ namespace ProCP
 
         private List<Point> processAndReturnPointsForCrossingA()
         {
-            int[] xOffset = { 134, 173, 77, 15, 77, 104, 173, 173, 134, 104, 15, 15 };
-            int[] yOffset = { 1, 98, 111, 58, 1, 1, 58, 78, 118, 118, 98, 78 };
+            int[] xOffset = { 134, 157, 77, 5, 77, 104, 157, 157, 134, 107, 5, 5 };
+            int[] yOffset = { 1, 98, 111, 54, 1, 1, 54, 74, 111, 111, 94, 74 };
 
             return getPointList(xOffset, yOffset);
         }
 
         private List<Point> processAndReturnPointsForCrossingB()
         {
-            int[] xOffset = { 132, 170, 90, 15, 90, 170, 170, 132, 15, 15 };
-            int[] yOffset = { 7, 98, 118, 58, 7, 58, 78, 118, 98, 78 };
+            int[] xOffset = { 128, 157, 85, 5, 85, 157, 157, 128, 5, 5 };
+            int[] yOffset = { 1, 94, 113, 54, 1, 54, 73, 113, 94, 74 };
 
             return getPointList(xOffset, yOffset);
         }
