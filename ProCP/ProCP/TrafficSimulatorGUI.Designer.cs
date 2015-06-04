@@ -57,14 +57,14 @@
             this.crossingGrid1 = new System.Windows.Forms.PictureBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.gBSettings = new System.Windows.Forms.GroupBox();
+            this.btnFinishCrossing = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btLock = new System.Windows.Forms.Button();
+            this.btnLock = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnFinishCrossing = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericTrafficTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid16)).BeginInit();
@@ -363,6 +363,7 @@
             this.crossingGrid1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.crossingGrid1.Location = new System.Drawing.Point(-1, -1);
             this.crossingGrid1.Name = "crossingGrid1";
+            this.crossingGrid1.Padding = new System.Windows.Forms.Padding(1);
             this.crossingGrid1.Size = new System.Drawing.Size(225, 160);
             this.crossingGrid1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid1.TabIndex = 0;
@@ -395,6 +396,16 @@
             this.gBSettings.TabStop = false;
             this.gBSettings.Text = "Settings";
             // 
+            // btnFinishCrossing
+            // 
+            this.btnFinishCrossing.Location = new System.Drawing.Point(9, 123);
+            this.btnFinishCrossing.Name = "btnFinishCrossing";
+            this.btnFinishCrossing.Size = new System.Drawing.Size(372, 24);
+            this.btnFinishCrossing.TabIndex = 10;
+            this.btnFinishCrossing.Text = "Finish crossing";
+            this.btnFinishCrossing.UseVisualStyleBackColor = true;
+            this.btnFinishCrossing.Click += new System.EventHandler(this.btnFinishCrossing_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
@@ -420,15 +431,15 @@
             this.panel1.Size = new System.Drawing.Size(900, 640);
             this.panel1.TabIndex = 6;
             // 
-            // btLock
+            // btnLock
             // 
-            this.btLock.Location = new System.Drawing.Point(9, 591);
-            this.btLock.Name = "btLock";
-            this.btLock.Size = new System.Drawing.Size(388, 30);
-            this.btLock.TabIndex = 12;
-            this.btLock.Text = "Lock Grid";
-            this.btLock.UseVisualStyleBackColor = true;
-            this.btLock.Click += new System.EventHandler(this.btLock_Click);
+            this.btnLock.Location = new System.Drawing.Point(9, 591);
+            this.btnLock.Name = "btnLock";
+            this.btnLock.Size = new System.Drawing.Size(388, 30);
+            this.btnLock.TabIndex = 12;
+            this.btnLock.Text = "Lock Grid";
+            this.btnLock.UseVisualStyleBackColor = true;
+            this.btnLock.Click += new System.EventHandler(this.btLock_Click);
             // 
             // menuStrip1
             // 
@@ -467,22 +478,12 @@
             this.loadToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.loadToolStripMenuItem.Text = "Load";
             // 
-            // btnFinishCrossing
-            // 
-            this.btnFinishCrossing.Location = new System.Drawing.Point(9, 123);
-            this.btnFinishCrossing.Name = "btnFinishCrossing";
-            this.btnFinishCrossing.Size = new System.Drawing.Size(372, 24);
-            this.btnFinishCrossing.TabIndex = 10;
-            this.btnFinishCrossing.Text = "Finish crossing";
-            this.btnFinishCrossing.UseVisualStyleBackColor = true;
-            this.btnFinishCrossing.Click += new System.EventHandler(this.btnFinishCrossing_Click);
-            // 
             // TrafficSimulatorGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1313, 686);
-            this.Controls.Add(this.btLock);
+            this.Controls.Add(this.btnLock);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnToggleLight);
             this.Controls.Add(this.gBCrossingType);
@@ -559,7 +560,7 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.GroupBox gBSettings;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btLock;
+        private System.Windows.Forms.Button btnLock;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
