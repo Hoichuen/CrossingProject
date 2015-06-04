@@ -13,6 +13,7 @@ namespace ProCP
     public partial class TrafficSimulatorGUI : Form
     {
         bool debug = true;
+        bool eraseFlag = false;
 
         /// <summary>
         /// A list of controls
@@ -140,30 +141,34 @@ namespace ProCP
 
         private void togglePictureBoxSelection(PictureBox pBox)
         {
-            if (null != selectedPicBox)
-            {
-                applyStylesToPicBox(selectedPicBox, false);
-                selectedPicBox = null;
-                applyStylesToPicBox(pBox, false);
-            }
+            PictureBox tempPicBox = selectedPicBox;
+
+            if (selectedPicBox != null)
+                unselectCurrentCrossing();
+
+            if (tempPicBox != null && tempPicBox.Equals(pBox))
+                return;
 
             selectedPicBox = pBox;
-            applyStylesToPicBox(pBox, true);
+            pBox.Refresh();
         }
 
-        private void applyStylesToPicBox(PictureBox pBox, Boolean selected)
+        private void unselectCurrentCrossing()
         {
-            if (selected)
-            {
-                // Styles... 
-                return;
-            }
+            PictureBox selectedBefore = selectedPicBox;
+            selectedPicBox = null;
+            eraseFlag = true;
 
-            // Styles...
+            selectedBefore.Refresh();
         }
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
+            if (isLocked)
+            {
+                return;
+            }
+
             int x = 1;
             int y = 2;
             int z = 3;
@@ -173,16 +178,11 @@ namespace ProCP
 
             selectedID = GetNumberOfPicturebox(self);
 
-
             if (!Simulation.CrossingExist(selectedID))
             {
                 selectedID = 0;
+                unselectCurrentCrossing();
                 MessageBox.Show("No crossing selected.");
-                return;
-            }
-
-            if (!isLocked)
-            {
                 return;
             }
 
@@ -240,6 +240,7 @@ namespace ProCP
 
             picBox.Image = null;
             Simulation.RemoveCrossing(GetNumberOfPicturebox(picBox));
+            unselectCurrentCrossing();
         }
 
         private void btLock_Click(object sender, EventArgs e)
@@ -320,12 +321,27 @@ namespace ProCP
         
         private void pictureBoxOnPaint(object sender, PaintEventArgs e)
         {
+            PictureBox self = (PictureBox)sender;
+
+            if (null != selectedPicBox)
+            {
+                if (self.Equals(selectedPicBox))
+                {
+                    e.Graphics.DrawRectangle(new Pen(Color.Red, 3), 1, 1, 220, 155);
+                }
+
+                if (eraseFlag)
+                {
+                    eraseFlag = false;
+                    self.Invalidate();
+                }
+            }
+
             #region Debug
             // enable/disable in the beginning of the class
             if (debug)
             {
                 // Dots debug
-                PictureBox self = (PictureBox)sender;
                 int picBoxNum = GetNumberOfPicturebox(self);
 
                 bool test = Simulation.CrossingExist(picBoxNum);
