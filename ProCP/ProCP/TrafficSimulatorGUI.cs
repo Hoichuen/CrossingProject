@@ -105,6 +105,11 @@ namespace ProCP
 
         void c_DragDrop(object sender, DragEventArgs e)
         {
+            if (isLocked)
+            {
+                return;
+            }
+
             PictureBox self = (PictureBox)sender;
 
             if (self.Image == null)
@@ -165,11 +170,6 @@ namespace ProCP
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
-            if (isLocked)
-            {
-                return;
-            }
-
             int x = 1;
             int y = 2;
             int z = 3;

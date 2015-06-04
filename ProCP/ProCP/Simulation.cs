@@ -10,13 +10,9 @@ namespace ProCP
 {
     class Simulation
     {
-<<<<<<< HEAD
-        private int time;
-=======
         int TotalNumberCars { get; set; }
         int TotalNumberPedestrians { get; set; }
         System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
->>>>>>> origin/Driving-Methods
 
         private List<Crossing> Crossings;
         private List<Car> cars;
@@ -310,12 +306,12 @@ namespace ProCP
             }
         }
 
-<<<<<<< HEAD
+
         public Crossing getCrossing(int id)
         {
             return Crossings.Find(x => x.CrossingId == (id));
         }
-=======
+
         public bool checkCarStatus()
         {
             bool done = true;
@@ -340,6 +336,5 @@ namespace ProCP
             return done;
         }
 
->>>>>>> origin/Driving-Methods
     }
 }
