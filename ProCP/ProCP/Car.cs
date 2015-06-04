@@ -14,7 +14,7 @@ namespace ProCP
         Color color;
         int speed = 50;
         TrafficLane currentLane;
-
+        Point curPoint;
         List<TrafficLane> route;
 
         //Properties
@@ -24,7 +24,14 @@ namespace ProCP
         /// </summary>
         public int CarId
         {
-            get; private set;
+            get
+            {
+                return carId;
+            }
+            private set
+            {
+                carId = value;
+            }
         }
 
         /// <summary>
@@ -43,6 +50,15 @@ namespace ProCP
         {
             get { return speed; }
             set { Speed = value; }
+        }
+
+        /// <summary>
+        /// Current Point
+        /// </summary>
+        public Point CurPoint
+        {
+            get { return curPoint; }
+            set { curPoint = value; }
         }
 
         /// <summary>
@@ -67,7 +83,12 @@ namespace ProCP
             this.CarId = carId++;
             this.Color = color;
             this.CurrentLane = startingLane;
+            if (CurrentLane.Cars.First()==null)
+            {
+                this.CurPoint = CurrentLane.Points.First();
+            }
             this.Route = CreateRoute(startingLane);
+            CurrentLane.Cars.Add(this);
 
         }
 
@@ -97,7 +118,24 @@ namespace ProCP
         /// </summary>
         void DriveLane()
         {
-
+            if (this.CurrentLane.TrafficLight.State && this.CurrentLane.GetNextPoint(this.CurPoint).IsEmpty)
+            {
+                if (CurPoint.IsEmpty)
+                {
+                    if (CurrentLane.Cars.ElementAt(CurrentLane.Points.Count()) == this)
+                    {
+                        this.CurPoint = CurrentLane.Points.First();
+                    }
+                }
+                else if (CurPoint == CurrentLane.Points.Last())
+                {
+                    this.SwitchLane();
+                }
+                else
+                {
+                    this.CurPoint = this.CurrentLane.GetNextPoint(this.CurPoint);
+                }
+            }
         }
 
         /// <summary>
@@ -105,17 +143,24 @@ namespace ProCP
         /// </summary>
         void SwitchLane()
         {
-
+            if (Route.ElementAt(1)!=null)
+            {
+                this.CurrentLane.Cars.Remove(this);
+                this.Route.RemoveAt(0);
+                this.CurrentLane = Route.First();
+                this.CurrentLane.Cars.Add(this);
+            }
+            else
+            {
+                this.CurrentLane.Cars.Remove(this);
+            }
         }
 
         /// <summary>
-        /// Car has to stop sometimes for red lights, and pedestrians
+        /// Creates the route of the car
         /// </summary>
-        void Stop()
-        {
-
-        }
-
+        /// <param name="startingLane"></param>
+        /// <returns></returns>
         public List<TrafficLane> CreateRoute(TrafficLane startingLane)
         {
             bool finished = false;
