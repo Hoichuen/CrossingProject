@@ -33,6 +33,7 @@ namespace ProCP
             for (int i = 0; i < 4; i++)
             {
                 lanes.Add(new TrafficLane(i, false, (Direction)i, null, tLanes, this));
+                tLanes = new List<TrafficLane>();
             }
 
             //Adding the list of lanes that a certain lane can go to, as well as creating the lanes.
@@ -40,30 +41,30 @@ namespace ProCP
             //For South
             tLanes.Add(lanes.ElementAt(2));
             lanes.Add(new TrafficLane(4, true, Direction.SOUTH, null, tLanes, this));
-            tLanes.Clear();
+            tLanes = new List<TrafficLane>();
 
             //For West
             tLanes.AddRange(new TrafficLane[] { lanes.ElementAt(0), lanes.ElementAt(3) });
             lanes.Add(new TrafficLane(5, true, Direction.WEST, null, tLanes, this));
-            tLanes.Clear();
-
+            tLanes = new List<TrafficLane>();
+            
             tLanes.Add(lanes.ElementAt(2));
             lanes.Add(new TrafficLane(6, true, Direction.WEST, null, tLanes, this));
-            tLanes.Clear();
+            tLanes = new List<TrafficLane>();
 
             //For North
             tLanes.Add(lanes.ElementAt(0));
             lanes.Add(new TrafficLane(7, true, Direction.NORTH, null, tLanes, this));
-            tLanes.Clear();
+            tLanes = new List<TrafficLane>();
 
             //For East
             tLanes.AddRange(new TrafficLane[] { lanes.ElementAt(1), lanes.ElementAt(2) });
             lanes.Add(new TrafficLane(8, true, Direction.EAST, null, tLanes, this));
-            tLanes.Clear();
+            tLanes = new List<TrafficLane>();
 
             tLanes.Add(lanes.ElementAt(0));
             lanes.Add(new TrafficLane(9, true, Direction.EAST, null, tLanes, this));
-            tLanes.Clear();
+            tLanes = new List<TrafficLane>();
 
             base.Lanes.AddRange(lanes);
         }
