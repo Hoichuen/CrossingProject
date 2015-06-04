@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ProCP
 {
@@ -19,6 +20,10 @@ namespace ProCP
         PictureBox selectedPicBox = null;
         Crossing CurrentCrossing;
         Simulation Simulation;
+        Thread t;
+        List<Light> lights;
+
+        System.Windows.Forms.Timer aTimer;
 
         int selectedID;
         bool isLocked;
@@ -29,6 +34,7 @@ namespace ProCP
             GetAllPictureboxes(panel1);
             AddDragDropToPictureBoxes();
             Simulation = new Simulation();
+
 
         }
         /// <summary>
@@ -244,6 +250,43 @@ namespace ProCP
         private void btnPlay_Click(object sender, EventArgs e)
         {
             Simulation.CreateCars();
+
+            foreach (Crossing c in Simulation.crossings)
+            {
+                
+                aTimer = new System.Windows.Forms.Timer(); 
+                aTimer.Interval = c.Time.Seconds * 1000;
+                aTimer.Enabled = true;
+                //myTimer.Elapsed += (sender, e) => PlayMusicEvent(sender, e, musicNote);
+                aTimer.Tick += (sander, pe) => TickEvent(sender, e, c);
+            }
+            t = new Thread(Run);
+            t.Start();
+        }
+
+        private void btnToggleLight_Click(object sender, EventArgs e)
+        {
+            SwitchAll(Simulation.crossings[0]);
+        }
+
+        private void TickEvent(object sender, EventArgs args, Crossing c)
+        {
+            MessageBox.Show("switch!"+ c.Time.Seconds.ToString());
+            SwitchAll(c);
+            
+        }
+
+        private void SwitchAll(Crossing c)
+        {
+            foreach (Light l in lights)
+            {
+                l.State = !l.State;
+            }
+        }
+
+        public void Run()
+        {
+            aTimer.Start();
         }
 
     }

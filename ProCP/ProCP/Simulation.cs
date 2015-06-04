@@ -20,6 +20,12 @@ namespace ProCP
             Crossings = new List<Crossing>();
         }
 
+        public List<Crossing> crossings
+        {
+            get { return Crossings; }
+
+        }
+
         public void Start() { }
         public void Stop() { }
 
