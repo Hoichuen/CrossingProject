@@ -24,7 +24,8 @@ namespace ProCP
 
             for (int i = 0; i < 4; i++)
             {
-                lanes.Add(new TrafficLane(i, false, (Direction)i, null, false, null, tempLanes)); 
+                lanes.Add(new TrafficLane(i, false, (Direction)i, null, false, null, tempLanes));
+                tempLanes = new List<TrafficLane>();
             }
 
             //Adding the list of lanes that a certain lane can go to, as well as creating the lanes.

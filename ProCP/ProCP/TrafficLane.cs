@@ -13,7 +13,7 @@ namespace ProCP
         bool? laneType;
         bool toFromCross;
         Direction direction;
-        List<Light> trafficLights;
+        Light trafficLight;
         List<Car> cars;
         List<TrafficLane> lanes;
        
@@ -37,10 +37,10 @@ namespace ProCP
         /// <summary>
         /// List of trafficlights within this lane
         /// </summary>
-        public List<Light> TrafficLights
+        public Light TrafficLights
         {
-            get { return trafficLights; }
-            set { trafficLights = value; }
+            get { return trafficLight; }
+            set { trafficLight = value; }
         }
         
         /// <summary>
