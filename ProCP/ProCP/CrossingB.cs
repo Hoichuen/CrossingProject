@@ -9,14 +9,12 @@ namespace ProCP
 {
     class Crossing_B:Crossing
     {
-<<<<<<< HEAD
         public List<PedestrianLane> pLanes;
         public List<Pedestrian> pedestrians;
-=======
+
         List<TrafficLane> lanes;
         List<TrafficLane> tLanes;
 
->>>>>>> origin/NewPointsLanes
         int numPeds;
 
         public int NumPeds

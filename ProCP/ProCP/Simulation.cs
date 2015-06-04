@@ -291,16 +291,10 @@ namespace ProCP
                 }
             }
         }
-<<<<<<< HEAD
-        public List<Crossing> GetCrossings()
-        {
-            return Crossings;
-=======
 
         public Crossing getCrossing(int id)
         {
             return Crossings.Find(x => x.CrossingId == (id));
->>>>>>> origin/NewPointsLanes
         }
     }
 }
