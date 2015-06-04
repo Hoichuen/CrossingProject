@@ -54,11 +54,13 @@
             this.crossingType2 = new System.Windows.Forms.PictureBox();
             this.crossingType1 = new System.Windows.Forms.PictureBox();
             this.gBCrossingType = new System.Windows.Forms.GroupBox();
+            this.gBSettings = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cBPedTraffic = new System.Windows.Forms.ComboBox();
+            this.btnFinishCrossing = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.crossingGrid3 = new System.Windows.Forms.PictureBox();
             this.crossingGrid1 = new System.Windows.Forms.PictureBox();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.gBSettings = new System.Windows.Forms.GroupBox();
-            this.btnFinishCrossing = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnLock = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -73,8 +75,6 @@
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutTrafficSimulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cBPedTraffic = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericTrafficTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid16)).BeginInit();
@@ -95,9 +95,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.crossingType2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingType1)).BeginInit();
             this.gBCrossingType.SuspendLayout();
+            this.gBSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid1)).BeginInit();
-            this.gBSettings.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -392,6 +392,78 @@
             this.gBCrossingType.TabStop = false;
             this.gBCrossingType.Text = "Crossing Types";
             // 
+            // gBSettings
+            // 
+            this.gBSettings.BackColor = System.Drawing.Color.Transparent;
+            this.gBSettings.Controls.Add(this.label4);
+            this.gBSettings.Controls.Add(this.cBPedTraffic);
+            this.gBSettings.Controls.Add(this.btnFinishCrossing);
+            this.gBSettings.Controls.Add(this.numericTrafficTime);
+            this.gBSettings.Controls.Add(this.numericCars);
+            this.gBSettings.Controls.Add(this.label3);
+            this.gBSettings.Controls.Add(this.label2);
+            this.gBSettings.ForeColor = System.Drawing.Color.White;
+            this.gBSettings.Location = new System.Drawing.Point(215, 16);
+            this.gBSettings.Name = "gBSettings";
+            this.gBSettings.Size = new System.Drawing.Size(167, 144);
+            this.gBSettings.TabIndex = 8;
+            this.gBSettings.TabStop = false;
+            this.gBSettings.Text = "Crossing Settings";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 14);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Pedestrian Traffic:";
+            // 
+            // cBPedTraffic
+            // 
+            this.cBPedTraffic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBPedTraffic.Enabled = false;
+            this.cBPedTraffic.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cBPedTraffic.FormattingEnabled = true;
+            this.cBPedTraffic.Items.AddRange(new object[] {
+            "Quiet",
+            "Busy"});
+            this.cBPedTraffic.Location = new System.Drawing.Point(6, 81);
+            this.cBPedTraffic.Name = "cBPedTraffic";
+            this.cBPedTraffic.Size = new System.Drawing.Size(152, 26);
+            this.cBPedTraffic.TabIndex = 11;
+            // 
+            // btnFinishCrossing
+            // 
+            this.btnFinishCrossing.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFinishCrossing.BackgroundImage")));
+            this.btnFinishCrossing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFinishCrossing.FlatAppearance.BorderSize = 0;
+            this.btnFinishCrossing.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinishCrossing.ForeColor = System.Drawing.Color.Red;
+            this.btnFinishCrossing.Location = new System.Drawing.Point(6, 113);
+            this.btnFinishCrossing.Name = "btnFinishCrossing";
+            this.btnFinishCrossing.Size = new System.Drawing.Size(155, 24);
+            this.btnFinishCrossing.TabIndex = 10;
+            this.btnFinishCrossing.Text = "Lock Crossing";
+            this.btnFinishCrossing.UseVisualStyleBackColor = true;
+            this.btnFinishCrossing.Click += new System.EventHandler(this.btnFinishCrossing_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemove.BackgroundImage")));
+            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRemove.Enabled = false;
+            this.btnRemove.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.ForeColor = System.Drawing.Color.Black;
+            this.btnRemove.Location = new System.Drawing.Point(218, 280);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(164, 30);
+            this.btnRemove.TabIndex = 10;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // crossingGrid3
             // 
             this.crossingGrid3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -415,53 +487,6 @@
             this.crossingGrid1.TabStop = false;
             this.crossingGrid1.Click += new System.EventHandler(this.pictureBoxOnClick);
             this.crossingGrid1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemove.BackgroundImage")));
-            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRemove.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(218, 280);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(164, 30);
-            this.btnRemove.TabIndex = 10;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // gBSettings
-            // 
-            this.gBSettings.BackColor = System.Drawing.Color.Transparent;
-            this.gBSettings.Controls.Add(this.label4);
-            this.gBSettings.Controls.Add(this.cBPedTraffic);
-            this.gBSettings.Controls.Add(this.btnFinishCrossing);
-            this.gBSettings.Controls.Add(this.numericTrafficTime);
-            this.gBSettings.Controls.Add(this.numericCars);
-            this.gBSettings.Controls.Add(this.label3);
-            this.gBSettings.Controls.Add(this.label2);
-            this.gBSettings.ForeColor = System.Drawing.Color.White;
-            this.gBSettings.Location = new System.Drawing.Point(215, 16);
-            this.gBSettings.Name = "gBSettings";
-            this.gBSettings.Size = new System.Drawing.Size(167, 144);
-            this.gBSettings.TabIndex = 8;
-            this.gBSettings.TabStop = false;
-            this.gBSettings.Text = "Crossing Settings";
-            // 
-            // btnFinishCrossing
-            // 
-            this.btnFinishCrossing.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFinishCrossing.BackgroundImage")));
-            this.btnFinishCrossing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFinishCrossing.FlatAppearance.BorderSize = 0;
-            this.btnFinishCrossing.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinishCrossing.ForeColor = System.Drawing.Color.Red;
-            this.btnFinishCrossing.Location = new System.Drawing.Point(6, 113);
-            this.btnFinishCrossing.Name = "btnFinishCrossing";
-            this.btnFinishCrossing.Size = new System.Drawing.Size(155, 24);
-            this.btnFinishCrossing.TabIndex = 10;
-            this.btnFinishCrossing.Text = "Lock Crossing";
-            this.btnFinishCrossing.UseVisualStyleBackColor = true;
-            this.btnFinishCrossing.Click += new System.EventHandler(this.btnFinishCrossing_Click);
             // 
             // panel1
             // 
@@ -588,30 +613,6 @@
             this.aboutTrafficSimulatorToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.aboutTrafficSimulatorToolStripMenuItem.Text = "About Traffic Simulator";
             // 
-            // cBPedTraffic
-            // 
-            this.cBPedTraffic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBPedTraffic.Enabled = false;
-            this.cBPedTraffic.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cBPedTraffic.FormattingEnabled = true;
-            this.cBPedTraffic.Items.AddRange(new object[] {
-            "Quiet",
-            "Busy"});
-            this.cBPedTraffic.Location = new System.Drawing.Point(6, 81);
-            this.cBPedTraffic.Name = "cBPedTraffic";
-            this.cBPedTraffic.Size = new System.Drawing.Size(152, 26);
-            this.cBPedTraffic.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 14);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Pedestrian Traffic:";
-            // 
             // TrafficSimulatorGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -652,10 +653,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.crossingType1)).EndInit();
             this.gBCrossingType.ResumeLayout(false);
             this.gBCrossingType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.crossingGrid3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.crossingGrid1)).EndInit();
             this.gBSettings.ResumeLayout(false);
             this.gBSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.crossingGrid3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.crossingGrid1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

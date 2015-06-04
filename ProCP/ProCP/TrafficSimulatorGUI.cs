@@ -27,6 +27,7 @@ namespace ProCP
         bool isLocked;
         bool play;
         bool crossLocked;
+        bool isSelect;
 
 
         public TrafficSimulatorGUI()
@@ -154,6 +155,7 @@ namespace ProCP
 
         private void togglePictureBoxSelection(PictureBox pBox)
         {
+            isSelect = true;
             PictureBox tempPicBox = selectedPicBox;
 
             if (selectedPicBox != null)
@@ -162,7 +164,10 @@ namespace ProCP
             if (tempPicBox != null && tempPicBox.Equals(pBox))
                 return;
 
-            btnFinishCrossing.Enabled = true;
+            selectedPicBox = pBox;
+
+
+
             pBox.Refresh();
         }
 
@@ -173,6 +178,13 @@ namespace ProCP
             eraseFlag = true;
 
             btnFinishCrossing.Enabled = false;
+
+            if (!isLocked)
+            {
+              btnRemove.Enabled = true;
+            }
+
+            isSelect = false;
             
             
             selectedBefore.Refresh();
@@ -180,6 +192,7 @@ namespace ProCP
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
+            btnFinishCrossing.Enabled = true;
             int x = 1;
             int y = 2;
             int z = 3;
@@ -203,6 +216,9 @@ namespace ProCP
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 numericPedestrians.Enabled = false;
+
+
+
             }
             else
             {
@@ -211,6 +227,7 @@ namespace ProCP
                 numericTrafficTime.Value = y;
                 numericPedestrians.Value = z;
                 numericPedestrians.Enabled = true;
+
             }
 
             return;
@@ -319,6 +336,10 @@ namespace ProCP
             btnRemove.Enabled = false;
             cBPedTraffic.Enabled = true;
 
+            if (isSelect)
+            {
+                btnFinishCrossing.Enabled = true;
+            }
 
             Simulation.MarkLanes();
             Simulation.LaneCrossingConnection();
