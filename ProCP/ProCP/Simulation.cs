@@ -10,7 +10,9 @@ namespace ProCP
 {
     class Simulation
     {
-        //private Crossing[] Crossings;
+        int TotalNumberCars { get; set; }
+        int TotalNumberPedestrians { get; set; }
+        System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
         private List<Crossing> Crossings;
         private List<Car> cars;
@@ -20,8 +22,20 @@ namespace ProCP
             Crossings = new List<Crossing>();
         }
 
-        public void Start() { }
-        public void Stop() { }
+        public void Start()
+        {
+            Watch.Reset();
+            foreach (Crossing i in Crossings)
+            {
+                TotalNumberCars += i.NumCars;
+                if (i.GetType() == typeof(Crossing_B))
+                {
+                    Crossing_B temp = (Crossing_B)i;
+                    TotalNumberPedestrians += temp.NumPeds;
+                }
+            }
+            Watch.Start(); }
+        public void Stop() { Watch.Stop(); }
 
         public void AddCrossing(Crossing Crossing)
         {
@@ -285,6 +299,30 @@ namespace ProCP
                     count++;
                 }
             }
+        }
+
+        public bool checkCarStatus()
+        {
+            bool done = true;
+            foreach (Crossing i in Crossings)
+            {
+                if (i.GetType()==typeof(Crossing_B))
+                {
+                    Crossing_B temp = (Crossing_B)i;
+                    if (temp.pedestrians.Count>0)
+                    {
+                        done = false;
+                    }
+                }
+                foreach (TrafficLane j in i.Lanes)
+                {
+                    if (j.Cars.Count>0)
+                    {
+                        done = false;
+                    }
+                }
+            }
+            return done;
         }
 
     }
