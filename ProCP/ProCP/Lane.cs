@@ -13,7 +13,6 @@ namespace ProCP
         bool isFull;
         List<Point> points;
 
-
         //Properties
         public int ID
         {
@@ -36,7 +35,6 @@ namespace ProCP
             set { isFull = value; }
         }
 
-
         //Constructor
         public Lane(int iD, List<Point> points, bool isFull)
         {
@@ -46,19 +44,21 @@ namespace ProCP
             //Need to figure out the lists
         }
 
+        public Lane(int iD)
+        {
+            this.ID = iD++;
+            this.IsFull = false;
+        }
+
         //Methods
 
         /// <summary>
         /// Returns the crossing this lane is on
         /// </summary>
         /// <returns></returns>
-       public Crossing GetCrossing()
+        public Crossing GetCrossing()
         {
-
             return null;
         }
-
-
-               
     }
 }

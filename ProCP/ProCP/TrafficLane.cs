@@ -9,13 +9,18 @@ namespace ProCP
 {
     class TrafficLane : Lane
     {
-         //Fields
-        bool? laneType;
+        const int MAX_POINTS_PER_VERTICAL_LANE = 3;
+        const int MAX_POINTS_PER_HORIZONTAL_LANE = 4;
+        const int VERTICAL_SPACE_BETWEEN_POINTS = 15;
+         
+        //Fields
+        bool? laneType = null;
         bool toFromCross;
         Direction direction;
         Light trafficLight;
         List<Car> cars;
         List<TrafficLane> lanes;
+        Crossing parent;
        
         //Properties
 
@@ -80,8 +85,77 @@ namespace ProCP
             this.ToFromCross = toFromCross;
             this.Direction = direction;
             this.Lanes = lanes;
-            this.LaneType = null;
+
             //Need to figure out the lists
+        }
+
+        public TrafficLane(int iD, bool toFromCross, Direction direction, List<Light> trafficLights, List<TrafficLane> connLanes, Crossing parent) : base(iD)
+        {
+            this.ID = iD;
+            this.ToFromCross = toFromCross;
+            this.Direction = direction;
+            this.Lanes = connLanes;
+            this.parent = parent;
+
+            this.IsFull = false;
+            //Need to figure out the lists
+
+            this.initPoints();
+        }
+
+        private void initPoints()
+        {
+            if (parent is Crossing_A)
+            {
+                this.Points = processAndReturnPointsForCrossingA();
+                return;
+            }
+
+            this.Points = processAndReturnPointsForCrossingB();
+        }
+
+        private List<Point> processAndReturnPointsForCrossingA()
+        {
+            int[] xOffset = { 134, 173, 77, 15, 77, 104, 173, 173, 134, 104, 15, 15 };
+            int[] yOffset = { 1, 98, 111, 58, 1, 1, 58, 78, 118, 118, 98, 78 };
+
+            return getPointList(xOffset, yOffset);
+        }
+
+        private List<Point> processAndReturnPointsForCrossingB()
+        {
+            int[] xOffset = { 132, 170, 90, 15, 90, 170, 170, 132, 15, 15 };
+            int[] yOffset = { 7, 98, 118, 58, 7, 58, 78, 118, 98, 78 };
+
+            return getPointList(xOffset, yOffset);
+        }
+
+        private List<Point> getPointList(int[] xOffset, int[] yOffset)
+        {
+            List<Point> points = new List<Point>();
+
+            bool ascending = (this.direction.Equals(Direction.NORTH) || this.direction.Equals(Direction.EAST)) ? true : false;
+            bool vertical = (this.direction.Equals(Direction.SOUTH) || this.direction.Equals(Direction.NORTH)) ? true : false;
+
+            for (int i = 0; i < MAX_POINTS_PER_HORIZONTAL_LANE; i++)
+            {
+                int curOffsetX = xOffset[this.ID], curOffsetY = yOffset[this.ID];
+
+                if (vertical && i < MAX_POINTS_PER_VERTICAL_LANE)
+                {
+                    points.Add(new Point(curOffsetX, curOffsetY + (VERTICAL_SPACE_BETWEEN_POINTS * i)));
+                    continue;
+                }
+
+                if (!vertical) {
+                    points.Add(new Point(curOffsetX + (VERTICAL_SPACE_BETWEEN_POINTS * i), curOffsetY));
+                }
+            }
+
+            if (!ascending)
+                points.Reverse();
+
+            return points;
         }
 
     }

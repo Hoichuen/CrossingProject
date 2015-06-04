@@ -10,7 +10,7 @@ namespace ProCP
 {
     class Simulation
     {
-        //private Crossing[] Crossings;
+        private int time;
 
         private List<Crossing> Crossings;
         private List<Car> cars;
@@ -23,9 +23,16 @@ namespace ProCP
         public void Start() { }
         public void Stop() { }
 
-        public void AddCrossing(Crossing Crossing)
+        public bool AddCrossing(Crossing Crossing)
         {
-            Crossings.Add(Crossing);
+            if (Crossings.Count < 12)
+            {
+                Crossings.Add(Crossing);
+                return true;
+            }
+
+            MessageBox.Show("Remove a crossing to be able to add another one. You can have only 12 crossings at the same time.", "Crossing limit reached");
+            return false;
         }
 
         /// <summary>
@@ -217,7 +224,6 @@ namespace ProCP
             Console.Write("");
         }
 
-      
         public void EditCrossing(int id, int numCars, int time, int numPeds)
         {
             Crossing cr = Crossings.Find(x => x.CrossingId == (id));
@@ -257,10 +263,9 @@ namespace ProCP
             }
         }
 
-
         public bool CrossingExist(int id)
         {
-         return Crossings.Exists(x => x.CrossingId == (id));
+            return Crossings.Exists(x => x.CrossingId == (id));
         }
 
         public void RemoveCrossing(int id)
@@ -287,5 +292,9 @@ namespace ProCP
             }
         }
 
+        public Crossing getCrossing(int id)
+        {
+            return Crossings.Find(x => x.CrossingId == (id));
+        }
     }
 }
