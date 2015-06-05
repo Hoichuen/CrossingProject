@@ -176,7 +176,7 @@ namespace ProCP
                 btnRemove.Enabled = true;
             }
 
-            if (isLocked)
+            if (isLocked && isSelect && !crossLocked)
             {
                 enableNum();
             }
@@ -240,7 +240,7 @@ namespace ProCP
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 numericPedestrians.Value = z;
-                numericPedestrians.Enabled = true;
+                numericPedestrians.Enabled = false;
 
             }
 
@@ -357,8 +357,8 @@ namespace ProCP
             {
                 btnFinishCrossing.Enabled = true;
             }
-                
-           
+
+
 
 
 
@@ -377,8 +377,10 @@ namespace ProCP
 
             //disableNum();
 
+            disableNum();
+
             btnRemove.Enabled = false;
-            cBPedTraffic.Enabled = true;
+            cBPedTraffic.Enabled = false;
         }
 
         private void CrossUnlock()
@@ -387,11 +389,21 @@ namespace ProCP
 
             btnFinishCrossing.Text = "Lock Crossing";
 
-            disableNum();
+
+            if (!isSelect)
+            {
+                disableNum();
+            }
+            else
+            {
+                enableNum();
+            }
+
 
             btnPlay.Enabled = true;
             btnRemove.Enabled = true;
-            cBPedTraffic.Enabled = true;
+
+            // cBPedTraffic.Enabled = true;
         }
 
         private void Unlock()
@@ -416,6 +428,7 @@ namespace ProCP
             this.numericCars.Enabled = false;
             this.numericPedestrians.Enabled = false;
             this.numericTrafficTime.Enabled = false;
+            this.cBPedTraffic.Enabled = false;
         }
 
         public void enableNum()
@@ -423,6 +436,7 @@ namespace ProCP
             this.numericCars.Enabled = true;
             this.numericPedestrians.Enabled = true;
             this.numericTrafficTime.Enabled = true;
+            this.cBPedTraffic.Enabled = true;
         }
 
         #endregion
