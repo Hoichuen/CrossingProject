@@ -438,6 +438,7 @@
             // 
             this.btnFinishCrossing.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFinishCrossing.BackgroundImage")));
             this.btnFinishCrossing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFinishCrossing.Enabled = false;
             this.btnFinishCrossing.FlatAppearance.BorderSize = 0;
             this.btnFinishCrossing.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinishCrossing.ForeColor = System.Drawing.Color.Red;

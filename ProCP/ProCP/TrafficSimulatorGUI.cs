@@ -27,8 +27,6 @@ namespace ProCP
         bool isLocked;
         bool play;
         bool crossLocked;
-        bool isSelect;
-
 
         public TrafficSimulatorGUI()
         {
@@ -39,7 +37,6 @@ namespace ProCP
             isLocked = false;
             btnPlay.Enabled = false;
             btnToggleLight.Enabled = false;
-            btnFinishCrossing.Enabled = false;
 
         }
 
@@ -155,12 +152,13 @@ namespace ProCP
         private void togglePictureBoxSelection(PictureBox pBox)
         {
             //btnFinishCrossing.Enabled = false;
-            if (isLocked)
-            {
-                btnFinishCrossing.Enabled = true;
-            }
+            //if (isLocked)
+            //{
+            //    btnFinishCrossing.Enabled = true;
+            //}
 
-            isSelect = true;
+            //isSelect = true;
+
             PictureBox tempPicBox = selectedPicBox;
 
             if (selectedPicBox != null)
@@ -171,15 +169,8 @@ namespace ProCP
 
             selectedPicBox = pBox;
 
-            if (!isLocked && !crossLocked)
-            {
-                btnRemove.Enabled = true;
-            }
 
-            if (isLocked && isSelect && !crossLocked)
-            {
-                enableNum();
-            }
+            enableNum();
 
             pBox.Refresh();
         }
@@ -189,21 +180,19 @@ namespace ProCP
             PictureBox selectedBefore = selectedPicBox;
 
             selectedPicBox = null;
+
+            crossLocked = false;
             eraseFlag = true;
-            isSelect = false;
+            //isSelect = false;
 
-            disableNum();
-
-            btnFinishCrossing.Enabled = false;
-            btnRemove.Enabled = false;
-
+            enableNum();
+            //disableNum();
 
             selectedBefore.Refresh();
         }
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
-            //btnFinishCrossing.Enabled = true;
             int x = 1;
             int y = 2;
             int z = 3;
@@ -226,13 +215,8 @@ namespace ProCP
                 Simulation.getProperties(selectedID, ref x, ref y, ref z);
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
-                numericPedestrians.Enabled = false;
-
-                //if (isLocked)
-                //{
-                //    btnFinishCrossing.Enabled = false;
-                //}
-
+                //Just placeholder for value for now and it resets it.
+                cBPedTraffic.SelectedIndex = -1;
             }
             else
             {
@@ -240,8 +224,8 @@ namespace ProCP
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 numericPedestrians.Value = z;
-                numericPedestrians.Enabled = false;
-
+                //Just placeholder for value for now and it resets it.
+                cBPedTraffic.SelectedIndex = -1;
             }
 
             return;
@@ -258,7 +242,10 @@ namespace ProCP
             {
                 CrossLock();
             }
+
             Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (int)numericPedestrians.Value);
+
+           
 
         }
 
@@ -324,10 +311,12 @@ namespace ProCP
         {
             play = true;
             btnPlay.Text = "STOP SIMULATION";
-            btnLock.Enabled = false;
-            btnToggleLight.Enabled = false;
-            btnFinishCrossing.Enabled = false;
-            btnToggleLight.Enabled = true;
+
+            enableNum();
+            //btnLock.Enabled = false;
+            //btnToggleLight.Enabled = false;
+            //btnFinishCrossing.Enabled = false;
+            //btnToggleLight.Enabled = true;
             Simulation.CreateCars();
 
         }
@@ -336,12 +325,7 @@ namespace ProCP
         {
             play = false;
             btnPlay.Text = "PLAY SIMULATION";
-            btnLock.Enabled = true;
-            btnToggleLight.Enabled = false;
-            //if (isSelect)
-            //{
-            //    btnFinishCrossing.Enabled = true;
-            //}
+
             Unlock();
         }
 
@@ -349,108 +333,123 @@ namespace ProCP
         {
             isLocked = true;
             btnLock.Text = "Unlock Grid";
-            btnPlay.Enabled = true;
-            btnRemove.Enabled = false;
-            //cBPedTraffic.Enabled = true;
 
-            //if (isSelect)
-            //{
-            //    enableNum();
-            //    this.btnFinishCrossing.Enabled = true;
-            //}
-
-            if (!isSelect)
-            {
-                disableNum();
-            }
-            else if (!crossLocked)
-            {
-                enableNum();
-                this.btnFinishCrossing.Enabled = true;
-            }
-            else
-            {
-                btnFinishCrossing.Enabled = true;
-            }
-
-
-
+            enableNum();
 
             Simulation.MarkLanes();
             Simulation.LaneCrossingConnection();
-
-            //enableNum();
         }
 
         private void CrossLock()
         {
             crossLocked = true;
+            btnFinishCrossing.Text = "Unlock Crossing"; ;
 
-            btnFinishCrossing.Text = "Unlock Crossing";
-
-            //disableNum();
-
-            disableNum();
-
-            btnRemove.Enabled = false;
-            cBPedTraffic.Enabled = false;
+            enableNum();
         }
 
         private void CrossUnlock()
         {
-           
-
+            crossLocked = false;
             btnFinishCrossing.Text = "Lock Crossing";
 
-
-            if (!isSelect)
-            {
-                disableNum();
-            }
-            else if (crossLocked)
-            {
-                enableNum();
-            }
-            crossLocked = false;
+            this.numericCars.Value = 0;
+            this.numericPedestrians.Value = 0;
+            this.numericTrafficTime.Value = 0;
+            this.cBPedTraffic.Items.Clear();
 
 
-            btnPlay.Enabled = true;
-            btnRemove.Enabled = true;
 
-            // cBPedTraffic.Enabled = true;
+            enableNum();
         }
 
         private void Unlock()
         {
             isLocked = false;
             btnLock.Text = "Lock Grid";
-            btnPlay.Enabled = false;
-            cBPedTraffic.Enabled = false;
-            btnFinishCrossing.Enabled = false;
 
-            if (isSelect)
-            {
-                //btnFinishCrossing.Enabled = true;
-                btnRemove.Enabled = true;
-            }
-
-            disableNum();
+            enableNum();
         }
 
-        public void disableNum()
-        {
-            this.numericCars.Enabled = false;
-            this.numericPedestrians.Enabled = false;
-            this.numericTrafficTime.Enabled = false;
-            this.cBPedTraffic.Enabled = false;
-        }
 
         public void enableNum()
         {
-            this.numericCars.Enabled = true;
-            this.numericPedestrians.Enabled = true;
-            this.numericTrafficTime.Enabled = true;
-            this.cBPedTraffic.Enabled = true;
+            if (isLocked && !eraseFlag)
+            {
+                this.numericCars.Enabled = true;
+                this.numericPedestrians.Enabled = true;
+                this.numericTrafficTime.Enabled = true;
+                this.cBPedTraffic.Enabled = true;
+                this.btnFinishCrossing.Enabled = true;
+                this.btnRemove.Enabled = false;
+                //isSelect = true;
+
+            }
+
+            if (isLocked && eraseFlag)
+            {
+                this.numericCars.Enabled = false;
+                this.numericPedestrians.Enabled = false;
+                this.numericTrafficTime.Enabled = false;
+                this.cBPedTraffic.Enabled = false;
+                this.btnFinishCrossing.Enabled = false;
+                this.btnRemove.Enabled = false;
+            }
+
+            if (!eraseFlag && !isLocked)
+            {
+
+                this.numericCars.Enabled = false;
+                this.numericPedestrians.Enabled = false;
+                this.numericTrafficTime.Enabled = false;
+                this.cBPedTraffic.Enabled = false;
+                this.btnFinishCrossing.Enabled = false;
+                this.btnRemove.Enabled = true;
+            }
+
+            if (!isLocked && eraseFlag)
+            {
+                this.numericCars.Enabled = false;
+                this.numericPedestrians.Enabled = false;
+                this.numericTrafficTime.Enabled = false;
+                this.cBPedTraffic.Enabled = false;
+                this.btnFinishCrossing.Enabled = false;
+                this.btnRemove.Enabled = false;
+            }
+
+            if (crossLocked)
+            {
+                this.numericCars.Enabled = false;
+                this.numericPedestrians.Enabled = false;
+                this.numericTrafficTime.Enabled = false;
+                this.cBPedTraffic.Enabled = false;
+            }
+
+            //crossLocked = false;
+            //eraseFlag = true;
+            //if (!crossLocked && eraseFlag)
+            //{
+            //    crossLocked = true;
+            //}
+
+            if (isLocked)
+            {
+                btnPlay.Enabled = true;
+            }
+
+            if (!play)
+            {
+                btnLock.Enabled = true;
+                btnToggleLight.Enabled = false;
+            }
+
+            if (play)
+            {
+                btnLock.Enabled = false;
+                btnToggleLight.Enabled = true;
+            }
+
+
         }
 
         #endregion
@@ -464,11 +463,17 @@ namespace ProCP
                 if (self.Equals(selectedPicBox))
                 {
                     e.Graphics.DrawRectangle(new Pen(Color.Red, 3), 1, 1, 220, 155);
+                    crossLocked = false;
+                    this.btnFinishCrossing.Text = "Lock Crossing";
+                    enableNum();
                 }
 
                 if (eraseFlag)
                 {
                     eraseFlag = false;
+                    this.btnFinishCrossing.Text = "Unlock Crossing";
+                    enableNum();
+                   
                     self.Invalidate();
                 }
             }
