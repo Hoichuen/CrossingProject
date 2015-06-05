@@ -13,6 +13,8 @@ namespace ProCP
 {
     public partial class TrafficSimulatorGUI : Form
     {
+        private HelpGUI hGUI;
+        private AboutGUI aGUI;
         bool debug = true;
         bool eraseFlag = false;
 
@@ -825,12 +827,14 @@ namespace ProCP
 
         private void viewHelpToolStripMenuVHelp_Click(object sender, EventArgs e)
         {
-
+            hGUI = new HelpGUI();
+            hGUI.Show();
         }
 
         private void aboutTrafficSimulatorToolStripMenuAboutTFS_Click(object sender, EventArgs e)
         {
-
+            aGUI = new AboutGUI();
+            aGUI.Show();
         }
 
 

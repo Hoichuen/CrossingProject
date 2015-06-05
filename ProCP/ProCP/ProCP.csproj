@@ -45,11 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutGUI.Designer.cs">
+      <DependentUpon>AboutGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Car.cs" />
     <Compile Include="CrossingA.cs" />
     <Compile Include="CrossingB.cs" />
     <Compile Include="Crossing.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="HelpGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpGUI.Designer.cs">
+      <DependentUpon>HelpGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lane.cs" />
     <Compile Include="Light.cs" />
     <Compile Include="Pedestrian.cs" />
@@ -65,6 +77,12 @@
     <Compile Include="TrafficSimulatorGUI.Designer.cs">
       <DependentUpon>TrafficSimulatorGUI.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutGUI.resx">
+      <DependentUpon>AboutGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpGUI.resx">
+      <DependentUpon>HelpGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
