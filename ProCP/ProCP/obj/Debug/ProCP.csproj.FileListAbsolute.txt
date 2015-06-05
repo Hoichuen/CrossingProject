@@ -3,7 +3,6 @@ C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProC
 C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.pdb
 C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe
 C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\bin\Debug\ProCP.pdb
-C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csprojResolveAssemblyReference.cache
 C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources
 C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.TrafficSimulatorGUI.resources
 C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache

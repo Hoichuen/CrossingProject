@@ -38,7 +38,6 @@ namespace ProCP
             Simulation = new Simulation();
             isLocked = false;
             btnPlay.Enabled = false;
-            btnRemove.Enabled = true;
             btnToggleLight.Enabled = false;
             btnFinishCrossing.Enabled = false;
 
@@ -155,6 +154,12 @@ namespace ProCP
 
         private void togglePictureBoxSelection(PictureBox pBox)
         {
+            //btnFinishCrossing.Enabled = false;
+            if (isLocked)
+            {
+                btnFinishCrossing.Enabled = true;
+            }
+
             isSelect = true;
             PictureBox tempPicBox = selectedPicBox;
 
@@ -166,7 +171,15 @@ namespace ProCP
 
             selectedPicBox = pBox;
 
+            if (!isLocked && !crossLocked)
+            {
+                btnRemove.Enabled = true;
+            }
 
+            if (isLocked)
+            {
+                enableNum();
+            }
 
             pBox.Refresh();
         }
@@ -174,25 +187,23 @@ namespace ProCP
         private void unselectCurrentCrossing()
         {
             PictureBox selectedBefore = selectedPicBox;
+
             selectedPicBox = null;
             eraseFlag = true;
+            isSelect = false;
+
+            disableNum();
 
             btnFinishCrossing.Enabled = false;
+            btnRemove.Enabled = false;
 
-            if (!isLocked)
-            {
-              btnRemove.Enabled = true;
-            }
 
-            isSelect = false;
-            
-            
             selectedBefore.Refresh();
         }
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
-            btnFinishCrossing.Enabled = true;
+            //btnFinishCrossing.Enabled = true;
             int x = 1;
             int y = 2;
             int z = 3;
@@ -217,7 +228,10 @@ namespace ProCP
                 numericTrafficTime.Value = y;
                 numericPedestrians.Enabled = false;
 
-
+                //if (isLocked)
+                //{
+                //    btnFinishCrossing.Enabled = false;
+                //}
 
             }
             else
@@ -311,7 +325,6 @@ namespace ProCP
             play = true;
             btnPlay.Text = "STOP SIMULATION";
             btnLock.Enabled = false;
-            btnRemove.Enabled = false;
             btnToggleLight.Enabled = false;
             btnFinishCrossing.Enabled = false;
             btnToggleLight.Enabled = true;
@@ -325,6 +338,10 @@ namespace ProCP
             btnPlay.Text = "PLAY SIMULATION";
             btnLock.Enabled = true;
             btnToggleLight.Enabled = false;
+            //if (isSelect)
+            //{
+            //    btnFinishCrossing.Enabled = true;
+            //}
             Unlock();
         }
 
@@ -340,14 +357,16 @@ namespace ProCP
             {
                 btnFinishCrossing.Enabled = true;
             }
+                
+           
+
+
+
 
             Simulation.MarkLanes();
             Simulation.LaneCrossingConnection();
 
-            this.numericCars.Enabled = true;
-            this.numericPedestrians.Enabled = true;
-            this.numericTrafficTime.Enabled = true;
-            //btnFinishCrossing.Enabled = true;
+            enableNum();
         }
 
         private void CrossLock()
@@ -356,11 +375,8 @@ namespace ProCP
 
             btnFinishCrossing.Text = "Unlock Crossing";
 
-            numericCars.Enabled = false;
-            numericPedestrians.Enabled = false;
-            numericTrafficTime.Enabled = false;
+            //disableNum();
 
-            btnPlay.Enabled = true;
             btnRemove.Enabled = false;
             cBPedTraffic.Enabled = true;
         }
@@ -371,12 +387,10 @@ namespace ProCP
 
             btnFinishCrossing.Text = "Lock Crossing";
 
-            numericCars.Enabled = false;
-            numericPedestrians.Enabled = false;
-            numericTrafficTime.Enabled = false;
+            disableNum();
 
             btnPlay.Enabled = true;
-            btnRemove.Enabled = false;
+            btnRemove.Enabled = true;
             cBPedTraffic.Enabled = true;
         }
 
@@ -385,14 +399,32 @@ namespace ProCP
             isLocked = false;
             btnLock.Text = "Lock Grid";
             btnPlay.Enabled = false;
-            btnRemove.Enabled = true;
             cBPedTraffic.Enabled = false;
+            btnFinishCrossing.Enabled = false;
 
+            if (isSelect)
+            {
+                //btnFinishCrossing.Enabled = true;
+                btnRemove.Enabled = true;
+            }
+
+            disableNum();
+        }
+
+        public void disableNum()
+        {
             this.numericCars.Enabled = false;
             this.numericPedestrians.Enabled = false;
             this.numericTrafficTime.Enabled = false;
-            btnFinishCrossing.Enabled = false;
         }
+
+        public void enableNum()
+        {
+            this.numericCars.Enabled = true;
+            this.numericPedestrians.Enabled = true;
+            this.numericTrafficTime.Enabled = true;
+        }
+
         #endregion
 
         private void pictureBoxOnPaint(object sender, PaintEventArgs e)
