@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace ProCP
 {
@@ -20,7 +21,8 @@ namespace ProCP
         /// </summary>
         List<Control> ControlList = new List<Control>();
         PictureBox selectedPicBox = null;
-        Crossing CurrentCrossing;
+
+        //Crossing CurrentCrossing; //Never used
         Simulation Simulation;
 
         int selectedID;
@@ -633,6 +635,192 @@ namespace ProCP
         private void btnToggleLight_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void fileToolStripMenuSave_Click(object sender, EventArgs e)
+        {
+            SaveToFile();
+        }
+
+        public bool SaveToFile()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "XML file|*.xml";
+            saveFileDialog.Title = "Save a circuit file";
+            saveFileDialog.InitialDirectory = @"c:\Libraries\Documents";
+            saveFileDialog.OverwritePrompt = true;
+
+            if (Simulation.Name == "")
+            {
+                if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return false;
+                }
+
+                Simulation.Name = saveFileDialog.FileName;
+                Simulation.SaveAs(saveFileDialog.FileName);
+
+            }
+            else
+            {
+                Simulation.SaveAs(Simulation.Name);
+
+            }
+
+            return true;
+
+        }
+
+        private void TrafficSimulatorGUI_Load(object sender, EventArgs e)
+        {
+            // Create the ToolTip and associate with the Form container.
+            ToolTip toolTip1 = new ToolTip();
+
+            // Set up the delays for the ToolTip.
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            // Force the ToolTip text to be displayed whether or not the form is active.
+            toolTip1.ShowAlways = true;
+
+            // Set up the ToolTip text for the Buttons
+            toolTip1.SetToolTip(this.btnFinishCrossing, "Locks your settings for selected crossing.");
+            toolTip1.SetToolTip(this.btnPlay, "Launches / Stops the simulation.");
+            toolTip1.SetToolTip(this.btnRemove, "Removes a selected crossing.");
+            toolTip1.SetToolTip(this.btnToggleLight, "Makes all of the lights switch to their next state.");
+            toolTip1.SetToolTip(this.cBPedTraffic, "How many pedestrians per red light; Quiet, or Busy.");
+            toolTip1.SetToolTip(this.numericCars, "Amount of cars that will spawn in selected crossing.");
+            toolTip1.SetToolTip(this.numericTrafficTime, "Green time for all the lights in crossing.");
+            toolTip1.SetToolTip(this.btnLock, "Locks the grid, allows crossings to be edited.");
+            toolTip1.SetToolTip(this.crossingType1, "Crossing type A.\nA 3x3 crossing.\nNo Pedestrians.");
+            toolTip1.SetToolTip(this.crossingType2, "Crossing type B.\nA 3x2 crossing.\nWith Pedestrians.");
+
+        }
+
+        private void newToolStripMenuNew_Click(object sender, EventArgs e)
+        {
+
+            if (Simulation.Saved == true)
+            {
+                Clear();
+            }
+            else
+            {
+                DialogResult dResult = MessageBox.Show("Would you like to save your changes? Unsaved changes will be lost.", "Clear simulation", MessageBoxButtons.YesNoCancel);
+                if (dResult == DialogResult.Yes)
+                {
+                    Simulation.SaveAs(Simulation.Name);
+                    SaveToFile();
+                    Clear();
+                }
+                else if (dResult == DialogResult.No)
+                {
+                    Clear();
+                }
+            }
+        }
+
+        public void Clear()
+        {
+            Simulation = new Simulation();//Making a new instance of the circuit object
+            this.Invalidate();
+        }
+
+        private void exitToolStripMenuExit_Click(object sender, EventArgs e)
+        {
+            if (Simulation.Saved == false)
+            {
+                DialogResult dResult = MessageBox.Show("Would you like to save your changes? Unsaved changes will be lost.", "Close Application", MessageBoxButtons.YesNoCancel);
+                if (dResult == DialogResult.Yes)
+                {
+                    SaveToFile();
+                }
+                else if (dResult == DialogResult.Cancel)
+                {
+
+                }
+                else if (dResult == DialogResult.No)
+                {
+                    Simulation.Saved = true;
+                    Application.Exit();
+                }
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
+
+        private void TrafficSimulatorGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Simulation.Saved == false)
+            {
+                DialogResult dResult = MessageBox.Show("Would you like to save your changes? Unsaved changes will be lost.", "Close Application", MessageBoxButtons.YesNoCancel);
+                if (dResult == DialogResult.Yes)
+                {
+                    SaveToFile();
+                }
+                else if (dResult == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void openToolStripMenuOpen_Click(object sender, EventArgs e)
+        {
+            if (!LoadFromFile())
+            {
+                MessageBox.Show("Error whilst loading file");
+            }
+        }
+
+        public bool LoadFromFile()
+        {
+            Simulation ret = GetFromFile();
+
+            if (ret == null)
+            {
+                return false;
+            }
+
+            this.Invalidate();
+            return true;
+        }
+
+
+        private Simulation GetFromFile()
+        {
+            Simulation ret;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "XML file|*.xml";
+            openFileDialog.Title = "Load a circuit file";
+            openFileDialog.InitialDirectory = @"c:\Libraries\Documents";
+
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return null;
+            }
+
+            try
+            {
+                ret = Simulation.Load(openFileDialog.FileName);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something went wrong");
+                return null;
+            }
+
+            ret.Name = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+
+            return ret;
+        }
+
+        private void saveAsToolStripMenuSaveAs_Click(object sender, EventArgs e)
+        {
+            SaveToFile();
         }
 
 

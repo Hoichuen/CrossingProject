@@ -5,9 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Runtime.Serialization;
+using System.IO;
+using System.Xml;
+
 
 namespace ProCP
 {
+    
     class Simulation
     {
         int TotalNumberCars { get; set; }
@@ -16,10 +21,26 @@ namespace ProCP
 
         private List<Crossing> Crossings;
         private List<Car> cars;
+        private bool saved;
+        private string name;
 
-        public Simulation()
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public bool Saved
+        {
+            get { return saved; }
+            set { saved = value; }
+        }
+
+        public Simulation(string name = "")
         {
             Crossings = new List<Crossing>();
+            Name = name;
+            Saved = true;
         }
 
         public void Start()
@@ -42,6 +63,7 @@ namespace ProCP
             if (Crossings.Count < 12)
             {
                 Crossings.Add(Crossing);
+                Saved = false;
                 return true;
             }
 
@@ -285,6 +307,7 @@ namespace ProCP
         public void RemoveCrossing(int id)
         {
             Crossings.Remove(Crossings.Find(x => x.CrossingId == (id)));
+            Saved = false;
         }
 
         public void CreateCars()
@@ -335,6 +358,45 @@ namespace ProCP
             }
             return done;
         }
+
+        /// <summary>
+        /// Save the simulation to a file
+        /// </summary>
+        /// <param name="filename">The name of the file to which to save the simulation</param>
+        public void SaveAs(string filename)
+        {
+            Saved = true;
+
+            FileStream writer = new FileStream(filename, FileMode.Create);
+            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(Simulation));
+            dataContractSerializer.WriteObject(writer, this);
+            
+
+            writer.Close();
+        }
+
+
+        /// <summary>
+        /// Returns true when loaded, passes new loaded BaseBate list to the exisiting BaseGate list.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public static Simulation Load(string filename)
+        {
+            Simulation ret;
+
+            FileStream fs = new FileStream(filename, FileMode.Open);
+            XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+            DataContractSerializer ser = new DataContractSerializer(typeof(Simulation));
+            ret = (Simulation)ser.ReadObject(reader, true);
+
+            reader.Close();
+            fs.Close();
+
+            return ret;
+        }
+
+
 
     }
 }
