@@ -351,9 +351,24 @@ namespace ProCP
             btnLock.Text = "Unlock Grid";
             btnPlay.Enabled = true;
             btnRemove.Enabled = false;
-            cBPedTraffic.Enabled = true;
+            //cBPedTraffic.Enabled = true;
 
-            if (isSelect)
+            //if (isSelect)
+            //{
+            //    enableNum();
+            //    this.btnFinishCrossing.Enabled = true;
+            //}
+
+            if (!isSelect)
+            {
+                disableNum();
+            }
+            else if (!crossLocked)
+            {
+                enableNum();
+                this.btnFinishCrossing.Enabled = true;
+            }
+            else
             {
                 btnFinishCrossing.Enabled = true;
             }
@@ -361,12 +376,10 @@ namespace ProCP
 
 
 
-
-
             Simulation.MarkLanes();
             Simulation.LaneCrossingConnection();
 
-            enableNum();
+            //enableNum();
         }
 
         private void CrossLock()
@@ -385,7 +398,7 @@ namespace ProCP
 
         private void CrossUnlock()
         {
-            crossLocked = false;
+           
 
             btnFinishCrossing.Text = "Lock Crossing";
 
@@ -394,10 +407,11 @@ namespace ProCP
             {
                 disableNum();
             }
-            else
+            else if (crossLocked)
             {
                 enableNum();
             }
+            crossLocked = false;
 
 
             btnPlay.Enabled = true;
