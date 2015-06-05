@@ -151,14 +151,6 @@ namespace ProCP
 
         private void togglePictureBoxSelection(PictureBox pBox)
         {
-            //btnFinishCrossing.Enabled = false;
-            //if (isLocked)
-            //{
-            //    btnFinishCrossing.Enabled = true;
-            //}
-
-            //isSelect = true;
-
             PictureBox tempPicBox = selectedPicBox;
 
             if (selectedPicBox != null)
@@ -183,10 +175,8 @@ namespace ProCP
 
             crossLocked = false;
             eraseFlag = true;
-            //isSelect = false;
 
             enableNum();
-            //disableNum();
 
             selectedBefore.Refresh();
         }
@@ -196,6 +186,7 @@ namespace ProCP
             int x = 1;
             int y = 2;
             int z = 3;
+            int z1 = -1;
 
             PictureBox self = (PictureBox)sender;
             togglePictureBoxSelection(self);
@@ -212,20 +203,20 @@ namespace ProCP
 
             if (self.Image == crossingType1.Image)
             {
-                Simulation.getProperties(selectedID, ref x, ref y, ref z);
+                Simulation.getProperties(selectedID, ref x, ref y, ref z/*, ref z1*/);
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 //Just placeholder for value for now and it resets it.
-                cBPedTraffic.SelectedIndex = -1;
+                cBPedTraffic.SelectedIndex = z1;
             }
             else
             {
-                Simulation.getProperties(selectedID, ref x, ref y, ref z);
+                Simulation.getProperties(selectedID, ref x, ref y, ref z/*, ref z1*/);
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 numericPedestrians.Value = z;
                 //Just placeholder for value for now and it resets it.
-                cBPedTraffic.SelectedIndex = -1;
+                cBPedTraffic.SelectedIndex = z1;
             }
 
             return;
@@ -245,7 +236,6 @@ namespace ProCP
 
             Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (int)numericPedestrians.Value);
 
-           
 
         }
 
@@ -313,10 +303,7 @@ namespace ProCP
             btnPlay.Text = "STOP SIMULATION";
 
             enableNum();
-            //btnLock.Enabled = false;
-            //btnToggleLight.Enabled = false;
-            //btnFinishCrossing.Enabled = false;
-            //btnToggleLight.Enabled = true;
+
             Simulation.CreateCars();
 
         }
@@ -382,7 +369,6 @@ namespace ProCP
                 this.cBPedTraffic.Enabled = true;
                 this.btnFinishCrossing.Enabled = true;
                 this.btnRemove.Enabled = false;
-                //isSelect = true;
 
             }
 
@@ -425,13 +411,6 @@ namespace ProCP
                 this.cBPedTraffic.Enabled = false;
             }
 
-            //crossLocked = false;
-            //eraseFlag = true;
-            //if (!crossLocked && eraseFlag)
-            //{
-            //    crossLocked = true;
-            //}
-
             if (isLocked)
             {
                 btnPlay.Enabled = true;
@@ -473,7 +452,7 @@ namespace ProCP
                     eraseFlag = false;
                     this.btnFinishCrossing.Text = "Unlock Crossing";
                     enableNum();
-                   
+
                     self.Invalidate();
                 }
             }
