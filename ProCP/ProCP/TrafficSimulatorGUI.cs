@@ -823,6 +823,16 @@ namespace ProCP
             SaveToFile();
         }
 
+        private void viewHelpToolStripMenuVHelp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutTrafficSimulatorToolStripMenuAboutTFS_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }

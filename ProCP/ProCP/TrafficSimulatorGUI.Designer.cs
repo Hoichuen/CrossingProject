@@ -607,6 +607,7 @@
             this.viewHelpToolStripMenuVHelp.Name = "viewHelpToolStripMenuVHelp";
             this.viewHelpToolStripMenuVHelp.Size = new System.Drawing.Size(198, 22);
             this.viewHelpToolStripMenuVHelp.Text = "View help";
+            this.viewHelpToolStripMenuVHelp.Click += new System.EventHandler(this.viewHelpToolStripMenuVHelp_Click);
             // 
             // toolStripSeparator2
             // 
@@ -618,6 +619,7 @@
             this.aboutTrafficSimulatorToolStripMenuAboutTFS.Name = "aboutTrafficSimulatorToolStripMenuAboutTFS";
             this.aboutTrafficSimulatorToolStripMenuAboutTFS.Size = new System.Drawing.Size(198, 22);
             this.aboutTrafficSimulatorToolStripMenuAboutTFS.Text = "About Traffic Simulator";
+            this.aboutTrafficSimulatorToolStripMenuAboutTFS.Click += new System.EventHandler(this.aboutTrafficSimulatorToolStripMenuAboutTFS_Click);
             // 
             // TrafficSimulatorGUI
             // 
