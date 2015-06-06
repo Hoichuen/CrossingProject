@@ -15,7 +15,8 @@ namespace ProCP
     {
         private HelpGUI hGUI;
         private AboutGUI aGUI;
-        bool debug = true;
+        bool debug;
+        bool cardebug;
         bool eraseFlag = false;
 
         /// <summary>
@@ -489,150 +490,156 @@ namespace ProCP
                         }
                     }
 
-                    if (crossing is Crossing_A)
+
+                    if (cardebug)
                     {
-                        // Car debug
 
-                        #region Vertical Crossings
-                        // Lane 4
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 77, 1, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 77, 16, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 77, 31, 10, 13);
 
-                        // Lane 5
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 104, 1, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 104, 16, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 104, 31, 10, 13);
+                        if (crossing is Crossing_A)
+                        {
+                            // Car debug
 
-                        // Lane 0
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 134, 1, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 134, 16, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 134, 31, 10, 13);
+                            #region Vertical Crossings
+                            // Lane 4
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 77, 1, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 77, 16, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 77, 31, 10, 13);
 
-                        // Lane 2
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 77, 111, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 77, 126, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 77, 141, 10, 13);
+                            // Lane 5
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 104, 1, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 104, 16, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 104, 31, 10, 13);
 
-                        // Lane 9
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 107, 111, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 107, 126, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 107, 141, 10, 13);
+                            // Lane 0
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 134, 1, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 134, 16, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 134, 31, 10, 13);
 
-                        // Lane 8
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 134, 111, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 134, 126, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 134, 141, 10, 13);
+                            // Lane 2
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 77, 111, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 77, 126, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 77, 141, 10, 13);
 
-                        #endregion
+                            // Lane 9
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 107, 111, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 107, 126, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 107, 141, 10, 13);
 
-                        #region Horizontal Crossings
+                            // Lane 8
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 134, 111, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 134, 126, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 134, 141, 10, 13);
 
-                        // Lane 6
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 54, 13, 10);
+                            #endregion
 
-                        // Lane 7
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 74, 13, 10);
+                            #region Horizontal Crossings
 
-                        // Lane 1
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 94, 13, 10);
+                            // Lane 6
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 54, 13, 10);
 
-                        // Lane 3
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 54, 13, 10);
+                            // Lane 7
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 74, 13, 10);
 
-                        // Lane 11
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 74, 13, 10);
+                            // Lane 1
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 94, 13, 10);
 
-                        // Lane 10
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 94, 13, 10);
+                            // Lane 3
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 54, 13, 10);
 
-                        #endregion
-                    }
+                            // Lane 11
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 74, 13, 10);
 
-                    if (crossing is Crossing_B)
-                    {
-                        // Car debug
+                            // Lane 10
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 94, 13, 10);
 
-                        #region Vertical Crossings
-                        // Lane 4
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 85, 1, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 85, 16, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 85, 31, 10, 13);
+                            #endregion
+                        }
 
-                        // Lane 0
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 128, 1, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 128, 16, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 128, 31, 10, 13);
+                        if (crossing is Crossing_B)
+                        {
+                            // Car debug
 
-                        // Lane 2
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 85, 113, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 85, 128, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 85, 143, 10, 13);
+                            #region Vertical Crossings
+                            // Lane 4
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 85, 1, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 85, 16, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 85, 31, 10, 13);
 
-                        // Lane 7
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 128, 113, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 128, 128, 10, 13);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 128, 143, 10, 13);
+                            // Lane 0
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 128, 1, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 128, 16, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 128, 31, 10, 13);
 
-                        #endregion
+                            // Lane 2
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 85, 113, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 85, 128, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 85, 143, 10, 13);
 
-                        #region Horizontal Crossings
+                            // Lane 7
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 128, 113, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 128, 128, 10, 13);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 128, 143, 10, 13);
 
-                        // Lane 6
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 73, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 73, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 73, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 73, 13, 10);
+                            #endregion
 
-                        // Lane 8
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 94, 13, 10);
+                            #region Horizontal Crossings
 
-                        // Lane 5
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 54, 13, 10);
+                            // Lane 6
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 73, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 73, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 73, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 73, 13, 10);
 
-                        // Lane 9
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 74, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 74, 13, 10);
+                            // Lane 8
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 94, 13, 10);
 
-                        // Lane 1
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 94, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 94, 13, 10);
+                            // Lane 5
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 54, 13, 10);
 
-                        // Lane 3
-                        e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 54, 13, 10);
-                        e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 54, 13, 10);
+                            // Lane 9
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 74, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 74, 13, 10);
 
-                        #endregion
+                            // Lane 1
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 157, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 172, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 187, 94, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 202, 94, 13, 10);
+
+                            // Lane 3
+                            e.Graphics.DrawRectangle(new Pen(Color.Red, 1), 5, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Black, 1), 20, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Blue, 1), 35, 54, 13, 10);
+                            e.Graphics.DrawRectangle(new Pen(Color.Orange, 1), 50, 54, 13, 10);
+
+                            #endregion
+                        }
                     }
                 }
             }
@@ -706,6 +713,10 @@ namespace ProCP
 
         private void newToolStripMenuNew_Click(object sender, EventArgs e)
         {
+            //bool debug;
+            //bool cardebug;
+            debug = this.cBDebugPoint.Checked;
+            cardebug = this.cBDebugCars.Checked;
 
             if (selectedPicBox != null)
             {
