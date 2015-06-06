@@ -23,6 +23,7 @@ namespace ProCP
         /// </summary>
         List<Control> ControlList = new List<Control>();
         PictureBox selectedPicBox = null;
+        List<PictureBox> crossPic = new List<PictureBox>();
 
         //Crossing CurrentCrossing; //Never used
         Simulation Simulation;
@@ -54,6 +55,7 @@ namespace ProCP
             {
                 GetAllPictureboxes(c);
                 if (c is PictureBox) ControlList.Add(c);
+                
             }
         }
 
@@ -122,6 +124,7 @@ namespace ProCP
 
             if (self.Image == null)
             {
+                crossPic.Add(self);
                 bool result = false;
                 int picBoxNumber = GetNumberOfPicturebox(self);
 
@@ -180,7 +183,7 @@ namespace ProCP
             crossLocked = false;
             eraseFlag = true;
 
-            enableNum();
+            enableNum();//check this out
 
             selectedBefore.Refresh();
         }
@@ -384,6 +387,7 @@ namespace ProCP
                 this.cBPedTraffic.Enabled = false;
                 this.btnFinishCrossing.Enabled = false;
                 this.btnRemove.Enabled = false;
+                selectedID = 0;
             }
 
             if (!eraseFlag && !isLocked)
@@ -405,6 +409,7 @@ namespace ProCP
                 this.cBPedTraffic.Enabled = false;
                 this.btnFinishCrossing.Enabled = false;
                 this.btnRemove.Enabled = false;
+                selectedID = 0;
             }
 
             if (crossLocked)
@@ -702,17 +707,23 @@ namespace ProCP
         private void newToolStripMenuNew_Click(object sender, EventArgs e)
         {
 
+            if (selectedPicBox != null)
+            {
+                unselectCurrentCrossing();
+            }
+
             if (Simulation.Saved == true)
             {
                 Clear();
             }
             else
             {
-                DialogResult dResult = MessageBox.Show("Would you like to save your changes? Unsaved changes will be lost.", "Clear simulation", MessageBoxButtons.YesNoCancel);
+                DialogResult dResult = MessageBox.Show("Would you like to save your changes? Unsaved changes will be lost.", "New simulation", MessageBoxButtons.YesNoCancel);
                 if (dResult == DialogResult.Yes)
                 {
                     Simulation.SaveAs(Simulation.Name);
                     SaveToFile();
+
                     Clear();
                 }
                 else if (dResult == DialogResult.No)
@@ -724,8 +735,22 @@ namespace ProCP
 
         public void Clear()
         {
-            Simulation = new Simulation();//Making a new instance of the circuit object
-            this.Invalidate();
+            Unlock();
+            //enableNum();
+            Simulation = new Simulation();
+            //Making a new instance of the circuit object
+            ClearAll();
+            this.Invalidate();        
+            
+        }
+
+        public void ClearAll()
+        {
+            foreach (PictureBox item in crossPic)
+            {
+                item.Image = null;
+                item.InitialImage = null;
+            }
         }
 
         private void exitToolStripMenuExit_Click(object sender, EventArgs e)

@@ -19,7 +19,7 @@ namespace ProCP
         int TotalNumberPedestrians { get; set; }
         System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
-        private List<Crossing> Crossings;
+        private List<Crossing> crossings;
         private List<Car> cars;
         private bool saved;
         private string name;
@@ -34,6 +34,12 @@ namespace ProCP
         {
             get { return saved; }
             set { saved = value; }
+        }
+
+        public List<Crossing> Crossings
+        {
+            get { return crossings; }
+            set { crossings = value; }
         }
 
         public Simulation(string name = "")
