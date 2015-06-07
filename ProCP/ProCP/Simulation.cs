@@ -402,7 +402,18 @@ namespace ProCP
             return ret;
         }
 
-
+        public bool Surrounded(int id)
+        {
+            if (crossings.Exists(x => x.CrossingId == id - 4) && crossings.Exists(x => x.CrossingId == id - 1)
+                && crossings.Exists(x => x.CrossingId == id + 4) && crossings.Exists(x => x.CrossingId == id + 1))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }

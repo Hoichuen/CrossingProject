@@ -18,7 +18,7 @@ namespace ProCP
         bool debug;
         bool cardebug;
         bool eraseFlag = false;
-
+        bool surrouned = false;
         /// <summary>
         /// A list of controls
         /// </summary>
@@ -197,6 +197,7 @@ namespace ProCP
             int z1 = -1;
 
             PictureBox self = (PictureBox)sender;
+            surrouned = Simulation.Surrounded(selectedID);
             togglePictureBoxSelection(self);
 
             selectedID = GetNumberOfPicturebox(self);
@@ -208,7 +209,6 @@ namespace ProCP
                 MessageBox.Show("No crossing selected.");
                 return;
             }
-
             if (self.Image == crossingType1.Image)
             {
                 Simulation.getProperties(selectedID, ref x, ref y, ref z/*, ref z1*/);
@@ -438,6 +438,15 @@ namespace ProCP
                 btnToggleLight.Enabled = true;
             }
 
+            if (surrouned)
+            {
+                numericCars.Enabled = false;
+            }
+
+            if (!surrouned)
+            {
+                numericCars.Enabled = true;
+            }
 
         }
 
