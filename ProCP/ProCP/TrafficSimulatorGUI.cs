@@ -18,7 +18,7 @@ namespace ProCP
         bool debug;
         bool cardebug;
         bool eraseFlag = false;
-
+        bool surrounded = false;
         /// <summary>
         /// A list of controls
         /// </summary>
@@ -200,7 +200,7 @@ namespace ProCP
             togglePictureBoxSelection(self);
 
             selectedID = GetNumberOfPicturebox(self);
-
+            surrounded = Simulation.Surrounded(selectedID);
             if (!Simulation.CrossingExist(selectedID))
             {
                 selectedID = 0;
@@ -371,7 +371,14 @@ namespace ProCP
         {
             if (isLocked && !eraseFlag)
             {
-                this.numericCars.Enabled = true;
+                if (surrounded)
+                {
+                    numericCars.Enabled = false;
+                }
+                if (!surrounded)
+                {
+                    numericCars.Enabled = true;
+                }
                 this.numericPedestrians.Enabled = true;
                 this.numericTrafficTime.Enabled = true;
                 this.cBPedTraffic.Enabled = true;
