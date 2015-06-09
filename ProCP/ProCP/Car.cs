@@ -91,7 +91,7 @@ namespace ProCP
             this.CarId = carId++;
             this.Color = color;
             this.CurrentLane = startingLane;
-            if (CurrentLane.Cars.First()==null)
+            if (CurrentLane.Cars.Count == 0)
             {
                 this.CurPoint = CurrentLane.Points.First();
             }
@@ -161,9 +161,10 @@ namespace ProCP
         {
             if (Route.ElementAt(1)!=null)
             {
-                this.CurrentLane.Cars.Remove(this);
+                TrafficLane temp = this.Route.ElementAt(1);
+                this.CurrentLane = temp;
+                this.Route.ElementAt(0).Cars.Remove(this);
                 this.Route.RemoveAt(0);
-                this.CurrentLane = Route.First();
                 this.CurrentLane.Cars.Add(this);
                 if (this.CurrentLane.IsFirstPointEmpty())
                 {

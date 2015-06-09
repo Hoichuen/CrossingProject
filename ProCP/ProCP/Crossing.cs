@@ -19,12 +19,18 @@ namespace ProCP
 
         //Properties
 
+        /// <summary>
+        /// the Time the light is green
+        /// </summary>
         public TimeSpan Time
         {
             get { return time; }
             set { time = value; }
         }
 
+        /// <summary>
+        /// the total number of cars
+        /// </summary>
         public int NumCars
         {
             get { return numCars; }
@@ -49,6 +55,9 @@ namespace ProCP
             set { position = value; }
         }
 
+        /// <summary>
+        /// the list of all lanes in this crossing
+        /// </summary>
         public List<TrafficLane> Lanes
         {
             get { return lanes; }
@@ -71,6 +80,11 @@ namespace ProCP
 
         //Methods
 
+        /// <summary>
+        /// finds all lanes that are in that direction and that are going to the crossing
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public List<TrafficLane> LanesInDirection(Direction direction)
         {
             List<TrafficLane> temp = new List<TrafficLane>();

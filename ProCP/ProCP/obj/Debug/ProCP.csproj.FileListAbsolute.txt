@@ -25,7 +25,6 @@ C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProC
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.pdb
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\bin\Debug\ProCP.pdb
-C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csprojResolveAssemblyReference.cache
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.AboutGUI.resources
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.HelpGUI.resources
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources

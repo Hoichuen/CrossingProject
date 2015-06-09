@@ -9,6 +9,9 @@ namespace ProCP
 {
     class Crossing_A:Crossing
     {
+        /// <summary>
+        /// list of lanes for the constructor
+        /// </summary>
         List<TrafficLane> lanes;
         List<TrafficLane> tLanes;
 

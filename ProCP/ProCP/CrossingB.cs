@@ -9,6 +9,9 @@ namespace ProCP
 {
     class Crossing_B:Crossing
     {
+        /// <summary>
+        /// fields
+        /// </summary>
         public List<PedestrianLane> pLanes;
         public List<Pedestrian> pedestrians;
         public string style;
@@ -16,7 +19,11 @@ namespace ProCP
         List<TrafficLane> tLanes;
 
         int numPeds;
-
+        ///Properties
+        ///
+        /// <summary>
+        /// number of pedestrians
+        /// </summary>
         public int NumPeds
         {
             get { return numPeds; }
@@ -25,6 +32,7 @@ namespace ProCP
 
         /// <summary>
         /// The crossing type B constructor
+        /// Lanes and intra lane connections are created
         /// </summary>
         public Crossing_B(int crossingId, Point position) : base(crossingId, position)
         {
@@ -83,6 +91,12 @@ namespace ProCP
             pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), false, pLight));
             
         }
+
+        /// <summary>
+        /// Returns 
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         private List<Point> CalculatePedestrianLanePoints(int ID)
         {
             ///225;160
@@ -113,6 +127,10 @@ namespace ProCP
             }
             return points;
         }
+
+        /// <summary>
+        /// creates pedestrian and adds it to the list of pedestrians
+        /// </summary>
         public void CreatePedestrians()
         {
             for (int i = 0; i < numPeds; i++)
@@ -121,6 +139,7 @@ namespace ProCP
                 // but i left them just in case
             }
         }
+
         /// <summary>
         /// Calculates how many pedestrians need to move
         /// </summary>
