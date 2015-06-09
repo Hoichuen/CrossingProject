@@ -195,10 +195,9 @@ namespace ProCP
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
-            int x = 1;
-            int y = 2;
-            int z = 3;
-            string z1 = "";
+            int x = 0;
+            int y = 0;
+            string z = "";
 
             PictureBox self = (PictureBox)sender;
             togglePictureBoxSelection(self);
@@ -216,21 +215,29 @@ namespace ProCP
             }
             if (self.Image == crossingType1.Image)
             {
-                Simulation.getProperties(selectedID, ref x, ref y, ref z, ref z1);
+                Simulation.getProperties(selectedID, ref x, ref y, ref z);
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 //Just placeholder for value for now and it resets it.
-                
-                cBPedTraffic.SelectedItem = z1;
+                cBPedTraffic.Enabled = false;
+                //cBPedTraffic.SelectedItem = z1;
+                //cBPedTraffic.SelectedText = z1;
             }
             else
             {
-                Simulation.getProperties(selectedID, ref x, ref y, ref z, ref z1);
+                Simulation.getProperties(selectedID, ref x, ref y, ref z);
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
-                numericPedestrians.Value = z;
-                //Just placeholder for value for now and it resets it.
-                cBPedTraffic.SelectedIndex = cBPedTraffic.FindStringExact(z1);
+
+                cBPedTraffic.Enabled = true;
+
+                if (z == "" || z == null)
+                {
+                    cBPedTraffic.SelectedIndex = -1;
+                }
+                cBPedTraffic.SelectedItem = z;
+                //cBPedTraffic.SelectedValue = z;
+                //cBPedTraffic.SelectedIndex = cBPedTraffic.FindStringExact(z1);
             }
 
             return;
@@ -248,7 +255,8 @@ namespace ProCP
                 CrossLock();
             }
 
-            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (int)numericPedestrians.Value,(String)cBPedTraffic.SelectedItem);
+            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value,(string)cBPedTraffic.SelectedItem);
+
 
 
         }
@@ -356,9 +364,8 @@ namespace ProCP
             btnFinishCrossing.Text = "Lock Crossing";
 
             this.numericCars.Value = 0;
-            this.numericPedestrians.Value = 0;
             this.numericTrafficTime.Value = 0;
-            this.cBPedTraffic.Items.Clear();
+            this.cBPedTraffic.SelectedIndex = -1;
 
 
 
@@ -387,9 +394,8 @@ namespace ProCP
                 numericCars.Enabled = true;
                 }
 
-                this.numericPedestrians.Enabled = true;
                 this.numericTrafficTime.Enabled = true;
-                this.cBPedTraffic.Enabled = true;
+                //this.cBPedTraffic.Enabled = true;
                 this.btnFinishCrossing.Enabled = true;
                 this.btnRemove.Enabled = false;
 
@@ -398,7 +404,6 @@ namespace ProCP
             if (isLocked && eraseFlag)
             {
                 this.numericCars.Enabled = false;
-                this.numericPedestrians.Enabled = false;
                 this.numericTrafficTime.Enabled = false;
                 this.cBPedTraffic.Enabled = false;
                 this.btnFinishCrossing.Enabled = false;
@@ -409,7 +414,6 @@ namespace ProCP
             if (!eraseFlag && !isLocked)
             {
                 this.numericCars.Enabled = false;
-                this.numericPedestrians.Enabled = false;
                 this.numericTrafficTime.Enabled = false;
                 this.cBPedTraffic.Enabled = false;
                 this.btnFinishCrossing.Enabled = false;
@@ -419,7 +423,6 @@ namespace ProCP
             if (!isLocked && eraseFlag)
             {
                 this.numericCars.Enabled = false;
-                this.numericPedestrians.Enabled = false;
                 this.numericTrafficTime.Enabled = false;
                 this.cBPedTraffic.Enabled = false;
                 this.btnFinishCrossing.Enabled = false;
@@ -430,7 +433,6 @@ namespace ProCP
             if (crossLocked)
             {
                 this.numericCars.Enabled = false;
-                this.numericPedestrians.Enabled = false;
                 this.numericTrafficTime.Enabled = false;
                 this.cBPedTraffic.Enabled = false;
             }

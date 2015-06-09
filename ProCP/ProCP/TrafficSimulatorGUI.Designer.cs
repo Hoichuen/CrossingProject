@@ -43,12 +43,10 @@
             this.numericCars = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.crossingGrid8 = new System.Windows.Forms.PictureBox();
             this.crossingGrid7 = new System.Windows.Forms.PictureBox();
             this.crossingGrid5 = new System.Windows.Forms.PictureBox();
             this.crossingGrid2 = new System.Windows.Forms.PictureBox();
-            this.numericPedestrians = new System.Windows.Forms.NumericUpDown();
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnToggleLight = new System.Windows.Forms.Button();
             this.crossingGrid4 = new System.Windows.Forms.PictureBox();
@@ -94,7 +92,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericPedestrians)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingType2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingType1)).BeginInit();
@@ -250,17 +247,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Number of Cars:";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Enabled = false;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(221, 167);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Number of Pedestrians:";
-            // 
             // crossingGrid8
             // 
             this.crossingGrid8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -308,14 +294,6 @@
             this.crossingGrid2.TabStop = false;
             this.crossingGrid2.Click += new System.EventHandler(this.pictureBoxOnClick);
             this.crossingGrid2.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxOnPaint);
-            // 
-            // numericPedestrians
-            // 
-            this.numericPedestrians.Enabled = false;
-            this.numericPedestrians.Location = new System.Drawing.Point(347, 166);
-            this.numericPedestrians.Name = "numericPedestrians";
-            this.numericPedestrians.Size = new System.Drawing.Size(35, 20);
-            this.numericPedestrians.TabIndex = 4;
             // 
             // btnPlay
             // 
@@ -386,9 +364,7 @@
             this.gBCrossingType.Controls.Add(this.cBDebugPoint);
             this.gBCrossingType.Controls.Add(this.crossingType2);
             this.gBCrossingType.Controls.Add(this.crossingType1);
-            this.gBCrossingType.Controls.Add(this.numericPedestrians);
             this.gBCrossingType.Controls.Add(this.gBSettings);
-            this.gBCrossingType.Controls.Add(this.label1);
             this.gBCrossingType.Controls.Add(this.btnRemove);
             this.gBCrossingType.ForeColor = System.Drawing.Color.White;
             this.gBCrossingType.Location = new System.Drawing.Point(9, 33);
@@ -687,7 +663,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericPedestrians)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingType2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingType1)).EndInit();
@@ -720,12 +695,10 @@
         private System.Windows.Forms.NumericUpDown numericCars;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox crossingGrid8;
         private System.Windows.Forms.PictureBox crossingGrid7;
         private System.Windows.Forms.PictureBox crossingGrid5;
         private System.Windows.Forms.PictureBox crossingGrid2;
-        private System.Windows.Forms.NumericUpDown numericPedestrians;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button btnToggleLight;
         private System.Windows.Forms.PictureBox crossingGrid4;
