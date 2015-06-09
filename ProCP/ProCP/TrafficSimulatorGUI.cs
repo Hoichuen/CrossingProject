@@ -302,7 +302,7 @@ namespace ProCP
         {
             if (!play)
             {
-                timer1.Start();
+                TimerSimulation.Start();
                 Play();
             }
             else if (play)
@@ -886,11 +886,11 @@ namespace ProCP
             aGUI.Show();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void TimerSimulation_Tick(object sender, EventArgs e)
         {
             if (count < Simulation.TotalNumberCars)
             {
-                if (timer1.Interval % 1500 == 0 && play)
+                if (TimerSimulation.Interval % 1500 == 0 && play)
                 {
                     foreach (Crossing c in Simulation.Crossings)
                     {
