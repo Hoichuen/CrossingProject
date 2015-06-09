@@ -316,11 +316,11 @@ namespace ProCP
         {
             if (!play)
             {
-<<<<<<< HEAD
+
                 TimerSimulation.Interval = 1500;
                 TimerSimulation.Start();
-=======
-                //foreach (Crossing cr in Simulation.Crossings)
+
+                 //foreach (Crossing cr in Simulation.Crossings)
                 //{
                 //    foreach (TrafficLane l in cr.Lanes)
                 //    {
@@ -342,7 +342,7 @@ namespace ProCP
                 //    }
                 //}
 
->>>>>>> origin/NEWGUILight
+
                 Play();
                 foreach (Crossing c in Simulation.Crossings)
                 {
@@ -367,13 +367,12 @@ namespace ProCP
             btnPlay.Text = "STOP SIMULATION";
             btnToggleLight.Enabled = true;
             enableNum();
-<<<<<<< HEAD
+
             Simulation.Start();
-=======
+
 
             //Simulation.CreateCars();
 
->>>>>>> origin/NEWGUILight
             
 
         }
@@ -938,7 +937,6 @@ namespace ProCP
             aGUI.Show();
         }
 
-<<<<<<< HEAD
         private void TimerSimulation_Tick(object sender, EventArgs e)
         {
             if (count < Simulation.TotalNumberCars)
@@ -975,7 +973,7 @@ namespace ProCP
             }
         }
 
-=======
+
         #region Light Thread
         private void SwitchAll(Crossing c)
         {
@@ -1152,7 +1150,6 @@ namespace ProCP
         private void TickEvent(object sender, EventArgs args, Crossing c)
         {
             MessageBox.Show("switch!: " + c.Time.Seconds.ToString());
->>>>>>> origin/NEWGUILight
 
             SwitchAll(c);
 

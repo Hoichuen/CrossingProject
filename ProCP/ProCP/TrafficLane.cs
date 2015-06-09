@@ -100,6 +100,8 @@ namespace ProCP
             this.IsFull = false;
             //Need to figure out the lists
 
+            Cars = new List<Car>();
+
             this.initPoints();
         }
 
