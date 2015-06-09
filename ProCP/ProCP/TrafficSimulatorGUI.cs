@@ -955,6 +955,11 @@ namespace ProCP
 
                                 Car car = l.Cars.ElementAt(i);
 
+                                foreach (PictureBox p in ControlList)
+                                {
+                                    p.Invalidate();
+                                }
+
                                 car.DriveLane();
 
                                 foreach (PictureBox p in ControlList)

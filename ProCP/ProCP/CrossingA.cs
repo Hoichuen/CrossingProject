@@ -26,7 +26,7 @@ namespace ProCP
 
             for (int i = 0; i < 4; i++)
             {
-                lanes.Add(new TrafficLane(i, false, (Direction)i, null, tLanes, this));
+                lanes.Add(new TrafficLane(i, false, (Direction) i, null, tLanes, this));
                 tLanes = new List<TrafficLane>();
             }
 

@@ -278,7 +278,6 @@ namespace ProCP
                 cr.NumCars = numCars;
                 cr.Time = new TimeSpan(0, 0, time);
             }
-
             else
             {
                 Crossing_B cr1 = (Crossing_B)cr;
@@ -289,6 +288,7 @@ namespace ProCP
             }
 
         }
+
         private int whichPedStyle(string style)
         {
             if (style == "Quiet") return 1;
@@ -337,9 +337,11 @@ namespace ProCP
 
                 for (int i = 0; i < item.NumCars; i++)
                 {
-                    c = new Color();
                     c = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
+                    
+                    // car = new Car(count, c, item); // DEBUG
                     car = new Car(count, c, tmp.ElementAt(rnd.Next(tmp.Count())));
+
                     cars.Add(car);
                     count++;
                 }
@@ -355,7 +357,6 @@ namespace ProCP
                 */
             }
         }
-
 
         public Crossing getCrossing(int id)
         {
@@ -401,7 +402,6 @@ namespace ProCP
 
             writer.Close();
         }
-
 
         /// <summary>
         /// Returns true when loaded, passes new loaded BaseBate list to the exisiting BaseGate list.

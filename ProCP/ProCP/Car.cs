@@ -101,6 +101,76 @@ namespace ProCP
             CurrentLane.Cars.Add(this);
         }
 
+        // THIS CONSTRUCTOR IS JUST FOR DEBUGGING
+        public Car(int i, Color c, Crossing crossing)
+        {
+            this.CarId = i++;
+            this.Color = c;
+
+            int debugRoute = 6;
+            int startLaneCode = 9;
+
+            TrafficLane startLane = crossing.Lanes.Find(x => x.ID.Equals(startLaneCode));
+            this.CurrentLane = startLane;
+
+            if (CurrentLane.Cars.Count == 0)
+            {
+                this.CurPoint = CurrentLane.Points.First();
+            }
+
+            List<TrafficLane> tempRoute = new List<TrafficLane>();
+            tempRoute.Add(startLane);
+
+            List<TrafficLane> nextLanes = startLane.Lanes;
+
+            if (crossing is Crossing_A)
+            {
+                switch (debugRoute)
+                {
+                    case 1:
+                    case 5:
+                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(3)));
+                        break;
+                    case 2:
+                    case 8:
+                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(2)));
+                        break;
+                    case 6:
+                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(1)));
+                        break;
+                    case 4:
+                    case 3:
+                    case 7:
+                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(0)));
+                        break;
+                }
+            }
+            else
+            {
+                switch (debugRoute)
+                {
+                    case 3:
+                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(3)));
+                        break;
+                    case 1:
+                    case 4:
+                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(2)));
+                        break;
+                    case 5:
+                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(1)));
+                        break;
+                    case 2:
+                    case 6:
+                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(0)));
+                        break;
+                }
+            }
+
+
+            this.route = tempRoute;
+            CurrentLane.Cars.Add(this);
+        }
+
         //Methods
         /// <summary>
         /// Method for driving down the lane including 
@@ -167,6 +237,7 @@ namespace ProCP
                 this.Route.ElementAt(0).Cars.Remove(this);
                 this.Route.RemoveAt(0);
                 this.CurrentLane.Cars.Add(this);
+
                 if (this.CurrentLane.IsFirstPointEmpty())
                 {
                     this.CurPoint = Point.Empty;
@@ -182,29 +253,6 @@ namespace ProCP
                 TrafficSimulatorGUI.count++;
             }
         }
-        /*
-        void SwitchLane()
-        {
-            if (Route.ElementAt(1)!=null)
-            {
-                this.CurrentLane.Cars.Remove(this);
-                this.Route.RemoveAt(0);
-                this.CurrentLane = Route.First();
-                this.CurrentLane.Cars.Add(this);
-                if (this.CurrentLane.IsFirstPointEmpty())
-                {
-                    this.CurPoint = Point.Empty;
-                }
-                else
-                {
-                    this.CurPoint = this.CurrentLane.Points.First();
-                }
-            }
-            else
-            {
-                this.CurrentLane.Cars.Remove(this);
-            }
-        }*/
 
         /// <summary>
         /// Creates the route of the car
@@ -239,6 +287,5 @@ namespace ProCP
 
             return tempRoute;
         }
-
     }
 }

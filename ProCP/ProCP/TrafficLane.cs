@@ -143,7 +143,7 @@ namespace ProCP
                 }
             }
 
-            if (ascending)
+            if (this.direction.Equals(Direction.NORTH) || this.direction.Equals(Direction.WEST))
                 points.Reverse();
 
             return points;
