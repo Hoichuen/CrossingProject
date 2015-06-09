@@ -93,7 +93,7 @@ namespace ProCP
         /// <summary>
         /// Walking method
         /// </summary>
-        void Walk()
+        public void Walk()
         {
             if (lane.PLight.State) //if the light is on
             {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrafficSimulatorGUI));
             this.numericTrafficTime = new System.Windows.Forms.NumericUpDown();
             this.crossingGrid14 = new System.Windows.Forms.PictureBox();
@@ -54,6 +55,8 @@
             this.crossingType2 = new System.Windows.Forms.PictureBox();
             this.crossingType1 = new System.Windows.Forms.PictureBox();
             this.gBCrossingType = new System.Windows.Forms.GroupBox();
+            this.cBDebugCars = new System.Windows.Forms.CheckBox();
+            this.cBDebugPoint = new System.Windows.Forms.CheckBox();
             this.gBSettings = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cBPedTraffic = new System.Windows.Forms.ComboBox();
@@ -75,8 +78,7 @@
             this.viewHelpToolStripMenuVHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutTrafficSimulatorToolStripMenuAboutTFS = new System.Windows.Forms.ToolStripMenuItem();
-            this.cBDebugPoint = new System.Windows.Forms.CheckBox();
-            this.cBDebugCars = new System.Windows.Forms.CheckBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.numericTrafficTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid16)).BeginInit();
@@ -107,17 +109,19 @@
             // numericTrafficTime
             // 
             this.numericTrafficTime.Enabled = false;
-            this.numericTrafficTime.Location = new System.Drawing.Point(83, 41);
+            this.numericTrafficTime.Location = new System.Drawing.Point(111, 50);
+            this.numericTrafficTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericTrafficTime.Name = "numericTrafficTime";
-            this.numericTrafficTime.Size = new System.Drawing.Size(78, 20);
+            this.numericTrafficTime.Size = new System.Drawing.Size(104, 22);
             this.numericTrafficTime.TabIndex = 5;
             // 
             // crossingGrid14
             // 
             this.crossingGrid14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid14.Location = new System.Drawing.Point(224, 479);
+            this.crossingGrid14.Location = new System.Drawing.Point(299, 590);
+            this.crossingGrid14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid14.Name = "crossingGrid14";
-            this.crossingGrid14.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid14.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid14.TabIndex = 16;
             this.crossingGrid14.TabStop = false;
@@ -127,9 +131,10 @@
             // crossingGrid16
             // 
             this.crossingGrid16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid16.Location = new System.Drawing.Point(674, 479);
+            this.crossingGrid16.Location = new System.Drawing.Point(899, 590);
+            this.crossingGrid16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid16.Name = "crossingGrid16";
-            this.crossingGrid16.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid16.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid16.TabIndex = 15;
             this.crossingGrid16.TabStop = false;
@@ -139,9 +144,10 @@
             // crossingGrid15
             // 
             this.crossingGrid15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid15.Location = new System.Drawing.Point(449, 479);
+            this.crossingGrid15.Location = new System.Drawing.Point(599, 590);
+            this.crossingGrid15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid15.Name = "crossingGrid15";
-            this.crossingGrid15.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid15.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid15.TabIndex = 14;
             this.crossingGrid15.TabStop = false;
@@ -151,9 +157,10 @@
             // crossingGrid13
             // 
             this.crossingGrid13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid13.Location = new System.Drawing.Point(-1, 479);
+            this.crossingGrid13.Location = new System.Drawing.Point(-1, 590);
+            this.crossingGrid13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid13.Name = "crossingGrid13";
-            this.crossingGrid13.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid13.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid13.TabIndex = 13;
             this.crossingGrid13.TabStop = false;
@@ -163,9 +170,10 @@
             // crossingGrid10
             // 
             this.crossingGrid10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid10.Location = new System.Drawing.Point(224, 319);
+            this.crossingGrid10.Location = new System.Drawing.Point(299, 393);
+            this.crossingGrid10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid10.Name = "crossingGrid10";
-            this.crossingGrid10.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid10.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid10.TabIndex = 12;
             this.crossingGrid10.TabStop = false;
@@ -175,9 +183,10 @@
             // crossingGrid12
             // 
             this.crossingGrid12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid12.Location = new System.Drawing.Point(674, 319);
+            this.crossingGrid12.Location = new System.Drawing.Point(899, 393);
+            this.crossingGrid12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid12.Name = "crossingGrid12";
-            this.crossingGrid12.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid12.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid12.TabIndex = 11;
             this.crossingGrid12.TabStop = false;
@@ -187,9 +196,10 @@
             // crossingGrid11
             // 
             this.crossingGrid11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid11.Location = new System.Drawing.Point(449, 319);
+            this.crossingGrid11.Location = new System.Drawing.Point(599, 393);
+            this.crossingGrid11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid11.Name = "crossingGrid11";
-            this.crossingGrid11.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid11.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid11.TabIndex = 10;
             this.crossingGrid11.TabStop = false;
@@ -199,9 +209,10 @@
             // crossingGrid9
             // 
             this.crossingGrid9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid9.Location = new System.Drawing.Point(-1, 319);
+            this.crossingGrid9.Location = new System.Drawing.Point(-1, 393);
+            this.crossingGrid9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid9.Name = "crossingGrid9";
-            this.crossingGrid9.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid9.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid9.TabIndex = 9;
             this.crossingGrid9.TabStop = false;
@@ -211,9 +222,10 @@
             // crossingGrid6
             // 
             this.crossingGrid6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid6.Location = new System.Drawing.Point(224, 159);
+            this.crossingGrid6.Location = new System.Drawing.Point(299, 196);
+            this.crossingGrid6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid6.Name = "crossingGrid6";
-            this.crossingGrid6.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid6.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid6.TabIndex = 8;
             this.crossingGrid6.TabStop = false;
@@ -223,18 +235,20 @@
             // numericCars
             // 
             this.numericCars.Enabled = false;
-            this.numericCars.Location = new System.Drawing.Point(101, 15);
+            this.numericCars.Location = new System.Drawing.Point(135, 18);
+            this.numericCars.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericCars.Name = "numericCars";
-            this.numericCars.Size = new System.Drawing.Size(58, 20);
+            this.numericCars.Size = new System.Drawing.Size(77, 22);
             this.numericCars.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 44);
+            this.label3.Location = new System.Drawing.Point(8, 54);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 14);
+            this.label3.Size = new System.Drawing.Size(103, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "Green time (s):";
             // 
@@ -242,9 +256,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Location = new System.Drawing.Point(8, 20);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 16);
+            this.label2.Size = new System.Drawing.Size(115, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Number of Cars:";
             // 
@@ -253,18 +268,20 @@
             this.label1.AutoSize = true;
             this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(221, 167);
+            this.label1.Location = new System.Drawing.Point(295, 206);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 16);
+            this.label1.Size = new System.Drawing.Size(158, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Number of Pedestrians:";
             // 
             // crossingGrid8
             // 
             this.crossingGrid8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid8.Location = new System.Drawing.Point(674, 159);
+            this.crossingGrid8.Location = new System.Drawing.Point(899, 196);
+            this.crossingGrid8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid8.Name = "crossingGrid8";
-            this.crossingGrid8.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid8.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid8.TabIndex = 7;
             this.crossingGrid8.TabStop = false;
@@ -274,9 +291,10 @@
             // crossingGrid7
             // 
             this.crossingGrid7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid7.Location = new System.Drawing.Point(449, 159);
+            this.crossingGrid7.Location = new System.Drawing.Point(599, 196);
+            this.crossingGrid7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid7.Name = "crossingGrid7";
-            this.crossingGrid7.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid7.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid7.TabIndex = 6;
             this.crossingGrid7.TabStop = false;
@@ -286,9 +304,10 @@
             // crossingGrid5
             // 
             this.crossingGrid5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid5.Location = new System.Drawing.Point(-1, 159);
+            this.crossingGrid5.Location = new System.Drawing.Point(-1, 196);
+            this.crossingGrid5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid5.Name = "crossingGrid5";
-            this.crossingGrid5.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid5.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid5.TabIndex = 5;
             this.crossingGrid5.TabStop = false;
@@ -298,9 +317,10 @@
             // crossingGrid2
             // 
             this.crossingGrid2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid2.Location = new System.Drawing.Point(224, -1);
+            this.crossingGrid2.Location = new System.Drawing.Point(299, -1);
+            this.crossingGrid2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid2.Name = "crossingGrid2";
-            this.crossingGrid2.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid2.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid2.TabIndex = 4;
             this.crossingGrid2.TabStop = false;
@@ -310,9 +330,10 @@
             // numericPedestrians
             // 
             this.numericPedestrians.Enabled = false;
-            this.numericPedestrians.Location = new System.Drawing.Point(347, 166);
+            this.numericPedestrians.Location = new System.Drawing.Point(463, 204);
+            this.numericPedestrians.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericPedestrians.Name = "numericPedestrians";
-            this.numericPedestrians.Size = new System.Drawing.Size(35, 20);
+            this.numericPedestrians.Size = new System.Drawing.Size(47, 22);
             this.numericPedestrians.TabIndex = 4;
             // 
             // btnPlay
@@ -321,9 +342,10 @@
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPlay.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
-            this.btnPlay.Location = new System.Drawing.Point(9, 431);
+            this.btnPlay.Location = new System.Drawing.Point(12, 530);
+            this.btnPlay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(388, 30);
+            this.btnPlay.Size = new System.Drawing.Size(517, 37);
             this.btnPlay.TabIndex = 11;
             this.btnPlay.Text = "PLAY SIMULATION";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -336,9 +358,10 @@
             this.btnToggleLight.Enabled = false;
             this.btnToggleLight.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggleLight.Image = ((System.Drawing.Image)(resources.GetObject("btnToggleLight.Image")));
-            this.btnToggleLight.Location = new System.Drawing.Point(9, 395);
+            this.btnToggleLight.Location = new System.Drawing.Point(12, 486);
+            this.btnToggleLight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnToggleLight.Name = "btnToggleLight";
-            this.btnToggleLight.Size = new System.Drawing.Size(388, 30);
+            this.btnToggleLight.Size = new System.Drawing.Size(517, 37);
             this.btnToggleLight.TabIndex = 9;
             this.btnToggleLight.Text = "Toggle Light";
             this.btnToggleLight.UseVisualStyleBackColor = true;
@@ -347,9 +370,10 @@
             // crossingGrid4
             // 
             this.crossingGrid4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid4.Location = new System.Drawing.Point(674, -1);
+            this.crossingGrid4.Location = new System.Drawing.Point(899, -1);
+            this.crossingGrid4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid4.Name = "crossingGrid4";
-            this.crossingGrid4.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid4.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid4.TabIndex = 2;
             this.crossingGrid4.TabStop = false;
@@ -359,9 +383,10 @@
             // crossingType2
             // 
             this.crossingType2.Image = global::ProCP.Properties.Resources.Crossing_b;
-            this.crossingType2.Location = new System.Drawing.Point(10, 166);
+            this.crossingType2.Location = new System.Drawing.Point(13, 204);
+            this.crossingType2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingType2.Name = "crossingType2";
-            this.crossingType2.Size = new System.Drawing.Size(202, 144);
+            this.crossingType2.Size = new System.Drawing.Size(269, 177);
             this.crossingType2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingType2.TabIndex = 1;
             this.crossingType2.TabStop = false;
@@ -369,9 +394,10 @@
             // crossingType1
             // 
             this.crossingType1.Image = global::ProCP.Properties.Resources.Crossing_a;
-            this.crossingType1.Location = new System.Drawing.Point(10, 16);
+            this.crossingType1.Location = new System.Drawing.Point(13, 20);
+            this.crossingType1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingType1.Name = "crossingType1";
-            this.crossingType1.Size = new System.Drawing.Size(202, 144);
+            this.crossingType1.Size = new System.Drawing.Size(269, 177);
             this.crossingType1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingType1.TabIndex = 0;
             this.crossingType1.TabStop = false;
@@ -389,12 +415,36 @@
             this.gBCrossingType.Controls.Add(this.label1);
             this.gBCrossingType.Controls.Add(this.btnRemove);
             this.gBCrossingType.ForeColor = System.Drawing.Color.White;
-            this.gBCrossingType.Location = new System.Drawing.Point(9, 33);
+            this.gBCrossingType.Location = new System.Drawing.Point(12, 41);
+            this.gBCrossingType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gBCrossingType.Name = "gBCrossingType";
-            this.gBCrossingType.Size = new System.Drawing.Size(388, 320);
+            this.gBCrossingType.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gBCrossingType.Size = new System.Drawing.Size(517, 394);
             this.gBCrossingType.TabIndex = 7;
             this.gBCrossingType.TabStop = false;
             this.gBCrossingType.Text = "Crossing Types";
+            // 
+            // cBDebugCars
+            // 
+            this.cBDebugCars.AutoSize = true;
+            this.cBDebugCars.Location = new System.Drawing.Point(321, 281);
+            this.cBDebugCars.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cBDebugCars.Name = "cBDebugCars";
+            this.cBDebugCars.Size = new System.Drawing.Size(173, 21);
+            this.cBDebugCars.TabIndex = 12;
+            this.cBDebugCars.Text = "Debug points and cars";
+            this.cBDebugCars.UseVisualStyleBackColor = true;
+            // 
+            // cBDebugPoint
+            // 
+            this.cBDebugPoint.AutoSize = true;
+            this.cBDebugPoint.Location = new System.Drawing.Point(321, 252);
+            this.cBDebugPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cBDebugPoint.Name = "cBDebugPoint";
+            this.cBDebugPoint.Size = new System.Drawing.Size(114, 21);
+            this.cBDebugPoint.TabIndex = 11;
+            this.cBDebugPoint.Text = "Debug points";
+            this.cBDebugPoint.UseVisualStyleBackColor = true;
             // 
             // gBSettings
             // 
@@ -407,9 +457,11 @@
             this.gBSettings.Controls.Add(this.label3);
             this.gBSettings.Controls.Add(this.label2);
             this.gBSettings.ForeColor = System.Drawing.Color.White;
-            this.gBSettings.Location = new System.Drawing.Point(215, 16);
+            this.gBSettings.Location = new System.Drawing.Point(287, 20);
+            this.gBSettings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gBSettings.Name = "gBSettings";
-            this.gBSettings.Size = new System.Drawing.Size(167, 144);
+            this.gBSettings.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gBSettings.Size = new System.Drawing.Size(223, 177);
             this.gBSettings.TabIndex = 8;
             this.gBSettings.TabStop = false;
             this.gBSettings.Text = "Crossing Settings";
@@ -418,9 +470,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 64);
+            this.label4.Location = new System.Drawing.Point(8, 79);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 14);
+            this.label4.Size = new System.Drawing.Size(123, 16);
             this.label4.TabIndex = 12;
             this.label4.Text = "Pedestrian Traffic:";
             // 
@@ -433,9 +486,10 @@
             this.cBPedTraffic.Items.AddRange(new object[] {
             "Quiet",
             "Busy"});
-            this.cBPedTraffic.Location = new System.Drawing.Point(6, 81);
+            this.cBPedTraffic.Location = new System.Drawing.Point(8, 100);
+            this.cBPedTraffic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cBPedTraffic.Name = "cBPedTraffic";
-            this.cBPedTraffic.Size = new System.Drawing.Size(152, 26);
+            this.cBPedTraffic.Size = new System.Drawing.Size(201, 30);
             this.cBPedTraffic.TabIndex = 11;
             // 
             // btnFinishCrossing
@@ -446,9 +500,10 @@
             this.btnFinishCrossing.FlatAppearance.BorderSize = 0;
             this.btnFinishCrossing.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinishCrossing.ForeColor = System.Drawing.Color.Red;
-            this.btnFinishCrossing.Location = new System.Drawing.Point(6, 113);
+            this.btnFinishCrossing.Location = new System.Drawing.Point(8, 139);
+            this.btnFinishCrossing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFinishCrossing.Name = "btnFinishCrossing";
-            this.btnFinishCrossing.Size = new System.Drawing.Size(155, 24);
+            this.btnFinishCrossing.Size = new System.Drawing.Size(207, 30);
             this.btnFinishCrossing.TabIndex = 10;
             this.btnFinishCrossing.Text = "Lock Crossing";
             this.btnFinishCrossing.UseVisualStyleBackColor = true;
@@ -461,9 +516,10 @@
             this.btnRemove.Enabled = false;
             this.btnRemove.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemove.ForeColor = System.Drawing.Color.Black;
-            this.btnRemove.Location = new System.Drawing.Point(218, 280);
+            this.btnRemove.Location = new System.Drawing.Point(291, 345);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(164, 30);
+            this.btnRemove.Size = new System.Drawing.Size(219, 37);
             this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -472,9 +528,10 @@
             // crossingGrid3
             // 
             this.crossingGrid3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crossingGrid3.Location = new System.Drawing.Point(449, -1);
+            this.crossingGrid3.Location = new System.Drawing.Point(599, -1);
+            this.crossingGrid3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid3.Name = "crossingGrid3";
-            this.crossingGrid3.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid3.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid3.TabIndex = 1;
             this.crossingGrid3.TabStop = false;
@@ -485,8 +542,9 @@
             // 
             this.crossingGrid1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.crossingGrid1.Location = new System.Drawing.Point(-1, -1);
+            this.crossingGrid1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.crossingGrid1.Name = "crossingGrid1";
-            this.crossingGrid1.Size = new System.Drawing.Size(225, 160);
+            this.crossingGrid1.Size = new System.Drawing.Size(299, 196);
             this.crossingGrid1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.crossingGrid1.TabIndex = 0;
             this.crossingGrid1.TabStop = false;
@@ -513,9 +571,10 @@
             this.panel1.Controls.Add(this.crossingGrid4);
             this.panel1.Controls.Add(this.crossingGrid3);
             this.panel1.Controls.Add(this.crossingGrid1);
-            this.panel1.Location = new System.Drawing.Point(403, 33);
+            this.panel1.Location = new System.Drawing.Point(537, 41);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(900, 640);
+            this.panel1.Size = new System.Drawing.Size(1199, 787);
             this.panel1.TabIndex = 6;
             // 
             // btnLock
@@ -524,9 +583,10 @@
             this.btnLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLock.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLock.Image = ((System.Drawing.Image)(resources.GetObject("btnLock.Image")));
-            this.btnLock.Location = new System.Drawing.Point(9, 359);
+            this.btnLock.Location = new System.Drawing.Point(12, 442);
+            this.btnLock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(388, 30);
+            this.btnLock.Size = new System.Drawing.Size(517, 37);
             this.btnLock.TabIndex = 12;
             this.btnLock.Text = "Lock Grid";
             this.btnLock.UseVisualStyleBackColor = true;
@@ -539,7 +599,8 @@
             this.aboutMeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1313, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1751, 28);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -553,46 +614,46 @@
             this.toolStripSeparator3,
             this.exitToolStripMenuExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuNew
             // 
             this.newToolStripMenuNew.Name = "newToolStripMenuNew";
-            this.newToolStripMenuNew.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuNew.Size = new System.Drawing.Size(138, 24);
             this.newToolStripMenuNew.Text = "New";
             this.newToolStripMenuNew.Click += new System.EventHandler(this.newToolStripMenuNew_Click);
             // 
             // openToolStripMenuOpen
             // 
             this.openToolStripMenuOpen.Name = "openToolStripMenuOpen";
-            this.openToolStripMenuOpen.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuOpen.Size = new System.Drawing.Size(138, 24);
             this.openToolStripMenuOpen.Text = "Open...";
             this.openToolStripMenuOpen.Click += new System.EventHandler(this.openToolStripMenuOpen_Click);
             // 
             // fileToolStripMenuSave
             // 
             this.fileToolStripMenuSave.Name = "fileToolStripMenuSave";
-            this.fileToolStripMenuSave.Size = new System.Drawing.Size(152, 22);
+            this.fileToolStripMenuSave.Size = new System.Drawing.Size(138, 24);
             this.fileToolStripMenuSave.Text = "Save";
             this.fileToolStripMenuSave.Click += new System.EventHandler(this.fileToolStripMenuSave_Click);
             // 
             // saveAsToolStripMenuSaveAs
             // 
             this.saveAsToolStripMenuSaveAs.Name = "saveAsToolStripMenuSaveAs";
-            this.saveAsToolStripMenuSaveAs.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuSaveAs.Size = new System.Drawing.Size(138, 24);
             this.saveAsToolStripMenuSaveAs.Text = "Save As...";
             this.saveAsToolStripMenuSaveAs.Click += new System.EventHandler(this.saveAsToolStripMenuSaveAs_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(135, 6);
             // 
             // exitToolStripMenuExit
             // 
             this.exitToolStripMenuExit.Name = "exitToolStripMenuExit";
-            this.exitToolStripMenuExit.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuExit.Size = new System.Drawing.Size(138, 24);
             this.exitToolStripMenuExit.Text = "Exit";
             this.exitToolStripMenuExit.Click += new System.EventHandler(this.exitToolStripMenuExit_Click);
             // 
@@ -603,55 +664,39 @@
             this.toolStripSeparator2,
             this.aboutTrafficSimulatorToolStripMenuAboutTFS});
             this.aboutMeToolStripMenuItem.Name = "aboutMeToolStripMenuItem";
-            this.aboutMeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.aboutMeToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.aboutMeToolStripMenuItem.Text = "Help";
             // 
             // viewHelpToolStripMenuVHelp
             // 
             this.viewHelpToolStripMenuVHelp.Name = "viewHelpToolStripMenuVHelp";
-            this.viewHelpToolStripMenuVHelp.Size = new System.Drawing.Size(198, 22);
+            this.viewHelpToolStripMenuVHelp.Size = new System.Drawing.Size(233, 24);
             this.viewHelpToolStripMenuVHelp.Text = "View help";
             this.viewHelpToolStripMenuVHelp.Click += new System.EventHandler(this.viewHelpToolStripMenuVHelp_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(195, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(230, 6);
             // 
             // aboutTrafficSimulatorToolStripMenuAboutTFS
             // 
             this.aboutTrafficSimulatorToolStripMenuAboutTFS.Name = "aboutTrafficSimulatorToolStripMenuAboutTFS";
-            this.aboutTrafficSimulatorToolStripMenuAboutTFS.Size = new System.Drawing.Size(198, 22);
+            this.aboutTrafficSimulatorToolStripMenuAboutTFS.Size = new System.Drawing.Size(233, 24);
             this.aboutTrafficSimulatorToolStripMenuAboutTFS.Text = "About Traffic Simulator";
             this.aboutTrafficSimulatorToolStripMenuAboutTFS.Click += new System.EventHandler(this.aboutTrafficSimulatorToolStripMenuAboutTFS_Click);
             // 
-            // cBDebugPoint
+            // timer1
             // 
-            this.cBDebugPoint.AutoSize = true;
-            this.cBDebugPoint.Location = new System.Drawing.Point(241, 205);
-            this.cBDebugPoint.Name = "cBDebugPoint";
-            this.cBDebugPoint.Size = new System.Drawing.Size(89, 17);
-            this.cBDebugPoint.TabIndex = 11;
-            this.cBDebugPoint.Text = "Debug points";
-            this.cBDebugPoint.UseVisualStyleBackColor = true;
-            // 
-            // cBDebugCars
-            // 
-            this.cBDebugCars.AutoSize = true;
-            this.cBDebugCars.Location = new System.Drawing.Point(241, 228);
-            this.cBDebugCars.Name = "cBDebugCars";
-            this.cBDebugCars.Size = new System.Drawing.Size(133, 17);
-            this.cBDebugCars.TabIndex = 12;
-            this.cBDebugCars.Text = "Debug points and cars";
-            this.cBDebugCars.UseVisualStyleBackColor = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // TrafficSimulatorGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1313, 686);
+            this.ClientSize = new System.Drawing.Size(1751, 844);
             this.Controls.Add(this.btnLock);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnToggleLight);
@@ -661,6 +706,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "TrafficSimulatorGUI";
             this.Text = "Traffic Simulator";
@@ -749,6 +795,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox cBDebugCars;
         private System.Windows.Forms.CheckBox cBDebugPoint;
+        private System.Windows.Forms.Timer timer1;
 
 
     }
