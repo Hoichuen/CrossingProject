@@ -283,8 +283,8 @@ namespace ProCP
                 Crossing_B cr1 = (Crossing_B)cr;
                 cr1.NumCars = numCars;
                 cr1.Time = new TimeSpan(0,0,time);
-                cr1.CreatePedestrians();
                 cr1.style = style;
+                cr1.CreatePedestrians();
             }
 
         }

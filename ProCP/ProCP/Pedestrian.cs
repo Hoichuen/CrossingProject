@@ -115,7 +115,10 @@ namespace ProCP
                     Pedestrian p = lane.GetCrossingB().pedestrians.Find(x => x.PedId == this.PedId);
                     for (int i = 0; i < lane.GetCrossingB().pedestrians.Count; i++)
                     {
-                        if (lane.GetCrossingB().pedestrians[i] == p) lane.GetCrossingB().pedestrians[i] = null;
+                        if (lane.GetCrossingB().pedestrians[i].lane == p.lane && p.pedId != lane.GetCrossingB().pedestrians[i].pedId) 
+                            PressSensor();
+                            if (lane.GetCrossingB().pedestrians[i] == p) 
+                                lane.GetCrossingB().pedestrians.RemoveAt(i);
                     }
                 }
 
