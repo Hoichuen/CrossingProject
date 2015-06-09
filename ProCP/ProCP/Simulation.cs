@@ -20,6 +20,7 @@ namespace ProCP
         System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
         private List<Crossing> crossings;
+        private Car car;
         private List<Car> cars;
         private bool saved;
         private string name;
@@ -336,7 +337,8 @@ namespace ProCP
                 for (int i = 0; i < item.NumCars; i++)
                 {
                     Random random = new Random();
-                    cars.Add(new Car(count, Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)), tmp.ElementAt(rnd.Next(tmp.Count()))));
+                    car = new Car(count, Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)), tmp.ElementAt(rnd.Next(tmp.Count())));
+                    cars.Add(car);
                     count++;
                 }
             }

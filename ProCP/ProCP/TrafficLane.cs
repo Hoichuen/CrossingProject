@@ -143,7 +143,7 @@ namespace ProCP
                 }
             }
 
-            if (!ascending)
+            if (ascending)
                 points.Reverse();
 
             return points;

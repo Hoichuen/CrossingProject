@@ -117,10 +117,10 @@ namespace ProCP
                 }
                 else
                 {
-                    if (!this.Route.ElementAt(1).IsFirstPointEmpty())
-                    {
+                    //if (!this.Route.ElementAt(1).IsFirstPointEmpty() || this.Route.Count == 1)
+                    //{
                         this.SwitchLane();
-                    }
+                    //}
                 }
             }
             else if (((this.CurrentLane.TrafficLight == null) || (!this.CurrentLane.TrafficLight.State)) && this.CurrentLane.IsNextPointEmpty(this.CurPoint))
@@ -160,7 +160,7 @@ namespace ProCP
         /// </summary>
         void SwitchLane()
         {
-            if (Route.ElementAt(1) != null)
+            if (Route.Count > 1)
             {
                 TrafficLane temp = this.Route.ElementAt(1);
                 this.CurrentLane = temp;

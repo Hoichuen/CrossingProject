@@ -253,8 +253,8 @@ namespace ProCP
                 CrossLock();
             }
 
-            Simulation.EditCrossing(selectedID, 3, 5, (string)cBPedTraffic.SelectedItem);
-            //Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (string)cBPedTraffic.SelectedItem);
+            //Simulation.EditCrossing(selectedID, 3, 5, (string)cBPedTraffic.SelectedItem);
+            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (string)cBPedTraffic.SelectedItem);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -531,9 +531,9 @@ namespace ProCP
 
                         SolidBrush brush = new SolidBrush(c.Color);
                         Rectangle r = new Rectangle(c.CurPoint.X, c.CurPoint.Y, carWidth, carHeight);
-
-                        // e.Graphics.DrawRectangle(new Pen(Color.Black, 1), c.CurPoint.X, c.CurPoint.Y, carWidth, carHeight);
                         e.Graphics.FillRectangle(brush, r);
+                        // e.Graphics.DrawRectangle(new Pen(Color.Black, 1), c.CurPoint.X, c.CurPoint.Y, carWidth, carHeight);
+                        
                     }
                 }
             }
