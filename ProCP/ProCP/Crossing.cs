@@ -13,11 +13,17 @@ namespace ProCP
         int crossingId = 0;
         Point position;
         List<TrafficLane> lanes = new List<TrafficLane>();
-
+        int turn = 1;
         TimeSpan time;
         int numCars;
 
         //Properties
+
+        public int Turn
+        {
+            get { return turn; }
+            set { turn = value; }
+        }
 
         public TimeSpan Time
         {

@@ -12,6 +12,7 @@ namespace ProCP
         int iD;
         bool isFull;
         List<Point> points;
+        Light light;
 
         //Properties
         public int ID
