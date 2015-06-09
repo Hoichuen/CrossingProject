@@ -78,7 +78,7 @@ namespace ProCP
 
 
         //Constructor
-        public TrafficLane(int iD, bool toFromCross, Direction direction, List<Point> points, bool isFull, List<Light> trafficLights, List<TrafficLane> lanes)
+        public TrafficLane(int iD, bool toFromCross, Direction direction, List<Point> points, bool isFull, Light trafficLight, List<TrafficLane> lanes)
             : base(iD, points, isFull)
         {
             this.ID = iD;
@@ -89,14 +89,14 @@ namespace ProCP
             //Need to figure out the lists
         }
 
-        public TrafficLane(int iD, bool toFromCross, Direction direction, List<Light> trafficLights, List<TrafficLane> connLanes, Crossing parent) : base(iD)
+        public TrafficLane(int iD, bool toFromCross, Direction direction, Light trafficLight, List<TrafficLane> connLanes, Crossing parent) : base(iD)
         {
             this.ID = iD;
             this.ToFromCross = toFromCross;
             this.Direction = direction;
             this.Lanes = connLanes;
             this.parent = parent;
-
+            this.TrafficLight = trafficLight;
             this.IsFull = false;
             //Need to figure out the lists
 
