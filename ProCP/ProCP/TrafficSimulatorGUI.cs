@@ -335,7 +335,7 @@ namespace ProCP
                 foreach (Crossing c in Simulation.Crossings)
                 {
                     aTimer = new System.Windows.Forms.Timer();
-                    aTimer.Interval = c.Time.Seconds * 1000;
+                    aTimer.Interval = c.Time.Seconds * 500;
                     aTimer.Enabled = true;
                     aTimer.Tick += (sander, pe) => TickEvent(sender, e, c);
                 }
