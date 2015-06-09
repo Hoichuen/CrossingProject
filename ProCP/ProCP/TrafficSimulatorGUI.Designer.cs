@@ -561,7 +561,7 @@
             this.aboutMeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1197, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1313, 24);
             this.menuStrip1.TabIndex = 13;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -657,7 +657,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1197, 686);
+            this.ClientSize = new System.Drawing.Size(1313, 686);
             this.Controls.Add(this.btnLock);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnToggleLight);
