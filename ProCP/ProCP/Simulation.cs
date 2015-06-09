@@ -335,7 +335,8 @@ namespace ProCP
 
                 for (int i = 0; i < item.NumCars; i++)
                 {
-                    cars.Add(new Car(count, Color.FromArgb(rnd.Next()), tmp.ElementAt(rnd.Next(tmp.Count()))));
+                    Random random = new Random();
+                    cars.Add(new Car(count, Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)), tmp.ElementAt(rnd.Next(tmp.Count()))));
                     count++;
                 }
             }

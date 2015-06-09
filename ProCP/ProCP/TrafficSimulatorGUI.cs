@@ -53,7 +53,6 @@ namespace ProCP
             isLocked = false;
             btnPlay.Enabled = false;
             btnToggleLight.Enabled = false;
-
         }
 
         /// <summary>
@@ -174,7 +173,6 @@ namespace ProCP
 
             selectedPicBox = pBox;
 
-
             enableNum();
 
             pBox.Refresh();
@@ -255,7 +253,8 @@ namespace ProCP
                 CrossLock();
             }
 
-            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (string)cBPedTraffic.SelectedItem);
+            Simulation.EditCrossing(selectedID, 3, 5, (string)cBPedTraffic.SelectedItem);
+            //Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (string)cBPedTraffic.SelectedItem);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -307,11 +306,10 @@ namespace ProCP
         {
             if (!play)
             {
-
                 TimerSimulation.Interval = 1500;
                 TimerSimulation.Start();
 
-                 //foreach (Crossing cr in Simulation.Crossings)
+                //foreach (Crossing cr in Simulation.Crossings)
                 //{
                 //    foreach (TrafficLane l in cr.Lanes)
                 //    {
@@ -332,7 +330,6 @@ namespace ProCP
  
                 //    }
                 //}
-
 
                 Play();
                 foreach (Crossing c in Simulation.Crossings)
@@ -511,6 +508,35 @@ namespace ProCP
                 }
             }
 
+            // Drawing cars, yay
+            List<Car> tempCars = new List<Car>();
+            foreach (Crossing item in Simulation.Crossings)
+            {
+                Crossing crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
+
+                if (!item.Equals(crossing))
+                    continue;
+
+                foreach (TrafficLane j in item.Lanes)
+                {
+                    foreach (Car c in j.Cars)
+                    {
+                        int carWidth = 10, carHeight = 13;
+                        
+                        if (j.Direction == Direction.WEST || j.Direction == Direction.EAST)
+                        {
+                            carWidth = 13;
+                            carHeight = 10;
+                        }
+
+                        SolidBrush brush = new SolidBrush(c.Color);
+                        Rectangle r = new Rectangle(c.CurPoint.X, c.CurPoint.Y, carWidth, carHeight);
+
+                        // e.Graphics.DrawRectangle(new Pen(Color.Black, 1), c.CurPoint.X, c.CurPoint.Y, carWidth, carHeight);
+                        e.Graphics.FillRectangle(brush, r);
+                    }
+                }
+            }
 
             #region Debug
             // enable/disable in the beginning of the class
@@ -923,11 +949,21 @@ namespace ProCP
                     {
                         foreach (TrafficLane l in c.Lanes)
                         {
-                            foreach (Car i in l.Cars)
+                            for (int i = 0; i < l.Cars.Count; i++)
                             {
-                                i.DriveLane();
+                                GetAllPictureboxes(panel1);
+
+                                Car car = l.Cars.ElementAt(i);
+
+                                car.DriveLane();
+
+                                foreach (PictureBox p in ControlList)
+                                {
+                                    p.Invalidate();
+                                }
                             }
                         }
+
                         //will need to be changed
                         if (c.GetType() == typeof(Crossing_B))
                         {
@@ -937,11 +973,9 @@ namespace ProCP
                                 p.Walk();
                             }
                         }
+
                         //ped walk stuff
                     }
-
-                    
-                    //redraw cars and ped here
                 }
             }
             else
@@ -1125,7 +1159,7 @@ namespace ProCP
 
         private void TickEvent(object sender, EventArgs args, Crossing c)
         {
-            MessageBox.Show("switch!: " + c.Time.Seconds.ToString());
+            // MessageBox.Show("switch!: " + c.Time.Seconds.ToString());
 
             SwitchAll(c);
 

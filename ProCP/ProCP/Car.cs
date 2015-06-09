@@ -96,9 +96,9 @@ namespace ProCP
             {
                 this.CurPoint = CurrentLane.Points.First();
             }
+
             this.Route = CreateRoute(startingLane);
             CurrentLane.Cars.Add(this);
-
         }
 
         //Methods
@@ -123,7 +123,7 @@ namespace ProCP
                     }
                 }
             }
-            else if (!this.CurrentLane.TrafficLight.State && this.CurrentLane.IsNextPointEmpty(this.CurPoint))
+            else if (((this.CurrentLane.TrafficLight == null) || (!this.CurrentLane.TrafficLight.State)) && this.CurrentLane.IsNextPointEmpty(this.CurPoint))
             {
                 if (CurPoint.IsEmpty)
                 {
@@ -160,6 +160,30 @@ namespace ProCP
         /// </summary>
         void SwitchLane()
         {
+            if (Route.ElementAt(1) != null)
+            {
+                TrafficLane temp = this.Route.ElementAt(1);
+                this.CurrentLane = temp;
+                this.Route.ElementAt(0).Cars.Remove(this);
+                this.Route.RemoveAt(0);
+                this.CurrentLane.Cars.Add(this);
+                if (this.CurrentLane.IsFirstPointEmpty())
+                {
+                    this.CurPoint = Point.Empty;
+                }
+                else
+                {
+                    this.CurPoint = this.CurrentLane.Points.First();
+                }
+            }
+            else
+            {
+                this.CurrentLane.Cars.Remove(this);
+            }
+        }
+        /*
+        void SwitchLane()
+        {
             if (Route.ElementAt(1)!=null)
             {
                 this.CurrentLane.Cars.Remove(this);
@@ -179,7 +203,7 @@ namespace ProCP
             {
                 this.CurrentLane.Cars.Remove(this);
             }
-        }
+        }*/
 
         /// <summary>
         /// Creates the route of the car
