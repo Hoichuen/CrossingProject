@@ -18,7 +18,6 @@ namespace ProCP
         bool debug;
         bool cardebug;
         bool eraseFlag = false;
-
         bool surrounded = false;
 
         public int count = 0;
@@ -310,6 +309,7 @@ namespace ProCP
         {
             if (!play)
             {
+                TimerSimulation.Interval = 1500;
                 TimerSimulation.Start();
                 Play();
             }
@@ -892,7 +892,7 @@ namespace ProCP
         {
             if (count < Simulation.TotalNumberCars)
             {
-                if (TimerSimulation.Interval % 1500 == 0 && play)
+                if (play)
                 {
                     foreach (Crossing c in Simulation.Crossings)
                     {
