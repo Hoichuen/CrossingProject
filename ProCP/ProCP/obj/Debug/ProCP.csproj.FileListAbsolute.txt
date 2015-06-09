@@ -31,3 +31,14 @@ C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProC
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.TrafficSimulatorGUI.resources
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe.config
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.exe
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.pdb
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\bin\Debug\ProCP.exe
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\bin\Debug\ProCP.pdb
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csprojResolveAssemblyReference.cache
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.AboutGUI.resources
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.HelpGUI.resources
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.TrafficSimulatorGUI.resources
+C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache

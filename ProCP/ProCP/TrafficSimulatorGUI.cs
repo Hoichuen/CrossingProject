@@ -59,7 +59,6 @@ namespace ProCP
             {
                 GetAllPictureboxes(c);
                 if (c is PictureBox) ControlList.Add(c);
-                
             }
         }
 
@@ -84,8 +83,6 @@ namespace ProCP
                 case "crossingGrid15": return 15;
                 case "crossingGrid16": return 16;
                 default: return 0;
-
-
             }
         }
 
@@ -97,14 +94,12 @@ namespace ProCP
             crossingType1.MouseDown += crossingType1_MouseDown;
             crossingType2.MouseDown += crossingType2_MouseDown;
 
-
             foreach (Control c in ControlList)
             {
                 c.AllowDrop = true;
                 c.DragDrop += c_DragDrop;
                 c.DragEnter += c_DragEnter;
             }
-
         }
 
         void c_DragEnter(object sender, DragEventArgs e)
@@ -244,7 +239,6 @@ namespace ProCP
 
         private void btnFinishCrossing_Click(object sender, EventArgs e)
         {
-
             if (crossLocked)
             {
                 CrossUnlock();
@@ -254,10 +248,7 @@ namespace ProCP
                 CrossLock();
             }
 
-            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value,(string)cBPedTraffic.SelectedItem);
-
-
-
+            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (string)cBPedTraffic.SelectedItem);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -327,8 +318,6 @@ namespace ProCP
 
             enableNum();
             Simulation.Start();
-            
-
         }
 
         private void Stop()
@@ -367,8 +356,6 @@ namespace ProCP
             this.numericTrafficTime.Value = 0;
             this.cBPedTraffic.SelectedIndex = -1;
 
-
-
             enableNum();
         }
 
@@ -379,7 +366,6 @@ namespace ProCP
 
             enableNum();
         }
-
 
         public void enableNum()
         {
@@ -485,7 +471,7 @@ namespace ProCP
 
             #region Debug
             // enable/disable in the beginning of the class
-            if (debug)
+            if (this.cBDebugPoint.Checked)
             {
                 // Dots debug
                 int picBoxNum = GetNumberOfPicturebox(self);
@@ -506,10 +492,8 @@ namespace ProCP
                     }
 
 
-                    if (cardebug)
+                    if (this.cBDebugCars.Checked)
                     {
-
-
                         if (crossing is Crossing_A)
                         {
                             // Car debug
@@ -658,8 +642,8 @@ namespace ProCP
                     }
                 }
             }
-        }
             #endregion
+        }
 
         private void btnToggleLight_Click(object sender, EventArgs e)
         {
@@ -688,16 +672,13 @@ namespace ProCP
 
                 Simulation.Name = saveFileDialog.FileName;
                 Simulation.SaveAs(saveFileDialog.FileName);
-
             }
             else
             {
                 Simulation.SaveAs(Simulation.Name);
-
             }
 
             return true;
-
         }
 
         private void TrafficSimulatorGUI_Load(object sender, EventArgs e)
@@ -767,7 +748,6 @@ namespace ProCP
             //Making a new instance of the circuit object
             ClearAll();
             this.Invalidate();        
-            
         }
 
         public void ClearAll()
@@ -841,7 +821,6 @@ namespace ProCP
             return true;
         }
 
-
         private Simulation GetFromFile()
         {
             Simulation ret;
@@ -914,16 +893,15 @@ namespace ProCP
                         }
                         //ped walk stuff
                     }
+
+                    
                     //redraw cars and ped here
                 }
             }
             else
             {
                 this.Stop();
-
             }
         }
-
-
     }
 }
