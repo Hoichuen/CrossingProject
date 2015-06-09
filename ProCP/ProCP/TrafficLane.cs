@@ -188,5 +188,9 @@ namespace ProCP
             return true;
         }
 
+        public bool IsFirstPointEmpty()
+        {
+            return Cars.Exists(x => x.CurPoint == Points.First());
+        }
     }
 }

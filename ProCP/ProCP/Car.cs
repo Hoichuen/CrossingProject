@@ -70,6 +70,9 @@ namespace ProCP
             set { currentLane = value; }
         }
 
+        /// <summary>
+        /// List of Traffic Lanes that make up the route
+        /// </summary>
         public List<TrafficLane> Route
         {
             get { return route; }
@@ -77,7 +80,12 @@ namespace ProCP
         }
 
 
-        //Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="carId"></param>
+        /// <param name="color"></param>
+        /// <param name="startingLane"></param>
         public Car(int carId, Color color, TrafficLane startingLane)
         {
             this.CarId = carId++;
@@ -94,7 +102,8 @@ namespace ProCP
 
         //Methods
         /// <summary>
-        /// Driving method down the lane
+        /// Method for driving down the lane including 
+        /// whether there is a car infront of it as well as if the light is green.
         /// </summary>
         public void DriveLane()
         {
@@ -107,7 +116,10 @@ namespace ProCP
                 }
                 else
                 {
-                    this.SwitchLane();
+                    if (!this.Route.ElementAt(1).IsFirstPointEmpty())
+                    {
+                        this.SwitchLane();
+                    }
                 }
             }
             else if (!this.CurrentLane.TrafficLight.State && this.CurrentLane.IsNextPointEmpty(this.CurPoint))
@@ -141,7 +153,9 @@ namespace ProCP
         }
 
         /// <summary>
-        /// When a car switches lane we have to know
+        /// Is triggered when the car is at the last point in the lane in which
+        /// it is removed from the current lane and added to the next lane and
+        /// point if the first point is availible.
         /// </summary>
         void SwitchLane()
         {
@@ -151,7 +165,7 @@ namespace ProCP
                 this.Route.RemoveAt(0);
                 this.CurrentLane = Route.First();
                 this.CurrentLane.Cars.Add(this);
-                if (this.CurrentLane.Cars.FindIndex(x=>x == this) > this.CurrentLane.Points.Count)
+                if (this.CurrentLane.IsFirstPointEmpty())
                 {
                     this.CurPoint = Point.Empty;
                 }
