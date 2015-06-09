@@ -194,7 +194,7 @@ namespace ProCP
             int x = 1;
             int y = 2;
             int z = 3;
-            int z1 = -1;
+            string z1 = "";
 
             PictureBox self = (PictureBox)sender;
             togglePictureBoxSelection(self);
@@ -211,20 +211,21 @@ namespace ProCP
 
             if (self.Image == crossingType1.Image)
             {
-                Simulation.getProperties(selectedID, ref x, ref y, ref z/*, ref z1*/);
+                Simulation.getProperties(selectedID, ref x, ref y, ref z, ref z1);
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 //Just placeholder for value for now and it resets it.
-                cBPedTraffic.SelectedIndex = z1;
+                
+                cBPedTraffic.SelectedItem = z1;
             }
             else
             {
-                Simulation.getProperties(selectedID, ref x, ref y, ref z/*, ref z1*/);
+                Simulation.getProperties(selectedID, ref x, ref y, ref z, ref z1);
                 numericCars.Value = x;
                 numericTrafficTime.Value = y;
                 numericPedestrians.Value = z;
                 //Just placeholder for value for now and it resets it.
-                cBPedTraffic.SelectedIndex = z1;
+                cBPedTraffic.SelectedIndex = cBPedTraffic.FindStringExact(z1);
             }
 
             return;
@@ -242,7 +243,7 @@ namespace ProCP
                 CrossLock();
             }
 
-            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (int)numericPedestrians.Value);
+            Simulation.EditCrossing(selectedID, (int)numericCars.Value, (int)numericTrafficTime.Value, (int)numericPedestrians.Value,(String)cBPedTraffic.SelectedItem);
 
 
         }

@@ -266,7 +266,7 @@ namespace ProCP
             Console.Write("");
         }
 
-        public void EditCrossing(int id, int numCars, int time, int numPeds)
+        public void EditCrossing(int id, int numCars, int time, int numPeds,string style)
         {
             Crossing cr = Crossings.Find(x => x.CrossingId == (id));
 
@@ -283,11 +283,18 @@ namespace ProCP
                 cr1.Time = new TimeSpan(0,0,time);
                 cr1.NumPeds = numPeds;
                 cr1.CreatePedestrians();
+                cr1.style = style;
             }
 
         }
+        private int whichPedStyle(string style)
+        {
+            if (style == "Quiet") return 1;
+            if (style == "Busy") return 2;
+            else return -1; 
+        }
 
-        public void getProperties(int id, ref int nCars, ref int time, ref int nPed)
+        public void getProperties(int id, ref int nCars, ref int time, ref int nPed,ref string style)
         {
             Crossing cr = Crossings.Find(x => x.CrossingId == (id));
 
@@ -297,7 +304,8 @@ namespace ProCP
             if (cr.GetType() == typeof(Crossing_B))
             {
                 Crossing_B cr1 = (Crossing_B)cr;
-                nPed = cr1.NumPeds;   
+                nPed = cr1.NumPeds;
+                style = cr1.style;
             }
             else
             {
@@ -414,6 +422,6 @@ namespace ProCP
                 return false;
             }
         }
-
+        
     }
 }

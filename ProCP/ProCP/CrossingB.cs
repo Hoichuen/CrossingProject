@@ -11,7 +11,7 @@ namespace ProCP
     {
         public List<PedestrianLane> pLanes;
         public List<Pedestrian> pedestrians;
-
+        public string style;
         List<TrafficLane> lanes;
         List<TrafficLane> tLanes;
 
@@ -117,8 +117,26 @@ namespace ProCP
         {
             for (int i = 0; i < numPeds; i++)
             {
-                pedestrians.Add(new Pedestrian(0, Color.Black, 1, this)); //pedid and color are not needed as far as i can see 
+                pedestrians.Add(new Pedestrian(i, Color.Black, 1, this)); //pedid and color are not needed as far as i can see 
                 // but i left them just in case
+            }
+        }
+        /// <summary>
+        /// Calculates how many pedestrians need to move
+        /// </summary>
+        public int GetNumberOfPedesToMove()
+        {
+            if (style == "Busy")
+            {
+                if (pedestrians.Count >= 20)
+                    return 20;
+                else return pedestrians.Count;
+            }
+            else
+            {
+                if (pedestrians.Count >= 5)
+                    return 5;
+                else return pedestrians.Count;
             }
         }
     }
