@@ -162,5 +162,31 @@ namespace ProCP
         {
             return this.Points.ElementAt(Points.FindIndex(x => x == point) + 1);
         }
+
+        public int NumEmptyPoints()
+        {
+            int count = 0;
+            foreach (Point i in this.Points)
+            {
+                foreach (Car c in Cars)
+                {
+                    if (c.CurPoint == i)
+                    {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+
+        internal bool IsNextPointEmpty(Point point)
+        {
+            if (Cars.Exists(x=>x.CurPoint == Points.ElementAt(Points.FindIndex(y=>y == point)+1)))
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

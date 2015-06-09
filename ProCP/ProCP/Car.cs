@@ -93,43 +93,45 @@ namespace ProCP
         }
 
         //Methods
-
-        /// <summary>
-        /// Returns the Point position of the car
-        /// </summary>
-        /// <returns></returns>
-        Point getPosition()
-        {
-            Point p = new Point();
-            return p;
-        }
-
-        /// <summary>
-        /// Returns the car's lane
-        /// </summary>
-        /// <returns></returns>
-        Lane getLane()
-        {
-            return null;
-        }
-
         /// <summary>
         /// Driving method down the lane
         /// </summary>
-        void DriveLane()
+        public void DriveLane()
         {
-            if (this.CurrentLane.TrafficLight.State && this.CurrentLane.GetNextPoint(this.CurPoint).IsEmpty)
+            int num = this.CurrentLane.NumEmptyPoints();
+            if (CurPoint == CurrentLane.Points.Last())
+            {
+                if (this.CurrentLane.ToFromCross && !this.CurrentLane.TrafficLight.State)
+                {
+                    return;
+                }
+                else
+                {
+                    this.SwitchLane();
+                }
+            }
+            else if (!this.CurrentLane.TrafficLight.State && this.CurrentLane.IsNextPointEmpty(this.CurPoint))
             {
                 if (CurPoint.IsEmpty)
                 {
-                    if (CurrentLane.Cars.ElementAt(CurrentLane.Points.Count()) == this)
+                    if (CurrentLane.Cars.ElementAt(num) == this)
                     {
                         this.CurPoint = CurrentLane.Points.First();
                     }
                 }
-                else if (CurPoint == CurrentLane.Points.Last())
+                else
                 {
-                    this.SwitchLane();
+                    this.CurPoint = this.CurrentLane.GetNextPoint(this.CurPoint);
+                }
+            }
+            else if (this.CurrentLane.TrafficLight.State && this.CurrentLane.IsNextPointEmpty(this.CurPoint))
+            {
+                if (CurPoint.IsEmpty)
+                {
+                    if (CurrentLane.Cars.ElementAt(num) == this)
+                    {
+                        this.CurPoint = CurrentLane.Points.First();
+                    }
                 }
                 else
                 {
@@ -149,6 +151,14 @@ namespace ProCP
                 this.Route.RemoveAt(0);
                 this.CurrentLane = Route.First();
                 this.CurrentLane.Cars.Add(this);
+                if (this.CurrentLane.Cars.FindIndex(x=>x == this) > this.CurrentLane.Points.Count)
+                {
+                    this.CurPoint = Point.Empty;
+                }
+                else
+                {
+                    this.CurPoint = this.CurrentLane.Points.First();
+                }
             }
             else
             {

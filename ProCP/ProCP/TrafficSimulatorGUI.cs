@@ -19,6 +19,7 @@ namespace ProCP
         bool cardebug;
         bool eraseFlag = false;
         bool surrouned = false;
+        public int count = 0;
         /// <summary>
         /// A list of controls
         /// </summary>
@@ -197,10 +198,10 @@ namespace ProCP
             int z1 = -1;
 
             PictureBox self = (PictureBox)sender;
-            surrouned = Simulation.Surrounded(selectedID);
             togglePictureBoxSelection(self);
 
             selectedID = GetNumberOfPicturebox(self);
+            surrouned = Simulation.Surrounded(selectedID);
 
             if (!Simulation.CrossingExist(selectedID))
             {
@@ -296,6 +297,7 @@ namespace ProCP
         {
             if (!play)
             {
+                timer1.Start();
                 Play();
             }
             else if (play)
@@ -311,8 +313,8 @@ namespace ProCP
             btnPlay.Text = "STOP SIMULATION";
 
             enableNum();
-
-            Simulation.CreateCars();
+            Simulation.Start();
+            
 
         }
 
@@ -371,7 +373,15 @@ namespace ProCP
         {
             if (isLocked && !eraseFlag)
             {
-                this.numericCars.Enabled = true;
+                if (surrouned)
+                {
+                    numericCars.Enabled = false;
+                }
+
+                if (!surrouned)
+                {
+                    numericCars.Enabled = true;
+                }
                 this.numericPedestrians.Enabled = true;
                 this.numericTrafficTime.Enabled = true;
                 this.cBPedTraffic.Enabled = true;
@@ -393,7 +403,6 @@ namespace ProCP
 
             if (!eraseFlag && !isLocked)
             {
-
                 this.numericCars.Enabled = false;
                 this.numericPedestrians.Enabled = false;
                 this.numericTrafficTime.Enabled = false;
@@ -436,16 +445,6 @@ namespace ProCP
             {
                 btnLock.Enabled = false;
                 btnToggleLight.Enabled = true;
-            }
-
-            if (surrouned)
-            {
-                numericCars.Enabled = false;
-            }
-
-            if (!surrouned)
-            {
-                numericCars.Enabled = true;
             }
 
         }
@@ -880,6 +879,42 @@ namespace ProCP
         {
             aGUI = new AboutGUI();
             aGUI.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (count < Simulation.TotalNumberCars)
+            {
+                if (timer1.Interval % 1500 == 0 && play)
+                {
+                    foreach (Crossing c in Simulation.Crossings)
+                    {
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            foreach (Car i in l.Cars)
+                            {
+                                i.DriveLane();
+                            }
+                        }
+                        //will need to be changed
+                        if (c.GetType() == typeof(Crossing_B))
+                        {
+                            Crossing_B b = (Crossing_B)c;
+                            foreach (Pedestrian p in b.pedestrians)
+                            {
+                                p.Walk();
+                            }
+                        }
+                        //ped walk stuff
+                    }
+                    //redraw cars and ped here
+                }
+            }
+            else
+            {
+                this.Stop();
+
+            }
         }
 
 

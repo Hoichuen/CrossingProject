@@ -15,7 +15,7 @@ namespace ProCP
     
     class Simulation
     {
-        int TotalNumberCars { get; set; }
+        public int TotalNumberCars { get; set; }
         int TotalNumberPedestrians { get; set; }
         System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
@@ -61,7 +61,9 @@ namespace ProCP
                     TotalNumberPedestrians += temp.NumPeds;
                 }
             }
-            Watch.Start(); }
+            Watch.Start();
+            CreateCars();
+        }
         public void Stop() { Watch.Stop(); }
 
         public bool AddCrossing(Crossing Crossing)
@@ -414,6 +416,7 @@ namespace ProCP
                 return false;
             }
         }
+
 
     }
 }
