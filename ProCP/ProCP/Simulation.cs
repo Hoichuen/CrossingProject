@@ -424,11 +424,5 @@ namespace ProCP
                 return false;
             }
         }
-<<<<<<< HEAD
-        
-=======
-
-
->>>>>>> origin/Minor-stuff
     }
 }

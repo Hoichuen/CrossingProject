@@ -78,10 +78,9 @@
             this.viewHelpToolStripMenuVHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutTrafficSimulatorToolStripMenuAboutTFS = new System.Windows.Forms.ToolStripMenuItem();
-<<<<<<< HEAD
-=======
+
             this.timer1 = new System.Windows.Forms.Timer(this.components);
->>>>>>> origin/Minor-stuff
+
             ((System.ComponentModel.ISupportInitialize)(this.numericTrafficTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid16)).BeginInit();
@@ -430,16 +429,16 @@
             // cBDebugCars
             // 
             this.cBDebugCars.AutoSize = true;
-<<<<<<< HEAD
+
             this.cBDebugCars.Location = new System.Drawing.Point(241, 228);
             this.cBDebugCars.Name = "cBDebugCars";
             this.cBDebugCars.Size = new System.Drawing.Size(133, 17);
-=======
+
             this.cBDebugCars.Location = new System.Drawing.Point(321, 281);
             this.cBDebugCars.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cBDebugCars.Name = "cBDebugCars";
             this.cBDebugCars.Size = new System.Drawing.Size(173, 21);
->>>>>>> origin/Minor-stuff
+
             this.cBDebugCars.TabIndex = 12;
             this.cBDebugCars.Text = "Debug points and cars";
             this.cBDebugCars.UseVisualStyleBackColor = true;
@@ -447,16 +446,16 @@
             // cBDebugPoint
             // 
             this.cBDebugPoint.AutoSize = true;
-<<<<<<< HEAD
+
             this.cBDebugPoint.Location = new System.Drawing.Point(241, 205);
             this.cBDebugPoint.Name = "cBDebugPoint";
             this.cBDebugPoint.Size = new System.Drawing.Size(89, 17);
-=======
+
             this.cBDebugPoint.Location = new System.Drawing.Point(321, 252);
             this.cBDebugPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cBDebugPoint.Name = "cBDebugPoint";
             this.cBDebugPoint.Size = new System.Drawing.Size(114, 21);
->>>>>>> origin/Minor-stuff
+
             this.cBDebugPoint.TabIndex = 11;
             this.cBDebugPoint.Text = "Debug points";
             this.cBDebugPoint.UseVisualStyleBackColor = true;
@@ -635,64 +634,60 @@
             // newToolStripMenuNew
             // 
             this.newToolStripMenuNew.Name = "newToolStripMenuNew";
-<<<<<<< HEAD
+
             this.newToolStripMenuNew.Size = new System.Drawing.Size(123, 22);
-=======
             this.newToolStripMenuNew.Size = new System.Drawing.Size(138, 24);
->>>>>>> origin/Minor-stuff
+
             this.newToolStripMenuNew.Text = "New";
             this.newToolStripMenuNew.Click += new System.EventHandler(this.newToolStripMenuNew_Click);
             // 
             // openToolStripMenuOpen
             // 
             this.openToolStripMenuOpen.Name = "openToolStripMenuOpen";
-<<<<<<< HEAD
             this.openToolStripMenuOpen.Size = new System.Drawing.Size(123, 22);
-=======
             this.openToolStripMenuOpen.Size = new System.Drawing.Size(138, 24);
->>>>>>> origin/Minor-stuff
+
             this.openToolStripMenuOpen.Text = "Open...";
             this.openToolStripMenuOpen.Click += new System.EventHandler(this.openToolStripMenuOpen_Click);
             // 
             // fileToolStripMenuSave
             // 
             this.fileToolStripMenuSave.Name = "fileToolStripMenuSave";
-<<<<<<< HEAD
             this.fileToolStripMenuSave.Size = new System.Drawing.Size(123, 22);
-=======
+
             this.fileToolStripMenuSave.Size = new System.Drawing.Size(138, 24);
->>>>>>> origin/Minor-stuff
             this.fileToolStripMenuSave.Text = "Save";
+
             this.fileToolStripMenuSave.Click += new System.EventHandler(this.fileToolStripMenuSave_Click);
             // 
             // saveAsToolStripMenuSaveAs
             // 
             this.saveAsToolStripMenuSaveAs.Name = "saveAsToolStripMenuSaveAs";
-<<<<<<< HEAD
+
             this.saveAsToolStripMenuSaveAs.Size = new System.Drawing.Size(123, 22);
-=======
+
             this.saveAsToolStripMenuSaveAs.Size = new System.Drawing.Size(138, 24);
->>>>>>> origin/Minor-stuff
+
             this.saveAsToolStripMenuSaveAs.Text = "Save As...";
             this.saveAsToolStripMenuSaveAs.Click += new System.EventHandler(this.saveAsToolStripMenuSaveAs_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-<<<<<<< HEAD
+
             this.toolStripSeparator3.Size = new System.Drawing.Size(120, 6);
-=======
+
             this.toolStripSeparator3.Size = new System.Drawing.Size(135, 6);
->>>>>>> origin/Minor-stuff
+
             // 
             // exitToolStripMenuExit
             // 
             this.exitToolStripMenuExit.Name = "exitToolStripMenuExit";
-<<<<<<< HEAD
+
             this.exitToolStripMenuExit.Size = new System.Drawing.Size(123, 22);
-=======
+
             this.exitToolStripMenuExit.Size = new System.Drawing.Size(138, 24);
->>>>>>> origin/Minor-stuff
+
             this.exitToolStripMenuExit.Text = "Exit";
             this.exitToolStripMenuExit.Click += new System.EventHandler(this.exitToolStripMenuExit_Click);
             // 
@@ -725,13 +720,12 @@
             this.aboutTrafficSimulatorToolStripMenuAboutTFS.Text = "About Traffic Simulator";
             this.aboutTrafficSimulatorToolStripMenuAboutTFS.Click += new System.EventHandler(this.aboutTrafficSimulatorToolStripMenuAboutTFS_Click);
             // 
-<<<<<<< HEAD
-=======
+
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
->>>>>>> origin/Minor-stuff
+
             // TrafficSimulatorGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
