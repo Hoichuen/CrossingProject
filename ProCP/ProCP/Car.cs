@@ -137,7 +137,7 @@ namespace ProCP
                     this.CurPoint = this.CurrentLane.GetNextPoint(this.CurPoint);
                 }
             }
-            else if (this.CurrentLane.TrafficLight.State && this.CurrentLane.IsNextPointEmpty(this.CurPoint))
+            else if (((this.CurrentLane.TrafficLight == null) || (this.CurrentLane.TrafficLight.State)) && this.CurrentLane.IsNextPointEmpty(this.CurPoint))
             {
                 if (CurPoint.IsEmpty)
                 {
@@ -179,6 +179,7 @@ namespace ProCP
             else
             {
                 this.CurrentLane.Cars.Remove(this);
+                TrafficSimulatorGUI.count++;
             }
         }
         /*

@@ -21,7 +21,7 @@ namespace ProCP
         bool eraseFlag = false;
         bool surrounded = false;
 
-        public int count = 0;
+        public static int count = 0;
 
         /// <summary>
         /// A list of controls

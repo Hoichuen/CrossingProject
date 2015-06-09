@@ -328,6 +328,7 @@ namespace ProCP
             cars = new List<Car>();
             List<TrafficLane> tmp = new List<TrafficLane>();
             Random rnd = new Random();
+            Color c;
             int count=1;
 
             foreach (Crossing item in Crossings)
@@ -336,11 +337,22 @@ namespace ProCP
 
                 for (int i = 0; i < item.NumCars; i++)
                 {
+                    c = new Color();
+                    c = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
+                    car = new Car(count, c, tmp.ElementAt(rnd.Next(tmp.Count())));
+                    cars.Add(car);
+                    count++;
+                }
+
+                /*
+                for (int i = 0; i < item.NumCars; i++)
+                {
                     Random random = new Random();
                     car = new Car(count, Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)), tmp.ElementAt(rnd.Next(tmp.Count())));
                     cars.Add(car);
                     count++;
                 }
+                */
             }
         }
 
