@@ -12,12 +12,12 @@ using System.Xml;
 
 namespace ProCP
 {
-    
+
     class Simulation
     {
         public int TotalNumberCars { get; set; }
         int TotalNumberPedestrians { get; set; }
-        System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
+        public System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
         private List<Crossing> crossings;
         private Car car;
@@ -88,7 +88,7 @@ namespace ProCP
             foreach (Crossing i in Crossings)
             {
                 //NORTH
-                if (Crossings.Find(x => x.CrossingId == (i.CrossingId)-4)==null)
+                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) - 4) == null)
                 {
                     foreach (TrafficLane j in i.Lanes)
                     {
@@ -98,14 +98,14 @@ namespace ProCP
                         }
                         if (j.Direction == Direction.SOUTH && (j.ToFromCross))
                         {
-                             j.LaneType = true;
+                            j.LaneType = true;
                         }
 
                     }
                 }
 
                 //EAST
-                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) + 1) == null)
+                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) + 1) == null || (i.CrossingId % 4 == 0))
                 {
                     foreach (TrafficLane j in i.Lanes)
                     {
@@ -139,7 +139,7 @@ namespace ProCP
 
                 //WEST
 
-                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) - 1) == null)
+                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) - 1) == null || (i.CrossingId % 4 == 1))
                 {
                     foreach (TrafficLane j in i.Lanes)
                     {
@@ -161,88 +161,6 @@ namespace ProCP
         {
             foreach (Crossing i in Crossings)
             {
-                //hardcode
-                //if (i.Lanes.ElementAt(0).LaneType==null)
-                //{
-                //    i.Lanes.ElementAt(0).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId - 4).Lanes.ElementAt(8));
-                //    i.Lanes.ElementAt(0).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId - 4).Lanes.ElementAt(9));
-                //}
-                //if (i.Lanes.ElementAt(1).LaneType == null)
-                //{
-                //    i.Lanes.ElementAt(1).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId + 1).Lanes.ElementAt(10));
-                //    i.Lanes.ElementAt(1).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId + 1).Lanes.ElementAt(11));
-                //}
-                //if (i.Lanes.ElementAt(2).LaneType == null)
-                //{
-                //    i.Lanes.ElementAt(2).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId + 4).Lanes.ElementAt(4));
-                //    i.Lanes.ElementAt(2).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId + 4).Lanes.ElementAt(5));
-                //}
-                //if (i.Lanes.ElementAt(3).LaneType == null)
-                //{
-                //    i.Lanes.ElementAt(3).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId - 1).Lanes.ElementAt(6));
-                //    i.Lanes.ElementAt(3).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId - 1).Lanes.ElementAt(7));
-                //}
-                //nested if
-                //List<TrafficLane> temp = new List<TrafficLane>();
-                //if (i.Lanes.Find(x=>x.ID==0).LaneType == null)
-                //{
-                //    temp = Crossings.Find(x => x.CrossingId == i.CrossingId - 4).LanesInDirection(Direction.NORTH);
-                //    i.Lanes.Find(x => x.ID == 0).Lanes.AddRange(temp);
-                //}
-                //temp = new List<TrafficLane>();
-                //if (i.Lanes.Find(x => x.ID == 1).LaneType == null)
-                //{
-                //    temp = Crossings.Find(x => x.CrossingId == i.CrossingId + 1).LanesInDirection(Direction.EAST);
-                //    i.Lanes.Find(x => x.ID == 1).Lanes.AddRange(temp);
-                //}
-                //temp = new List<TrafficLane>();
-                //if (i.Lanes.Find(x => x.ID == 2).LaneType == null)
-                //{
-                //    temp = Crossings.Find(x => x.CrossingId == i.CrossingId + 4).LanesInDirection(Direction.NORTH);
-                //    i.Lanes.Find(x => x.ID == 2).Lanes.AddRange(temp);
-                //}
-                //temp = new List<TrafficLane>();
-                //if (i.Lanes.Find(x => x.ID == 3).LaneType == null)
-                //{
-                //    temp = Crossings.Find(x => x.CrossingId == i.CrossingId - 1).LanesInDirection(Direction.EAST);
-                //    i.Lanes.Find(x => x.ID == 3).Lanes.AddRange(temp);
-                //}
-                //for loop
-                //for (int j = 0; j < 4; j++)
-                //{
-                //    if (i.Lanes.ElementAt(j).LaneType==null)
-                //    {
-                //        if (j==0)
-                //        {
-                //            List<TrafficLane> temp = new List<TrafficLane>();
-                //            temp = Crossings.Find(x => x.CrossingId == i.CrossingId - 4).LanesInDirection(Direction.NORTH);
-                //            i.Lanes.ElementAt(j).Lanes.AddRange(temp);
-                //            temp = null;
-                //        }
-                //        else if (j == 1)
-                //        {
-                //            List<TrafficLane> temp2 = new List<TrafficLane>();
-                //            temp2 = Crossings.Find(x => x.CrossingId == i.CrossingId + 1).LanesInDirection(Direction.EAST);
-                //            i.Lanes.ElementAt(j).Lanes.AddRange(temp2);
-                //            temp2 = null;
-                //        }
-                //        else if (j == 2)
-                //        {
-                //            List<TrafficLane> temp3 = new List<TrafficLane>();
-                //            temp3 = Crossings.Find(x => x.CrossingId == i.CrossingId + 4).LanesInDirection(Direction.SOUTH);
-                //            i.Lanes.ElementAt(j).Lanes.AddRange(temp3);
-                //            temp3 = null;
-                //        }
-                //        else if (j == 3)
-                //        {
-                //            List<TrafficLane> temp4 = new List<TrafficLane>();
-                //            temp4 = Crossings.Find(x => x.CrossingId == i.CrossingId - 1).LanesInDirection(Direction.WEST);
-                //            i.Lanes.ElementAt(j).Lanes.AddRange(temp4);
-                //            temp4 = null;
-                //        }
-                //    }
-                //}
-                //foreach
                 foreach (TrafficLane j in i.Lanes)
                 {
                     if (!(j.ToFromCross) && (j.LaneType == null))
@@ -266,7 +184,6 @@ namespace ProCP
                     }
                 }
             }
-            Console.Write("");
         }
 
         public void EditCrossing(int id, int numCars, int time, string style)
@@ -282,7 +199,7 @@ namespace ProCP
             {
                 Crossing_B cr1 = (Crossing_B)cr;
                 cr1.NumCars = numCars;
-                cr1.Time = new TimeSpan(0,0,time);
+                cr1.Time = new TimeSpan(0, 0, time);
                 cr1.style = style;
                 cr1.CreatePedestrians();
             }
@@ -293,7 +210,7 @@ namespace ProCP
         {
             if (style == "Quiet") return 1;
             if (style == "Busy") return 2;
-            else return -1; 
+            else return -1;
         }
 
         public void getProperties(int id, ref int nCars, ref int time, ref string style)
@@ -329,7 +246,7 @@ namespace ProCP
             List<TrafficLane> tmp = new List<TrafficLane>();
             Random rnd = new Random();
             Color c;
-            int count=1;
+            int count = 1;
 
             foreach (Crossing item in Crossings)
             {
@@ -338,23 +255,15 @@ namespace ProCP
                 for (int i = 0; i < item.NumCars; i++)
                 {
                     c = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
-                    
+
                     // car = new Car(count, c, item); // DEBUG
                     car = new Car(count, c, tmp.ElementAt(rnd.Next(tmp.Count())));
 
                     cars.Add(car);
                     count++;
                 }
+                tmp = new List<TrafficLane>();
 
-                /*
-                for (int i = 0; i < item.NumCars; i++)
-                {
-                    Random random = new Random();
-                    car = new Car(count, Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)), tmp.ElementAt(rnd.Next(tmp.Count())));
-                    cars.Add(car);
-                    count++;
-                }
-                */
             }
         }
 
@@ -368,17 +277,17 @@ namespace ProCP
             bool done = true;
             foreach (Crossing i in Crossings)
             {
-                if (i.GetType()==typeof(Crossing_B))
+                if (i.GetType() == typeof(Crossing_B))
                 {
                     Crossing_B temp = (Crossing_B)i;
-                    if (temp.pedestrians.Count>0)
+                    if (temp.pedestrians.Count > 0)
                     {
                         done = false;
                     }
                 }
                 foreach (TrafficLane j in i.Lanes)
                 {
-                    if (j.Cars.Count>0)
+                    if (j.Cars.Count > 0)
                     {
                         done = false;
                     }
@@ -398,7 +307,7 @@ namespace ProCP
             FileStream writer = new FileStream(filename, FileMode.Create);
             DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(Simulation));
             dataContractSerializer.WriteObject(writer, this);
-            
+
 
             writer.Close();
         }
@@ -425,8 +334,8 @@ namespace ProCP
 
         public bool Surrounded(int id)
         {
-            if (crossings.Exists(x => x.CrossingId == id - 4) && crossings.Exists(x => x.CrossingId == id - 1)
-                && crossings.Exists(x => x.CrossingId == id + 4) && crossings.Exists(x => x.CrossingId == id + 1))
+            if ((crossings.Exists(x => x.CrossingId == id - 4)) && ((crossings.Exists(x => x.CrossingId == id - 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 1)))
+                 && (crossings.Exists(x => x.CrossingId == id + 4)) && ((crossings.Exists(x => x.CrossingId == id + 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 0))))
             {
                 return true;
             }
