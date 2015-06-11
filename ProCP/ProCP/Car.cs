@@ -10,29 +10,12 @@ namespace ProCP
     class Car
     {
         //Fields
-        int carId = 1;
         Color color;
-        int speed = 50;
         TrafficLane currentLane;
         Point curPoint;
         List<TrafficLane> route;
 
         //Properties
-
-        /// <summary>
-        /// Each car is unique
-        /// </summary>
-        public int CarId
-        {
-            get
-            {
-                return carId;
-            }
-            private set
-            {
-                carId = value;
-            }
-        }
 
         /// <summary>
         /// Color of the car
@@ -41,15 +24,6 @@ namespace ProCP
         {
             get { return color; }
             set { color = value; }
-        }
-
-        /// <summary>
-        /// Speed of the car should be fixed
-        /// </summary>
-        public int Speed
-        {
-            get { return speed; }
-            set { Speed = value; }
         }
 
         /// <summary>
@@ -86,9 +60,8 @@ namespace ProCP
         /// <param name="carId"></param>
         /// <param name="color"></param>
         /// <param name="startingLane"></param>
-        public Car(int carId, Color color, TrafficLane startingLane)
+        public Car(Color color, TrafficLane startingLane)
         {
-            this.CarId = carId++;
             this.Color = color;
             this.CurrentLane = startingLane;
 
@@ -98,76 +71,6 @@ namespace ProCP
             }
 
             this.Route = CreateRoute(startingLane);
-            CurrentLane.Cars.Add(this);
-        }
-
-        // THIS CONSTRUCTOR IS JUST FOR DEBUGGING
-        public Car(int i, Color c, Crossing crossing)
-        {
-            this.CarId = i++;
-            this.Color = c;
-
-            int debugRoute = 6;
-            int startLaneCode = 9;
-
-            TrafficLane startLane = crossing.Lanes.Find(x => x.ID.Equals(startLaneCode));
-            this.CurrentLane = startLane;
-
-            if (CurrentLane.Cars.Count == 0)
-            {
-                this.CurPoint = CurrentLane.Points.First();
-            }
-
-            List<TrafficLane> tempRoute = new List<TrafficLane>();
-            tempRoute.Add(startLane);
-
-            List<TrafficLane> nextLanes = startLane.Lanes;
-
-            if (crossing is Crossing_A)
-            {
-                switch (debugRoute)
-                {
-                    case 1:
-                    case 5:
-                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(3)));
-                        break;
-                    case 2:
-                    case 8:
-                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(2)));
-                        break;
-                    case 6:
-                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(1)));
-                        break;
-                    case 4:
-                    case 3:
-                    case 7:
-                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(0)));
-                        break;
-                }
-            }
-            else
-            {
-                switch (debugRoute)
-                {
-                    case 3:
-                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(3)));
-                        break;
-                    case 1:
-                    case 4:
-                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(2)));
-                        break;
-                    case 5:
-                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(1)));
-                        break;
-                    case 2:
-                    case 6:
-                        tempRoute.Add(nextLanes.Find(x => x.ID.Equals(0)));
-                        break;
-                }
-            }
-
-
-            this.route = tempRoute;
             CurrentLane.Cars.Add(this);
         }
 
@@ -250,7 +153,7 @@ namespace ProCP
             else
             {
                 this.CurrentLane.Cars.Remove(this);
-                TrafficSimulatorGUI.count++;
+                TrafficSimulatorGUI.count--;
             }
         }
 

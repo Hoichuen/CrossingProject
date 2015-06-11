@@ -9,20 +9,24 @@ namespace ProCP
 {
     class Crossing_A:Crossing
     {
+        /// <summary>
+        /// fields
+        /// </summary>
         List<TrafficLane> lanes;
         List<TrafficLane> tLanes;
 
         /// <summary>
-        /// The crossing type A constructor
+        /// Constructor where the intra crossing connections are made
         /// </summary>
-        public Crossing_A(int crossingId, Point position) : base(crossingId, position)
+        /// <param name="crossingId"></param>
+        public Crossing_A(int crossingId, Point position) : base(crossingId)
         {
             lanes = new List<TrafficLane>();
             tLanes = new List<TrafficLane>();
-            Light lightNORTH = new Light(Time, false);
-            Light lightEAST = new Light(Time, false);
-            Light lightSOUTH = new Light(Time, false);
-            Light lightWEST = new Light(Time, false);
+            Light lightNORTH = new Light(false);
+            Light lightEAST = new Light(false);
+            Light lightSOUTH = new Light(false);
+            Light lightWEST = new Light(false);
 
             for (int i = 0; i < 4; i++)
             {

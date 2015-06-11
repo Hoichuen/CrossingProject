@@ -14,28 +14,29 @@ namespace ProCP
         public string style;
         List<TrafficLane> lanes;
         List<TrafficLane> tLanes;
-
-        int numPeds;
-
-        public int NumPeds
-        {
-            get { return numPeds; }
-            set { numPeds = value; }
-        }
+        int numpeds;
 
         /// <summary>
-        /// The crossing type B constructor
+        /// Total number of pedestrians for current crossing of type B
         /// </summary>
-        public Crossing_B(int crossingId, Point position) : base(crossingId, position)
+        public int NumPeds
         {
-            this.NumPeds = 0;
+            get { return numpeds; }
+            set { numpeds = value; }
+        }
+
+        /// <param name="crossingId">The Id of the crossing</param>
+        /// <param name="position"></param>
+        public Crossing_B(int crossingId, Point position) : base(crossingId)
+        {
+            
 
             lanes = new List<TrafficLane>();
             tLanes = new List<TrafficLane>();
-            Light lightNORTH = new Light(Time, false);
-            Light lightEAST = new Light(Time, false);
-            Light lightSOUTH = new Light(Time, false);
-            Light lightWEST = new Light(Time, false);
+            Light lightNORTH = new Light(false);
+            Light lightEAST = new Light(false);
+            Light lightSOUTH = new Light(false);
+            Light lightWEST = new Light(false);
 
 
             for (int i = 0; i < 4; i++)
@@ -81,24 +82,29 @@ namespace ProCP
             //Adding the pedestrian lane list and the pedestrian lights
             pLanes = new List<PedestrianLane>();
             //top lane
-            //PedestrianLight pLight = new PedestrianLight(0, new TimeSpan(), false, false);//this needs to be fixed after we figure out the timings
-           // pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), false, pLight));
+            PedestrianLight pLight = new PedestrianLight( false, false);
+            
+            pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), pLight,this));
             //bottom lane
-            //pLight = new PedestrianLight(0, new TimeSpan(), false, false);
-
-            //pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), false, pLight));
+            pLight = new PedestrianLight( false, false);
+            
+            pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), pLight,this));
             
         }
+        /// <summary>
+        /// Calculates the points for pedestrian lanes
+        /// </summary>
+        /// <param name="ID">which lane is it (top or bot)</param>
+        /// <returns></returns>
         private List<Point> CalculatePedestrianLanePoints(int ID)
         {
-            ///225;160
-            /// /4 = rows to add %4 column
+            
             List<Point> points = new List<Point>();
             int row, column, x, y;
             row = this.CrossingId / 4;
             column = (this.CrossingId % 4) - 1;
             x = column * 225; y = row * 160;
-            if (ID == 1)//for the top lane;
+            if (ID == 1)//this is for the top lane
             {
 
                 for (int i = 0; i < 4; i++)
@@ -108,7 +114,7 @@ namespace ProCP
 
                 }
             }
-            else
+            else //this is for the bottom
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -119,14 +125,16 @@ namespace ProCP
             }
             return points;
         }
+        /// <summary>
+        /// A method that creates a number of pedestrians based on the crossing style
+        /// </summary>
         public void CreatePedestrians()
         {
             int howMany=0;
             if (style == "Quiet") howMany = 15; if (style == "Busy") howMany = 50;
             for (int i = 0; i < howMany; i++)
             {
-                pedestrians.Add(new Pedestrian(i, Color.Black, 1, this)); //pedid and color are not needed as far as i can see 
-                // but i left them just in case
+                pedestrians.Add(new Pedestrian(i, this)); 
             }
         }
         /// <summary>

@@ -11,7 +11,6 @@ namespace ProCP
     {
         //Fields
         int crossingId = 0;
-        Point position;
         List<TrafficLane> lanes = new List<TrafficLane>();
         int turn = 1;
         TimeSpan time;
@@ -19,18 +18,27 @@ namespace ProCP
 
         //Properties
 
+        /// <summary>
+        /// which rotation of the lights
+        /// </summary>
         public int Turn
         {
             get { return turn; }
             set { turn = value; }
         }
 
+        /// <summary>
+        /// The Green time
+        /// </summary>
         public TimeSpan Time
         {
             get { return time; }
             set { time = value; }
         }
 
+        /// <summary>
+        /// the total number of Cars in this crossing
+        /// </summary>
         public int NumCars
         {
             get { return numCars; }
@@ -47,36 +55,35 @@ namespace ProCP
         }
 
         /// <summary>
-        /// Which direction the lane is going
+        /// The list of traffic lanes on the crossing
         /// </summary>
-        public Point Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
         public List<TrafficLane> Lanes
         {
             get { return lanes; }
             set { lanes = value; }
         }
 
-        //Constructor
-        //public Crossing(int crossingId, Point position, List<TrafficLane> lanes)
-        public Crossing(int crossingId, Point position)
+        /// <summary>
+        /// The Constructor of the crossing
+        /// </summary>
+        /// <param name="crossingId"></param>
+        /// <param name="position"></param>
+        public Crossing(int crossingId)
         {
             this.CrossingId = crossingId;
-            this.Position = position;
 
             this.Time = TimeSpan.Zero;
             this.NumCars = 0;
-            
-            //this.Lanes = lanes;
-            //Need to figure out the lists
         }
 
         //Methods
 
+        /// <summary>
+        /// Finds the lanes in the direction that are
+        /// traveling to the crossing and are connecting lanes
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public List<TrafficLane> LanesInDirection(Direction direction)
         {
             List<TrafficLane> temp = new List<TrafficLane>();

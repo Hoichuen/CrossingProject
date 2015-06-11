@@ -10,9 +10,7 @@ namespace ProCP
     {
         //Fields
         int iD;
-        bool isFull;
         List<Point> points;
-        Light light;
 
         //Properties
         public int ID
@@ -21,6 +19,9 @@ namespace ProCP
             set { iD = value; }
         }
 
+        /// <summary>
+        /// List of points the cars use
+        /// </summary>
         public List<Point> Points
         {
             get { return points; }
@@ -28,27 +29,21 @@ namespace ProCP
         }
 
         /// <summary>
-        /// Are all the points filled on the lane?
+        /// Constructor of the Lane class for the ped lane
         /// </summary>
-        public bool IsFull
-        {
-            get { return isFull; }
-            set { isFull = value; }
-        }
-
-        //Constructor
-        public Lane(int iD, List<Point> points, bool isFull)
+        public Lane(int iD, List<Point> points)
         {
             this.ID = iD++;
             this.Points = points;
-            this.IsFull = IsFull;
-            //Need to figure out the lists
         }
 
+        /// <summary>
+        /// Constructor of the Lane class for the traffic lane
+        /// </summary>
+        /// <param name="iD"></param>
         public Lane(int iD)
         {
             this.ID = iD++;
-            this.IsFull = false;
         }
 
         //Methods

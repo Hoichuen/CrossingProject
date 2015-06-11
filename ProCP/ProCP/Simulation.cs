@@ -8,41 +8,60 @@ using System.Drawing;
 using System.Runtime.Serialization;
 using System.IO;
 using System.Xml;
-
+using System.Threading;
 
 namespace ProCP
 {
-    
+
     class Simulation
     {
+        /// <summary>
+        /// properties
+        /// </summary>
         public int TotalNumberCars { get; set; }
-        int TotalNumberPedestrians { get; set; }
-        System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
+        public int TotalNumberofSwitches { get; set; }
+        public System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
+        /// <summary>
+        /// fields
+        /// </summary>
         private List<Crossing> crossings;
         private Car car;
         private List<Car> cars;
         private bool saved;
         private string name;
 
+        /// <summary>
+        /// name of the simulation
+        /// </summary>
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
 
+        /// <summary>
+        /// if it has been saved
+        /// </summary>
         public bool Saved
         {
             get { return saved; }
             set { saved = value; }
         }
 
+        /// <summary>
+        /// All the crossings in the simulation
+        /// </summary>
         public List<Crossing> Crossings
         {
             get { return crossings; }
             set { crossings = value; }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name"></param>
         public Simulation(string name = "")
         {
             Crossings = new List<Crossing>();
@@ -50,6 +69,9 @@ namespace ProCP
             Saved = true;
         }
 
+        /// <summary>
+        /// Starts the simulation in which the statistics are started and the cars are called to be created
+        /// </summary>
         public void Start()
         {
             Watch.Reset();
@@ -59,14 +81,24 @@ namespace ProCP
                 if (i.GetType() == typeof(Crossing_B))
                 {
                     Crossing_B temp = (Crossing_B)i;
-                    TotalNumberPedestrians += temp.NumPeds;
                 }
             }
             Watch.Start();
             CreateCars();
         }
-        public void Stop() { Watch.Stop(); }
+        /// <summary>
+        /// stops the stopwatch
+        /// </summary>
+        public void Stop() 
+        { 
+            Watch.Stop(); 
+        }
 
+        /// <summary>
+        /// Adds a crossing to the list of crossing
+        /// </summary>
+        /// <param name="Crossing"></param>
+        /// <returns></returns>
         public bool AddCrossing(Crossing Crossing)
         {
             if (Crossings.Count < 12)
@@ -88,7 +120,7 @@ namespace ProCP
             foreach (Crossing i in Crossings)
             {
                 //NORTH
-                if (Crossings.Find(x => x.CrossingId == (i.CrossingId)-4)==null)
+                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) - 4) == null)
                 {
                     foreach (TrafficLane j in i.Lanes)
                     {
@@ -98,14 +130,13 @@ namespace ProCP
                         }
                         if (j.Direction == Direction.SOUTH && (j.ToFromCross))
                         {
-                             j.LaneType = true;
+                            j.LaneType = true;
                         }
 
                     }
                 }
-
                 //EAST
-                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) + 1) == null)
+                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) + 1) == null || (i.CrossingId % 4 == 0))
                 {
                     foreach (TrafficLane j in i.Lanes)
                     {
@@ -119,9 +150,7 @@ namespace ProCP
                         }
                     }
                 }
-
                 //SOUTH
-
                 if (Crossings.Find(x => x.CrossingId == (i.CrossingId) + 4) == null)
                 {
                     foreach (TrafficLane j in i.Lanes)
@@ -136,10 +165,8 @@ namespace ProCP
                         }
                     }
                 }
-
                 //WEST
-
-                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) - 1) == null)
+                if (Crossings.Find(x => x.CrossingId == (i.CrossingId) - 1) == null || (i.CrossingId % 4 == 1))
                 {
                     foreach (TrafficLane j in i.Lanes)
                     {
@@ -153,96 +180,16 @@ namespace ProCP
                         }
                     }
                 }
-
             }
         }
 
+        /// <summary>
+        /// Creates the inter corssing lane connections
+        /// </summary>
         public void LaneCrossingConnection()
         {
             foreach (Crossing i in Crossings)
             {
-                //hardcode
-                //if (i.Lanes.ElementAt(0).LaneType==null)
-                //{
-                //    i.Lanes.ElementAt(0).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId - 4).Lanes.ElementAt(8));
-                //    i.Lanes.ElementAt(0).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId - 4).Lanes.ElementAt(9));
-                //}
-                //if (i.Lanes.ElementAt(1).LaneType == null)
-                //{
-                //    i.Lanes.ElementAt(1).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId + 1).Lanes.ElementAt(10));
-                //    i.Lanes.ElementAt(1).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId + 1).Lanes.ElementAt(11));
-                //}
-                //if (i.Lanes.ElementAt(2).LaneType == null)
-                //{
-                //    i.Lanes.ElementAt(2).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId + 4).Lanes.ElementAt(4));
-                //    i.Lanes.ElementAt(2).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId + 4).Lanes.ElementAt(5));
-                //}
-                //if (i.Lanes.ElementAt(3).LaneType == null)
-                //{
-                //    i.Lanes.ElementAt(3).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId - 1).Lanes.ElementAt(6));
-                //    i.Lanes.ElementAt(3).Lanes.Add(Crossings.Find(x => x.CrossingId == i.CrossingId - 1).Lanes.ElementAt(7));
-                //}
-                //nested if
-                //List<TrafficLane> temp = new List<TrafficLane>();
-                //if (i.Lanes.Find(x=>x.ID==0).LaneType == null)
-                //{
-                //    temp = Crossings.Find(x => x.CrossingId == i.CrossingId - 4).LanesInDirection(Direction.NORTH);
-                //    i.Lanes.Find(x => x.ID == 0).Lanes.AddRange(temp);
-                //}
-                //temp = new List<TrafficLane>();
-                //if (i.Lanes.Find(x => x.ID == 1).LaneType == null)
-                //{
-                //    temp = Crossings.Find(x => x.CrossingId == i.CrossingId + 1).LanesInDirection(Direction.EAST);
-                //    i.Lanes.Find(x => x.ID == 1).Lanes.AddRange(temp);
-                //}
-                //temp = new List<TrafficLane>();
-                //if (i.Lanes.Find(x => x.ID == 2).LaneType == null)
-                //{
-                //    temp = Crossings.Find(x => x.CrossingId == i.CrossingId + 4).LanesInDirection(Direction.NORTH);
-                //    i.Lanes.Find(x => x.ID == 2).Lanes.AddRange(temp);
-                //}
-                //temp = new List<TrafficLane>();
-                //if (i.Lanes.Find(x => x.ID == 3).LaneType == null)
-                //{
-                //    temp = Crossings.Find(x => x.CrossingId == i.CrossingId - 1).LanesInDirection(Direction.EAST);
-                //    i.Lanes.Find(x => x.ID == 3).Lanes.AddRange(temp);
-                //}
-                //for loop
-                //for (int j = 0; j < 4; j++)
-                //{
-                //    if (i.Lanes.ElementAt(j).LaneType==null)
-                //    {
-                //        if (j==0)
-                //        {
-                //            List<TrafficLane> temp = new List<TrafficLane>();
-                //            temp = Crossings.Find(x => x.CrossingId == i.CrossingId - 4).LanesInDirection(Direction.NORTH);
-                //            i.Lanes.ElementAt(j).Lanes.AddRange(temp);
-                //            temp = null;
-                //        }
-                //        else if (j == 1)
-                //        {
-                //            List<TrafficLane> temp2 = new List<TrafficLane>();
-                //            temp2 = Crossings.Find(x => x.CrossingId == i.CrossingId + 1).LanesInDirection(Direction.EAST);
-                //            i.Lanes.ElementAt(j).Lanes.AddRange(temp2);
-                //            temp2 = null;
-                //        }
-                //        else if (j == 2)
-                //        {
-                //            List<TrafficLane> temp3 = new List<TrafficLane>();
-                //            temp3 = Crossings.Find(x => x.CrossingId == i.CrossingId + 4).LanesInDirection(Direction.SOUTH);
-                //            i.Lanes.ElementAt(j).Lanes.AddRange(temp3);
-                //            temp3 = null;
-                //        }
-                //        else if (j == 3)
-                //        {
-                //            List<TrafficLane> temp4 = new List<TrafficLane>();
-                //            temp4 = Crossings.Find(x => x.CrossingId == i.CrossingId - 1).LanesInDirection(Direction.WEST);
-                //            i.Lanes.ElementAt(j).Lanes.AddRange(temp4);
-                //            temp4 = null;
-                //        }
-                //    }
-                //}
-                //foreach
                 foreach (TrafficLane j in i.Lanes)
                 {
                     if (!(j.ToFromCross) && (j.LaneType == null))
@@ -266,9 +213,16 @@ namespace ProCP
                     }
                 }
             }
-            Console.Write("");
         }
 
+        /// <summary>
+        /// Edits the properties of the crossing
+        /// eg. number of cars for that crossing, time the light is green, etc.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="numCars"></param>
+        /// <param name="time"></param>
+        /// <param name="style"></param>
         public void EditCrossing(int id, int numCars, int time, string style)
         {
             Crossing cr = Crossings.Find(x => x.CrossingId == (id));
@@ -282,20 +236,32 @@ namespace ProCP
             {
                 Crossing_B cr1 = (Crossing_B)cr;
                 cr1.NumCars = numCars;
-                cr1.Time = new TimeSpan(0,0,time);
+                cr1.Time = new TimeSpan(0, 0, time);
                 cr1.style = style;
                 cr1.CreatePedestrians();
             }
 
         }
 
+        /// <summary>
+        /// turns the style into a string
+        /// </summary>
+        /// <param name="style"></param>
+        /// <returns></returns>
         private int whichPedStyle(string style)
         {
             if (style == "Quiet") return 1;
             if (style == "Busy") return 2;
-            else return -1; 
+            else return -1;
         }
 
+        /// <summary>
+        /// Gets the properties of the individual crossing
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nCars"></param>
+        /// <param name="time"></param>
+        /// <param name="style"></param>
         public void getProperties(int id, ref int nCars, ref int time, ref string style)
         {
             Crossing cr = Crossings.Find(x => x.CrossingId == (id));
@@ -312,24 +278,35 @@ namespace ProCP
 
         }
 
+        /// <summary>
+        /// checks if that specific crossing exists in the list of crossing
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool CrossingExist(int id)
         {
             return Crossings.Exists(x => x.CrossingId == (id));
         }
 
+        /// <summary>
+        /// removes the crossing from the list of crossings
+        /// </summary>
+        /// <param name="id"></param>
         public void RemoveCrossing(int id)
         {
             Crossings.Remove(Crossings.Find(x => x.CrossingId == (id)));
             Saved = false;
         }
 
+        /// <summary>
+        /// creates the cars for each lane in each crossing
+        /// </summary>
         public void CreateCars()
         {
             cars = new List<Car>();
             List<TrafficLane> tmp = new List<TrafficLane>();
             Random rnd = new Random();
             Color c;
-            int count=1;
 
             foreach (Crossing item in Crossings)
             {
@@ -338,53 +315,25 @@ namespace ProCP
                 for (int i = 0; i < item.NumCars; i++)
                 {
                     c = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
-                    
+
                     // car = new Car(count, c, item); // DEBUG
-                    car = new Car(count, c, tmp.ElementAt(rnd.Next(tmp.Count())));
+                    car = new Car(c, tmp.ElementAt(rnd.Next(tmp.Count())));
 
                     cars.Add(car);
-                    count++;
                 }
+                tmp = new List<TrafficLane>();
 
-                /*
-                for (int i = 0; i < item.NumCars; i++)
-                {
-                    Random random = new Random();
-                    car = new Car(count, Color.FromArgb(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255)), tmp.ElementAt(rnd.Next(tmp.Count())));
-                    cars.Add(car);
-                    count++;
-                }
-                */
             }
         }
 
+        /// <summary>
+        /// returns a crossing with that id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Crossing getCrossing(int id)
         {
             return Crossings.Find(x => x.CrossingId == (id));
-        }
-
-        public bool checkCarStatus()
-        {
-            bool done = true;
-            foreach (Crossing i in Crossings)
-            {
-                if (i.GetType()==typeof(Crossing_B))
-                {
-                    Crossing_B temp = (Crossing_B)i;
-                    if (temp.pedestrians.Count>0)
-                    {
-                        done = false;
-                    }
-                }
-                foreach (TrafficLane j in i.Lanes)
-                {
-                    if (j.Cars.Count>0)
-                    {
-                        done = false;
-                    }
-                }
-            }
-            return done;
         }
 
         /// <summary>
@@ -398,7 +347,7 @@ namespace ProCP
             FileStream writer = new FileStream(filename, FileMode.Create);
             DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(Simulation));
             dataContractSerializer.WriteObject(writer, this);
-            
+
 
             writer.Close();
         }
@@ -423,10 +372,15 @@ namespace ProCP
             return ret;
         }
 
+        /// <summary>
+        /// checks whether the crossing is surrounded
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool Surrounded(int id)
         {
-            if (crossings.Exists(x => x.CrossingId == id - 4) && crossings.Exists(x => x.CrossingId == id - 1)
-                && crossings.Exists(x => x.CrossingId == id + 4) && crossings.Exists(x => x.CrossingId == id + 1))
+            if ((crossings.Exists(x => x.CrossingId == id - 4)) && ((crossings.Exists(x => x.CrossingId == id - 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 1)))
+                 && (crossings.Exists(x => x.CrossingId == id + 4)) && ((crossings.Exists(x => x.CrossingId == id + 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 0))))
             {
                 return true;
             }
@@ -435,5 +389,238 @@ namespace ProCP
                 return false;
             }
         }
+
+        #region Light Logic
+        /// <summary>
+        /// fields of the light logic
+        /// </summary>
+        Thread t;
+        System.Windows.Forms.Timer aTimer;
+
+        /// <summary>
+        /// starts the thread
+        /// </summary>
+        public void StartThread()
+        {
+            foreach (Crossing c in Crossings)
+            {
+                aTimer = new System.Windows.Forms.Timer();
+                aTimer.Interval = c.Time.Seconds * 500;
+                aTimer.Enabled = true;
+                aTimer.Tick += new EventHandler((sender, e) => TickEvent(sender, e, c));
+            }
+            t = new Thread(Run);
+            t.Start();
+        }
+
+        /// <summary>
+        /// changes the lights to the next iteration
+        /// </summary>
+        /// <param name="c"></param>
+        public void SwitchAll(Crossing c)
+        {
+            TotalNumberofSwitches++;
+
+            if (c.GetType() == typeof(Crossing_A))
+            {
+                #region A Crossing
+                switch (c.Turn)
+                {
+                    case 1:
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            if (l.TrafficLight != null)
+                            {
+                                if (l.Direction == Direction.NORTH)
+                                {
+                                    l.TrafficLight.State = true;
+                                }
+                                else
+                                {
+                                    l.TrafficLight.State = false;
+                                }
+                            }
+                        }
+                        c.Turn++;
+                        break;
+                    case 2:
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            if (l.TrafficLight != null)
+                            {
+                                if (l.Direction == Direction.EAST)
+                                {
+                                    l.TrafficLight.State = true;
+                                }
+                                else
+                                {
+                                    l.TrafficLight.State = false;
+                                }
+                            }
+                        }
+                        c.Turn++;
+                        break;
+                    case 3:
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            if (l.TrafficLight != null)
+                            {
+                                if (l.Direction == Direction.SOUTH)
+                                {
+                                    l.TrafficLight.State = true;
+                                }
+                                else
+                                {
+                                    l.TrafficLight.State = false;
+                                }
+                            }
+                        }
+                        c.Turn++;
+                        break;
+                    case 4:
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            if (l.TrafficLight != null)
+                            {
+                                if (l.Direction == Direction.WEST)
+                                {
+                                    l.TrafficLight.State = true;
+                                }
+                                else
+                                {
+                                    l.TrafficLight.State = false;
+                                }
+                            }
+                        }
+                        c.Turn = 1;
+                        break;
+                }
+                #endregion
+            }
+            else
+            {
+                #region B Crossing
+
+
+                Crossing_B cb = (Crossing_B)c;
+                switch (c.Turn)
+                {
+                    case 1:
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            if (l.TrafficLight != null)
+                            {
+                                if (l.Direction == Direction.NORTH || l.Direction == Direction.SOUTH)
+                                {
+                                    l.TrafficLight.State = true;
+                                }
+                                else
+                                {
+                                    l.TrafficLight.State = false;
+                                }
+                            }
+                        }
+                        foreach (PedestrianLane pl in cb.pLanes)
+                        {
+                            if (pl.PLight != null)
+                            {
+                                pl.PLight.State = false;
+                            }
+                        }
+                        c.Turn++;
+                        break;
+                    case 2:
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            if (l.TrafficLight != null)
+                            {
+                                if (l.Direction == Direction.EAST)
+                                {
+                                    l.TrafficLight.State = true;
+                                }
+                                else
+                                {
+                                    l.TrafficLight.State = false;
+                                }
+                            }
+                        }
+                        c.Turn++;
+                        break;
+                    case 3:
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            if (l.TrafficLight != null)
+                            {
+                                if (l.Direction == Direction.WEST)
+                                {
+                                    l.TrafficLight.State = true;
+                                }
+                                else
+                                {
+                                    l.TrafficLight.State = false;
+                                }
+                            }
+                        }
+                        bool sensor = false;
+                        cb.CreatePedestrians();
+                        foreach (PedestrianLane pl in cb.pLanes)
+                        {
+                            if (pl.PLight.Sensor)
+                            {
+                                sensor = true;
+                            }
+                        }
+                        if (sensor)
+                        {
+                            c.Turn++;
+                        }
+                        else
+                        {
+                            c.Turn = 1;
+                        }
+                        break;
+                    case 4:
+                        foreach (PedestrianLane pl in cb.pLanes)
+                        {
+                            if (pl.PLight != null)
+                            {
+                                pl.PLight.State = true;
+                            }
+                        }
+                        foreach (TrafficLane l in c.Lanes)
+                        {
+                            if (l.TrafficLight != null)
+                            {
+                                l.TrafficLight.State = false;
+                            }
+                        }
+                        c.Turn = 1;
+                        break;
+
+                }
+                #endregion
+            }
+        }
+
+        /// <summary>
+        /// runs the thread
+        /// </summary>
+        public void Run()
+        {
+            aTimer.Start();
+        }
+
+        /// <summary>
+        /// the tick event for the timer thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <param name="c"></param>
+        private void TickEvent(object sender, EventArgs args, Crossing c)
+        {
+            SwitchAll(c);
+        }
+
+        #endregion
     }
 }
