@@ -504,17 +504,7 @@ namespace ProCP
                 {
                     foreach (Car c in j.Cars)
                     {
-                        int carWidth = 10, carHeight = 13;
-                        
-                        if (j.Direction == Direction.WEST || j.Direction == Direction.EAST)
-                        {
-                            carWidth = 13;
-                            carHeight = 10;
-                        }
-
-                        SolidBrush brush = new SolidBrush(c.Color);
-                        Rectangle r = new Rectangle(c.CurPoint.X, c.CurPoint.Y, carWidth, carHeight);
-                        e.Graphics.FillRectangle(brush, r);
+                        painter.drawCar(c, j.Direction);
                     }
                 }
             }

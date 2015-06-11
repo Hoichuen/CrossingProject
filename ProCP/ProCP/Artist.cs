@@ -36,11 +36,6 @@ namespace ProCP
 
         #region Lights
 
-        public void drawLightBaseCrossingB()
-        {
-            drawLightStructureCrossingA();
-        }
-
         public void drawLightStructureCrossingA()
         {
             drawLightStructure(typeof(Crossing_A));
@@ -110,6 +105,23 @@ namespace ProCP
             return false;
         }
         
+        #endregion
+
+        #region Cars
+
+        public void drawCar(Car c, Direction d)
+        {
+            Rectangle r;
+            SolidBrush brush = new SolidBrush(c.Color);
+
+            if (d == Direction.WEST || d == Direction.EAST)
+                r = new Rectangle(c.CurPoint.X, c.CurPoint.Y, CAR_WIDTH, CAR_HEIGHT);
+            else
+                r = new Rectangle(c.CurPoint.X, c.CurPoint.Y, CAR_HEIGHT, CAR_WIDTH);
+
+            painter.Graphics.FillRectangle(brush, r);
+        }
+
         #endregion
 
         #region General-use Methods

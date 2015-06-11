@@ -135,6 +135,7 @@ namespace ProCP
             if (StartPosition == lane.Points[0]) return true;
             else return false;
         }
+
         /// <summary>
         /// Makes the pedestrian press the sensor of his lane
         /// </summary>
