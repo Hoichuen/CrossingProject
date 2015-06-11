@@ -81,12 +81,14 @@ namespace ProCP
             //Adding the pedestrian lane list and the pedestrian lights
             pLanes = new List<PedestrianLane>();
             //top lane
+            PedestrianLight pLight = new PedestrianLight(new TimeSpan(), false, false);
             //PedestrianLight pLight = new PedestrianLight(0, new TimeSpan(), false, false);//this needs to be fixed after we figure out the timings
-           // pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), false, pLight));
+            pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), false, pLight));
             //bottom lane
+            pLight = new PedestrianLight(new TimeSpan(), false, false);
             //pLight = new PedestrianLight(0, new TimeSpan(), false, false);
 
-            //pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), false, pLight));
+            pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), false, pLight));
             
         }
         private List<Point> CalculatePedestrianLanePoints(int ID)

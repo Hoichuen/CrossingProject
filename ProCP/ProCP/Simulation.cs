@@ -17,7 +17,7 @@ namespace ProCP
     {
         public int TotalNumberCars { get; set; }
         int TotalNumberPedestrians { get; set; }
-        System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
+        public System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
         private List<Crossing> crossings;
         private Car car;

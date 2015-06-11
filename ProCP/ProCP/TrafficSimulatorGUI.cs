@@ -306,7 +306,7 @@ namespace ProCP
         {
             if (!play)
             {
-                TimerSimulation.Interval = 1500;
+                TimerSimulation.Interval = 1000;
                 TimerSimulation.Start();
 
                 //foreach (Crossing cr in Simulation.Crossings)
@@ -945,6 +945,8 @@ namespace ProCP
             {
                 if (play)
                 {
+                    
+                    this.labelTime.Text = Simulation.Watch.Elapsed.Minutes +":"+ Simulation.Watch.Elapsed.Seconds;
                     foreach (Crossing c in Simulation.Crossings)
                     {
                         foreach (TrafficLane l in c.Lanes)
@@ -1170,5 +1172,6 @@ namespace ProCP
 
         }
         #endregion
+
     }
 }
