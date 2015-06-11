@@ -36,12 +36,12 @@ namespace ProCP
         }
 
         //Constructor
-        public Lane(int iD, List<Point> points, bool isFull)
+        public Lane(int iD, List<Point> points)
         {
             this.ID = iD++;
             this.Points = points;
-            this.IsFull = IsFull;
-            //Need to figure out the lists
+
+          
         }
 
         public Lane(int iD)

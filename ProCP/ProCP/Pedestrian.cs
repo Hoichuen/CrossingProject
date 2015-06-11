@@ -11,12 +11,10 @@ namespace ProCP
     {
         //Fields
         int pedId = 1;
-        Color color;
-        int speed = 5;
         PedestrianLane lane;
         Point position = new Point();
         Crossing_B crossing;
-        Point StartPosition = new Point(); //we need this to calculate the direction of the pedestrian
+        Point StartPosition = new Point(); 
 
         //Properties
 
@@ -30,25 +28,7 @@ namespace ProCP
         }
 
         /// <summary>
-        /// Color of the pedestrian
-        /// </summary>
-        public Color Color
-        {
-            get { return color; }
-            set { color = value; }
-        }
-
-        /// <summary>
-        /// Speed of the car should be fixed
-        /// </summary>
-        public int Speed
-        {
-            get { return speed; }
-            set { speed = value; }
-        }
-
-        /// <summary>
-        /// Cars will be switching lanes a lot, its nice to keep track
+        /// The lane of the pedestrian
         /// </summary>
         public PedestrianLane Lane
         {
@@ -57,14 +37,17 @@ namespace ProCP
         }
 
 
-        //Constructor
-        public Pedestrian(int pedId, Color color, int speed, Crossing_B Crossing)
+        /// <summary>
+        /// Constructor for type pedestrian
+        /// </summary>
+        /// <param name="pedId">which pedestrian</param>
+        /// <param name="Crossing">on which crossing should it be created</param>
+        
+        public Pedestrian(int pedId, Crossing_B Crossing)
         {
-            this.PedId = pedId++;
-            this.Color = color;//thats racism
-            this.Speed = speed; //Speed might be fixed to we can change that
+            this.pedId = pedId;
             this.crossing = Crossing;
-            this.StartPosition = WhereToStart(); //this one sets the lane aswell
+            this.StartPosition = WhereToStart();
             this.position = StartPosition;
             PressSensor();
         }
@@ -91,11 +74,11 @@ namespace ProCP
         }
 
         /// <summary>
-        /// Walking method
+        /// Walking method based on direction
         /// </summary>
         public void Walk()
         {
-            if (lane.PLight.State) //if the light is on
+            if (lane.PLight.State)
             {
                 int indexPosition = 0;
                 for (int i = 0; i < lane.Points.Count; i++)
@@ -152,6 +135,9 @@ namespace ProCP
             if (StartPosition == lane.Points[0]) return true;
             else return false;
         }
+        /// <summary>
+        /// Makes the pedestrian press the sensor of his lane
+        /// </summary>
         private void PressSensor()
         {
             this.lane.PLight.sensorPressed();

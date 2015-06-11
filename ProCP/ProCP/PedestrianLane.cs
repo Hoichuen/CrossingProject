@@ -10,23 +10,15 @@ namespace ProCP
     class PedestrianLane : Lane
     {
         //Fields
-        bool empty;
-        PedestrianLight pLight; //regardless of where you are you cant have one light red another 
-        ///green per lane therefore we need 1 light
-      
+     
+        PedestrianLight pLight; 
+        Crossing_B parent;
 
         //Properties
-        /// <summary>
-        /// Used to see if the lane contain pedestrians
-        /// </summary>
-        public bool Empty
-        {
-            get { return empty; }
-            set { empty = value; }
-        }
+    
 
         /// <summary>
-        /// List of lights for pedestrians
+        /// A light object on the pedestrian lane
         /// </summary>
         public PedestrianLight PLight
         {
@@ -35,23 +27,29 @@ namespace ProCP
         }
 
         //Constructor
-
-        public PedestrianLane(int iD, List<Point> points, bool isFull, PedestrianLight pLight)
-            : base(iD, points, isFull)
+        /// <summary>
+        /// A constructor for Pedestrian lane
+        /// </summary>
+        /// <param name="iD">the id of the lane</param>
+        /// <param name="points">a list of points on the lane</param>
+        /// <param name="pLight">the light object on the lane</param>
+        /// <param name="crossing">the crossing this lane belongs to</param>
+        public PedestrianLane(int iD, List<Point> points, PedestrianLight pLight,Crossing_B crossing)
+            : base(iD, points)
         {
             this.PLight = pLight;
+            this.parent = crossing;
 
         }
 
-        
-        public bool isEmpty(PedestrianLane lane)
-        {
-
-            return Empty;
-        }
+        /// <summary>
+        /// Gets the crossing that owns the lane
+        /// </summary>
+        /// <returns>an object of type crossing B</returns>
+       
         public Crossing_B GetCrossingB()
         {
-            return (Crossing_B)base.GetCrossing();
+            return parent;
         }
 
     }

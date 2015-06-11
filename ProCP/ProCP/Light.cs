@@ -8,35 +8,25 @@ namespace ProCP
 {
     class Light
     {
-        TimeSpan time;
 
-        int id;
         bool state;
-        public delegate void LightSwitch(TimeSpan time, bool state);
-
-        public TimeSpan Time
-        {
-            get { return time; }
-            set { time = value; }
-            
-        }
-
+        
+        /// <summary>
+        /// the state of the light
+        /// </summary>
         public bool State
         {
             get { return state; }
             set { state = value; }
             
         }
-
-        public int Id
+       
+        /// <summary>
+        /// constructor for light
+        /// </summary>
+        /// <param name="state">the initial state of the light</param>
+        public Light(bool state)
         {
-            get { return id; }
-            set { id = value; }
-        }
-
-        public Light(TimeSpan time, bool state)
-        {
-            this.Time = time;
             this.State = state;
         }
     }

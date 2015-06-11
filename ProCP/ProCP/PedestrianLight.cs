@@ -17,8 +17,8 @@ namespace ProCP
             set { sensor = value; }
         }
 
-        public PedestrianLight(TimeSpan time, bool state, bool sensor)
-            : base(time, state)
+        public PedestrianLight(bool state, bool sensor)
+            : base(state)
         {
             this.Sensor = sensor;
         }
