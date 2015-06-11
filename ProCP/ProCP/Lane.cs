@@ -31,12 +31,27 @@ namespace ProCP
         /// <summary>
         /// Constructor of the Lane class for the ped lane
         /// </summary>
+<<<<<<< HEAD
         /// <param name="iD"></param>
         /// <param name="points"></param>
+=======
+        public bool IsFull
+        {
+            get { return isFull; }
+            set { isFull = value; }
+        }
+
+        //Constructor
+>>>>>>> origin/master
         public Lane(int iD, List<Point> points)
         {
             this.ID = iD++;
             this.Points = points;
+<<<<<<< HEAD
+=======
+
+          
+>>>>>>> origin/master
         }
 
         /// <summary>
