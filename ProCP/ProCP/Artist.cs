@@ -36,6 +36,9 @@ namespace ProCP
 
         #region Lights
 
+
+
+        /*
         public void drawLightStructureCrossingA()
         {
             drawLightStructure(typeof(Crossing_A));
@@ -104,7 +107,8 @@ namespace ProCP
 
             return false;
         }
-        
+        */
+
         #endregion
 
         #region Cars

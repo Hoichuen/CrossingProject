@@ -457,8 +457,6 @@ namespace ProCP
             Artist painter = new Artist(e);
             Crossing crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
 
-            if (crossing == null)
-
             if (null != selectedPicBox)
             {
                 if (self.Equals(selectedPicBox))
@@ -481,10 +479,12 @@ namespace ProCP
 
             #region Drawing Lights
 
+            /*
             if (crossing is Crossing_A)
                 painter.drawLightStructureCrossingA();
             else if (crossing is Crossing_B)
                 painter.drawLightStructureCrossingB();
+            */
 
             #endregion
 
