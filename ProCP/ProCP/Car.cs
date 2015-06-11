@@ -11,7 +11,6 @@ namespace ProCP
     {
         //Fields
         Color color;
-        int speed = 50;
         TrafficLane currentLane;
         Point curPoint;
         List<TrafficLane> route;
@@ -25,15 +24,6 @@ namespace ProCP
         {
             get { return color; }
             set { color = value; }
-        }
-
-        /// <summary>
-        /// Speed of the car should be fixed
-        /// </summary>
-        public int Speed
-        {
-            get { return speed; }
-            set { Speed = value; }
         }
 
         /// <summary>

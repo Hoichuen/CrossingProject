@@ -40,3 +40,4 @@ C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProC
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.exe
 C:\Users\Ben Umbach\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.pdb
+C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csprojResolveAssemblyReference.cache
