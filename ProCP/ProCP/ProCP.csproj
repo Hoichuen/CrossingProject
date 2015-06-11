@@ -51,6 +51,7 @@
     <Compile Include="AboutGUI.Designer.cs">
       <DependentUpon>AboutGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Artist.cs" />
     <Compile Include="Car.cs" />
     <Compile Include="CrossingA.cs" />
     <Compile Include="CrossingB.cs" />

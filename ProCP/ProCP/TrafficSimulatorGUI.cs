@@ -487,12 +487,14 @@ namespace ProCP
         private void pictureBoxOnPaint(object sender, PaintEventArgs e)
         {
             PictureBox self = (PictureBox)sender;
+            Artist painter = new Artist(e);
+            Crossing crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
 
             if (null != selectedPicBox)
             {
                 if (self.Equals(selectedPicBox))
                 {
-                    e.Graphics.DrawRectangle(new Pen(Color.Red, 3), 1, 1, 220, 155);
+                    painter.paintSelectionOutline();
                     crossLocked = false;
                     this.btnFinishCrossing.Text = "Lock Crossing";
                     enableNum();
@@ -508,11 +510,20 @@ namespace ProCP
                 }
             }
 
+            #region Drawing Lights
+
+            if (crossing is Crossing_A)
+                painter.drawLightStructureCrossingA();
+            else if (crossing is Crossing_B)
+                painter.drawLightStructureCrossingB();
+
+            #endregion
+
             // Drawing cars, yay
             List<Car> tempCars = new List<Car>();
             foreach (Crossing item in Simulation.Crossings)
             {
-                Crossing crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
+                crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
 
                 if (!item.Equals(crossing))
                     continue;
@@ -549,7 +560,7 @@ namespace ProCP
 
                 if (Simulation.CrossingExist(picBoxNum))
                 {
-                    Crossing crossing = Simulation.getCrossing(picBoxNum);
+                    crossing = Simulation.getCrossing(picBoxNum);
                     List<TrafficLane> lanes = new List<TrafficLane>(crossing.Lanes);
 
                     foreach (TrafficLane t in lanes)
