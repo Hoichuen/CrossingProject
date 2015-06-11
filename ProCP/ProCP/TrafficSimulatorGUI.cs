@@ -30,12 +30,6 @@ namespace ProCP
         PictureBox selectedPicBox = null;
         List<PictureBox> crossPic = new List<PictureBox>();
 
-        Thread t;
-        List<Light> lights;
-
-        System.Windows.Forms.Timer aTimer;
-
-
         //Crossing CurrentCrossing; //Never used
         Simulation Simulation;
 
@@ -309,38 +303,9 @@ namespace ProCP
                 TimerSimulation.Interval = 1000;
                 TimerSimulation.Start();
 
-                //foreach (Crossing cr in Simulation.Crossings)
-                //{
-                //    foreach (TrafficLane l in cr.Lanes)
-                //    {
-                //        switch (l.Direction)
-                //        {
-                //            case Direction.NORTH: l.TrafficLight = new Light(1, cr.Time, false);
-                //                break;
-                //            case Direction.EAST: l.TrafficLight = new Light(2, cr.Time, false);
-                //                break;
-                //            case Direction.SOUTH: l.TrafficLight = new Light(3, cr.Time, false);
-                //                break;
-                //            case Direction.WEST: l.TrafficLight = new Light(4, cr.Time, false);
-                //                break;
-                //            default: l.TrafficLight = new Light(0, cr.Time, false);
-                //                break;
-
-                //        }
- 
-                //    }
-                //}
-
                 Play();
-                foreach (Crossing c in Simulation.Crossings)
-                {
-                    aTimer = new System.Windows.Forms.Timer();
-                    aTimer.Interval = c.Time.Seconds * 500;
-                    aTimer.Enabled = true;
-                    aTimer.Tick += (sander, pe) => TickEvent(sender, e, c);
-                }
-                t = new Thread(Run);
-                t.Start();
+                Simulation.StartThread();
+
             }
             else if (play)
             {
@@ -718,7 +683,7 @@ namespace ProCP
         {
             foreach (Crossing c in Simulation.Crossings)
             {
-                SwitchAll(c);
+                Simulation.SwitchAll(c);
             }
         }
 
@@ -990,188 +955,6 @@ namespace ProCP
                 this.Stop();
             }
         }
-
-        #region Light Thread
-        private void SwitchAll(Crossing c)
-        {
-            if (c.GetType() == typeof(Crossing_A))
-            {
-                #region A Crossing
-                switch (c.Turn)
-                {
-                    case 1:
-                        foreach (TrafficLane l in c.Lanes)
-                        {
-                            if (l.TrafficLight != null)
-                            {
-                                if (l.Direction == Direction.NORTH)
-                                {
-                                    l.TrafficLight.State = true;
-                                }
-                                else
-                                {
-                                    l.TrafficLight.State = false;
-                                }
-                            }
-                        }
-                        c.Turn++;
-                        break;
-                    case 2:
-                        foreach (TrafficLane l in c.Lanes)
-                        {
-                            if (l.TrafficLight != null)
-                            {
-                                if (l.Direction == Direction.EAST)
-                                {
-                                    l.TrafficLight.State = true;
-                                }
-                                else
-                                {
-                                    l.TrafficLight.State = false;
-                                }
-                            }
-                        }
-                        c.Turn++;
-                        break;
-                    case 3:
-                        foreach (TrafficLane l in c.Lanes)
-                        {
-                            if (l.TrafficLight != null)
-                            {
-                                if (l.Direction == Direction.SOUTH)
-                                {
-                                    l.TrafficLight.State = true;
-                                }
-                                else
-                                {
-                                    l.TrafficLight.State = false;
-                                }
-                            }
-                        }
-                        c.Turn++;
-                        break;
-                    case 4:
-                        foreach (TrafficLane l in c.Lanes)
-                        {
-                            if (l.TrafficLight != null)
-                            {
-                                if (l.Direction == Direction.WEST)
-                                {
-                                    l.TrafficLight.State = true;
-                                }
-                                else
-                                {
-                                    l.TrafficLight.State = false;
-                                }
-                            }
-                        }
-                        c.Turn = 1;
-                        break;
-                }
-                #endregion
-            }
-            else
-            {
-                #region B Crossing
-                switch (c.Turn)
-                {
-                    case 1:
-                        foreach (TrafficLane l in c.Lanes)
-                        {
-                            if (l.TrafficLight != null)
-                            {
-                                if (l.Direction == Direction.NORTH || l.Direction == Direction.SOUTH)
-                                {
-                                    l.TrafficLight.State = true;
-                                }
-                                else
-                                {
-                                    l.TrafficLight.State = false;
-                                }
-                            }
-                        }
-                        c.Turn++;
-                        break;
-                    case 2:
-                        foreach (TrafficLane l in c.Lanes)
-                        {
-                            if (l.TrafficLight != null)
-                            {
-                                if (l.Direction == Direction.EAST)
-                                {
-                                    l.TrafficLight.State = true;
-                                }
-                                else
-                                {
-                                    l.TrafficLight.State = false;
-                                }
-                            }
-                        }
-                        c.Turn++;
-                        break;
-                    case 3:
-                        foreach (TrafficLane l in c.Lanes)
-                        {
-                            if (l.TrafficLight != null)
-                            {
-                                if (l.Direction == Direction.WEST)
-                                {
-                                    l.TrafficLight.State = true;
-                                }
-                                else
-                                {
-                                    l.TrafficLight.State = false;
-                                }
-                            }
-                        }
-                        Crossing_B cb = (Crossing_B)c;
-                        bool sensor = false;
-                        foreach (PedestrianLane pl in cb.pLanes)
-                        {
-                            if (pl.PLight.Sensor)
-                            {
-                                sensor = true;
-                            }
-                        }
-                        if (sensor)
-                        {
-                            c.Turn++;
-                        }
-                        else 
-                        {
-                            c.Turn = 1;
-                        }
-                        break;
-                    case 4:
-                        Crossing_B cb2 = (Crossing_B)c;
-                        foreach (PedestrianLane l in cb2.pLanes)
-                        {
-                            if (l.PLight != null)
-                            {
-                                    l.PLight.State = true;
-                            }
-                        }
-                        c.Turn = 1;
-                        break;
-
-                }
-                #endregion
-            }
-        }
-
-        public void Run()
-        {
-            aTimer.Start();
-        }
-
-        private void TickEvent(object sender, EventArgs args, Crossing c)
-        {
-            // MessageBox.Show("switch!: " + c.Time.Seconds.ToString());
-
-            SwitchAll(c);
-
-        }
-        #endregion
 
     }
 }
