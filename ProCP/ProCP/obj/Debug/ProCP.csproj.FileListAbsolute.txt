@@ -41,3 +41,4 @@ C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\Pro
 C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.Properties.Resources.resources
 C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.TrafficSimulatorGUI.resources
 C:\Users\joaobarbosa\Documents\GitHub\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csproj.GenerateResource.Cache
+C:\Users\Loic\Documents\GitHub\Procp\crossing-project\ProCP\ProCP\obj\Debug\ProCP.csprojResolveAssemblyReference.cache

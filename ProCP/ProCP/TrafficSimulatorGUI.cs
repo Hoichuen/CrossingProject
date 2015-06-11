@@ -304,6 +304,7 @@ namespace ProCP
                 TimerSimulation.Start();
 
                 Play();
+                count = Simulation.TotalNumberCars;
                 Simulation.StartThread();
 
             }
@@ -906,12 +907,16 @@ namespace ProCP
 
         private void TimerSimulation_Tick(object sender, EventArgs e)
         {
-            if (count < Simulation.TotalNumberCars)
+            if (count > 0)
             {
                 if (play)
                 {
                     
                     this.labelTime.Text = Simulation.Watch.Elapsed.Minutes +" Minutes "+ Simulation.Watch.Elapsed.Seconds+" Seconds";
+                    this.labelCarsAdded.Text = Simulation.TotalNumberCars.ToString();
+                    this.labelCarsRemaining.Text = count.ToString();
+                    this.labelLightSwitches.Text = Simulation.TotalNumberofSwitches.ToString();
+                    this.labelCrossingNumbers.Text = Simulation.Crossings.Count.ToString();
                     foreach (Crossing c in Simulation.Crossings)
                     {
                         foreach (TrafficLane l in c.Lanes)
@@ -952,6 +957,7 @@ namespace ProCP
             }
             else
             {
+                this.labelCarsRemaining.Text = "0";
                 this.Stop();
             }
         }

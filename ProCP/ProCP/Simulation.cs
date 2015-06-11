@@ -16,7 +16,7 @@ namespace ProCP
     class Simulation
     {
         public int TotalNumberCars { get; set; }
-        int TotalNumberPedestrians { get; set; }
+        public int TotalNumberofSwitches { get; set; }
         public System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
         private List<Crossing> crossings;
@@ -59,7 +59,6 @@ namespace ProCP
                 if (i.GetType() == typeof(Crossing_B))
                 {
                     Crossing_B temp = (Crossing_B)i;
-                    TotalNumberPedestrians += temp.NumPeds;
                 }
             }
             Watch.Start();
@@ -365,6 +364,7 @@ namespace ProCP
 
         public void SwitchAll(Crossing c)
         {
+            TotalNumberofSwitches++;
 
             if (c.GetType() == typeof(Crossing_A))
             {
