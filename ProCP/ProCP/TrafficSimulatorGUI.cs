@@ -133,17 +133,21 @@ namespace ProCP
                 bool result = false;
                 int picBoxNumber = GetNumberOfPicturebox(self);
 
+                Image finalImage;
+
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
                 {
                     result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
+                    finalImage = ProCP.Properties.Resources.Crossing_a;
                 }
                 else
                 {
                     result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
+                    finalImage = ProCP.Properties.Resources.Crossing_b;
                 }
 
                 if (result)
-                    self.Image = (Image)e.Data.GetData(DataFormats.Bitmap);
+                    self.Image = finalImage;
 
                 return;
             }
@@ -519,6 +523,8 @@ namespace ProCP
 
             #endregion
 
+            #region Drawing Cars
+
             // Drawing cars, yay
             List<Car> tempCars = new List<Car>();
             foreach (Crossing item in Simulation.Crossings)
@@ -543,11 +549,11 @@ namespace ProCP
                         SolidBrush brush = new SolidBrush(c.Color);
                         Rectangle r = new Rectangle(c.CurPoint.X, c.CurPoint.Y, carWidth, carHeight);
                         e.Graphics.FillRectangle(brush, r);
-                        // e.Graphics.DrawRectangle(new Pen(Color.Black, 1), c.CurPoint.X, c.CurPoint.Y, carWidth, carHeight);
-                        
                     }
                 }
             }
+
+            #endregion
 
             #region Debug
             // enable/disable in the beginning of the class

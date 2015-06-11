@@ -15,14 +15,17 @@ namespace ProCP
 
         private readonly Color LIGHT_STRUCTURE_COLOR = Color.Black;
 
-        private const int LIGHT_BOX_WIDTH = 7;
-        private const int LIGHT_BOX_HEIGHT = 5;
+        private const int TRAFFIC_LIGHT_BOX_WIDTH = 7;
+        private const int TRAFFIC_LIGHT_BOX_HEIGHT = 5;
+        private const int NUM_TRAFFIC_LIGHTS_A = 8;
+        private const int NUM_TRAFFIC_LIGHTS_B = 6;
+        private const int NUM_TRAFFIC_LIGHTS_SPOTS = 3;
 
         private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_A = { 51, 58, 160, 160, 160, 167, 42, 42 };
         private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_A = { 30, 30, 37, 42, 112, 112, 112, 117 };
 
-        private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_B = { 51, 58, 160, 160, 160, 167, 42, 42 };
-        private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_B = { 30, 30, 37, 42, 112, 112, 112, 117 };
+        private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_B = { 55, 159, 159, 156, 41, 41 };
+        private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_B = { 0, 36, 41, 142, 111, 116 };
 
         PaintEventArgs painter;
 
@@ -52,6 +55,7 @@ namespace ProCP
         {
             int[] xSpots = new int[8];
             int[] ySpots = new int[8];
+            int totalTrafficLights = NUM_TRAFFIC_LIGHTS_A;
 
             LIGHT_STRUCT_X_SPOTS_CROSSING_A.CopyTo(xSpots, 0);
             LIGHT_STRUCT_Y_SPOTS_CROSSING_A.CopyTo(ySpots, 0);
@@ -60,42 +64,50 @@ namespace ProCP
             if (t.Equals(typeof(Crossing_B)))
             {
                 LIGHT_STRUCT_X_SPOTS_CROSSING_B.CopyTo(xSpots, 0);
-                LIGHT_STRUCT_X_SPOTS_CROSSING_B.CopyTo(ySpots, 0);
+                LIGHT_STRUCT_Y_SPOTS_CROSSING_B.CopyTo(ySpots, 0);
+
+                totalTrafficLights = NUM_TRAFFIC_LIGHTS_B;
             }
 
-            bool vertical = true;
-
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < totalTrafficLights; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < NUM_TRAFFIC_LIGHTS_SPOTS; j++)
                 {
-                    if (vertical) {
+                    if (isNextTrafficLightVertical(t, i)) {
                         drawEmptyRect(
                             LIGHT_STRUCTURE_COLOR,
                             xSpots[i],
-                            ySpots[i] + (j * 5),
-                            LIGHT_BOX_WIDTH,
-                            LIGHT_BOX_HEIGHT);
+                            ySpots[i] + (j * TRAFFIC_LIGHT_BOX_HEIGHT),
+                            TRAFFIC_LIGHT_BOX_WIDTH,
+                            TRAFFIC_LIGHT_BOX_HEIGHT);
                     }
                     else
                     {
                         drawEmptyRect(
                             LIGHT_STRUCTURE_COLOR,
-                            xSpots[i] + (j * 7),
+                            xSpots[i] + (j * TRAFFIC_LIGHT_BOX_WIDTH),
                             ySpots[i],
-                            LIGHT_BOX_WIDTH,
-                            LIGHT_BOX_HEIGHT);
+                            TRAFFIC_LIGHT_BOX_WIDTH,
+                            TRAFFIC_LIGHT_BOX_HEIGHT);
                     }
                 }
+            }
+        }
 
-                if (i % 2 != 0)
-                {
-                    if (vertical)
-                        vertical = false;
-                    else
-                        vertical = true;
+        private bool isNextTrafficLightVertical(System.Type t, int index)
+        {
+            if (t.Equals(typeof(Crossing_A))) {
+                switch (index)
+	            {
+                    case 0: case 1: case 4: case 5:
+                        return true;
                 }
             }
+
+            if ((t.Equals(typeof(Crossing_B))) && (index == 0 || index == 3))
+                return true;
+
+            return false;
         }
         
         #endregion

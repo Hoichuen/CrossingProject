@@ -73,9 +73,29 @@ namespace ProCP.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Crossing_a_dirty {
+            get {
+                object obj = ResourceManager.GetObject("Crossing a dirty", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Crossing_b {
             get {
                 object obj = ResourceManager.GetObject("Crossing b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Crossing_b_dirty {
+            get {
+                object obj = ResourceManager.GetObject("Crossing b dirty", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
