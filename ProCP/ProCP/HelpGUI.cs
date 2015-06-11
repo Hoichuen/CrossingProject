@@ -17,6 +17,11 @@ namespace ProCP
             InitializeComponent();
         }
 
+        /// <summary>
+        /// event of loading the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HelpGUI_Load(object sender, EventArgs e)
         {
             rTBHelp.Clear();
@@ -28,6 +33,11 @@ namespace ProCP
 
         }
 
+        /// <summary>
+        /// returns the answer to 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public string updateHelp(int index)
         {
             this.cBoxHelpItems.SelectedIndex = index;
@@ -56,11 +66,6 @@ namespace ProCP
                 case 9: return "Interrupts the Simulation.";
                 default: return "";
             }
-               
-            
-
-            
-
         }
     }
 }

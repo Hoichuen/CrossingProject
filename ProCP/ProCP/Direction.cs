@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProCP
 {
+    /// <summary>
+    /// Nautical direction
+    /// </summary>
     enum Direction
     {
         NORTH = 0,

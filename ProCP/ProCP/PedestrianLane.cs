@@ -36,8 +36,8 @@ namespace ProCP
 
         //Constructor
 
-        public PedestrianLane(int iD, List<Point> points, bool isFull, PedestrianLight pLight)
-            : base(iD, points, isFull)
+        public PedestrianLane(int iD, List<Point> points, PedestrianLight pLight)
+            : base(iD, points)
         {
             this.PLight = pLight;
 

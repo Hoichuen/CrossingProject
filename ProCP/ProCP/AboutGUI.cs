@@ -17,6 +17,11 @@ namespace ProCP
             InitializeComponent();
         }
 
+        /// <summary>
+        /// writes the info when the form is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AboutGUI_Load(object sender, EventArgs e)
         {
             string lineBreak = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";

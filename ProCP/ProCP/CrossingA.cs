@@ -9,13 +9,17 @@ namespace ProCP
 {
     class Crossing_A:Crossing
     {
+        /// <summary>
+        /// fields
+        /// </summary>
         List<TrafficLane> lanes;
         List<TrafficLane> tLanes;
 
         /// <summary>
-        /// The crossing type A constructor
+        /// Constructor where the intra crossing connections are made
         /// </summary>
-        public Crossing_A(int crossingId, Point position) : base(crossingId, position)
+        /// <param name="crossingId"></param>
+        public Crossing_A(int crossingId, Point position) : base(crossingId)
         {
             lanes = new List<TrafficLane>();
             tLanes = new List<TrafficLane>();

@@ -15,34 +15,53 @@ namespace ProCP
 
     class Simulation
     {
+        /// <summary>
+        /// properties
+        /// </summary>
         public int TotalNumberCars { get; set; }
         int TotalNumberPedestrians { get; set; }
         public System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
+        /// <summary>
+        /// fields
+        /// </summary>
         private List<Crossing> crossings;
         private Car car;
         private List<Car> cars;
         private bool saved;
         private string name;
 
+        /// <summary>
+        /// name of the simulation
+        /// </summary>
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
 
+        /// <summary>
+        /// if it has been saved
+        /// </summary>
         public bool Saved
         {
             get { return saved; }
             set { saved = value; }
         }
 
+        /// <summary>
+        /// All the crossings in the simulation
+        /// </summary>
         public List<Crossing> Crossings
         {
             get { return crossings; }
             set { crossings = value; }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="name"></param>
         public Simulation(string name = "")
         {
             Crossings = new List<Crossing>();
@@ -50,6 +69,9 @@ namespace ProCP
             Saved = true;
         }
 
+        /// <summary>
+        /// Starts the simulation in which the statistics are started and the cars are called to be created
+        /// </summary>
         public void Start()
         {
             Watch.Reset();
@@ -65,8 +87,19 @@ namespace ProCP
             Watch.Start();
             CreateCars();
         }
-        public void Stop() { Watch.Stop(); }
+        /// <summary>
+        /// stops the stopwatch
+        /// </summary>
+        public void Stop() 
+        { 
+            Watch.Stop(); 
+        }
 
+        /// <summary>
+        /// Adds a crossing to the list of crossing
+        /// </summary>
+        /// <param name="Crossing"></param>
+        /// <returns></returns>
         public bool AddCrossing(Crossing Crossing)
         {
             if (Crossings.Count < 12)
@@ -103,7 +136,6 @@ namespace ProCP
 
                     }
                 }
-
                 //EAST
                 if (Crossings.Find(x => x.CrossingId == (i.CrossingId) + 1) == null || (i.CrossingId % 4 == 0))
                 {
@@ -119,9 +151,7 @@ namespace ProCP
                         }
                     }
                 }
-
                 //SOUTH
-
                 if (Crossings.Find(x => x.CrossingId == (i.CrossingId) + 4) == null)
                 {
                     foreach (TrafficLane j in i.Lanes)
@@ -136,9 +166,7 @@ namespace ProCP
                         }
                     }
                 }
-
                 //WEST
-
                 if (Crossings.Find(x => x.CrossingId == (i.CrossingId) - 1) == null || (i.CrossingId % 4 == 1))
                 {
                     foreach (TrafficLane j in i.Lanes)
@@ -153,10 +181,12 @@ namespace ProCP
                         }
                     }
                 }
-
             }
         }
 
+        /// <summary>
+        /// Creates the inter corssing lane connections
+        /// </summary>
         public void LaneCrossingConnection()
         {
             foreach (Crossing i in Crossings)
@@ -186,6 +216,14 @@ namespace ProCP
             }
         }
 
+        /// <summary>
+        /// Edits the properties of the crossing
+        /// eg. number of cars for that crossing, time the light is green, etc.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="numCars"></param>
+        /// <param name="time"></param>
+        /// <param name="style"></param>
         public void EditCrossing(int id, int numCars, int time, string style)
         {
             Crossing cr = Crossings.Find(x => x.CrossingId == (id));
@@ -206,6 +244,11 @@ namespace ProCP
 
         }
 
+        /// <summary>
+        /// turns the style into a string
+        /// </summary>
+        /// <param name="style"></param>
+        /// <returns></returns>
         private int whichPedStyle(string style)
         {
             if (style == "Quiet") return 1;
@@ -213,6 +256,13 @@ namespace ProCP
             else return -1;
         }
 
+        /// <summary>
+        /// Gets the properties of the individual crossing
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nCars"></param>
+        /// <param name="time"></param>
+        /// <param name="style"></param>
         public void getProperties(int id, ref int nCars, ref int time, ref string style)
         {
             Crossing cr = Crossings.Find(x => x.CrossingId == (id));
@@ -229,24 +279,35 @@ namespace ProCP
 
         }
 
+        /// <summary>
+        /// checks if that specific crossing exists in the list of crossing
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool CrossingExist(int id)
         {
             return Crossings.Exists(x => x.CrossingId == (id));
         }
 
+        /// <summary>
+        /// removes the crossing from the list of crossings
+        /// </summary>
+        /// <param name="id"></param>
         public void RemoveCrossing(int id)
         {
             Crossings.Remove(Crossings.Find(x => x.CrossingId == (id)));
             Saved = false;
         }
 
+        /// <summary>
+        /// creates the cars for each lane in each crossing
+        /// </summary>
         public void CreateCars()
         {
             cars = new List<Car>();
             List<TrafficLane> tmp = new List<TrafficLane>();
             Random rnd = new Random();
             Color c;
-            int count = 1;
 
             foreach (Crossing item in Crossings)
             {
@@ -257,43 +318,23 @@ namespace ProCP
                     c = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
 
                     // car = new Car(count, c, item); // DEBUG
-                    car = new Car(count, c, tmp.ElementAt(rnd.Next(tmp.Count())));
+                    car = new Car(c, tmp.ElementAt(rnd.Next(tmp.Count())));
 
                     cars.Add(car);
-                    count++;
                 }
                 tmp = new List<TrafficLane>();
 
             }
         }
 
+        /// <summary>
+        /// returns a crossing with that id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Crossing getCrossing(int id)
         {
             return Crossings.Find(x => x.CrossingId == (id));
-        }
-
-        public bool checkCarStatus()
-        {
-            bool done = true;
-            foreach (Crossing i in Crossings)
-            {
-                if (i.GetType() == typeof(Crossing_B))
-                {
-                    Crossing_B temp = (Crossing_B)i;
-                    if (temp.pedestrians.Count > 0)
-                    {
-                        done = false;
-                    }
-                }
-                foreach (TrafficLane j in i.Lanes)
-                {
-                    if (j.Cars.Count > 0)
-                    {
-                        done = false;
-                    }
-                }
-            }
-            return done;
         }
 
         /// <summary>
@@ -332,6 +373,11 @@ namespace ProCP
             return ret;
         }
 
+        /// <summary>
+        /// checks whether the crossing is surrounded
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool Surrounded(int id)
         {
             if ((crossings.Exists(x => x.CrossingId == id - 4)) && ((crossings.Exists(x => x.CrossingId == id - 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 1)))
@@ -346,10 +392,15 @@ namespace ProCP
         }
 
         #region Light Logic
-
+        /// <summary>
+        /// fields of the light logic
+        /// </summary>
         Thread t;
         System.Windows.Forms.Timer aTimer;
 
+        /// <summary>
+        /// starts the thread
+        /// </summary>
         public void StartThread()
         {
             foreach (Crossing c in Crossings)
@@ -363,6 +414,10 @@ namespace ProCP
             t.Start();
         }
 
+        /// <summary>
+        /// changes the lights to the next iteration
+        /// </summary>
+        /// <param name="c"></param>
         public void SwitchAll(Crossing c)
         {
 
@@ -547,11 +602,20 @@ namespace ProCP
             }
         }
 
+        /// <summary>
+        /// runs the thread
+        /// </summary>
         public void Run()
         {
             aTimer.Start();
         }
 
+        /// <summary>
+        /// the tick event for the timer thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <param name="c"></param>
         private void TickEvent(object sender, EventArgs args, Crossing c)
         {
             SwitchAll(c);

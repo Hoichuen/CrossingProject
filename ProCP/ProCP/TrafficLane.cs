@@ -9,6 +9,9 @@ namespace ProCP
 {
     class TrafficLane : Lane
     {
+        /// <summary>
+        /// constant fields for the points
+        /// </summary>
         const int MAX_POINTS_PER_VERTICAL_LANE = 3;
         const int MAX_POINTS_PER_HORIZONTAL_LANE = 4;
         const int VERTICAL_SPACE_BETWEEN_POINTS = 15;
@@ -33,6 +36,9 @@ namespace ProCP
             set { laneType = value; }
         }
 
+        /// <summary>
+        /// Whether or not the lane is going toward or away from the crossing 
+        /// </summary>
         public bool ToFromCross
         {
             get { return toFromCross; }
@@ -77,7 +83,15 @@ namespace ProCP
         }
 
 
-        //Constructor
+        /// <summary>
+        /// Constructor of the traffic lane
+        /// </summary>
+        /// <param name="iD"></param>
+        /// <param name="toFromCross"></param>
+        /// <param name="direction"></param>
+        /// <param name="trafficLight"></param>
+        /// <param name="connLanes"></param>
+        /// <param name="parent"></param>
         public TrafficLane(int iD, bool toFromCross, Direction direction, Light trafficLight, List<TrafficLane> connLanes, Crossing parent) : base(iD)
         {
             this.ID = iD;
@@ -86,14 +100,15 @@ namespace ProCP
             this.Lanes = connLanes;
             this.parent = parent;
             this.TrafficLight = trafficLight;
-            this.IsFull = false;
-            //Need to figure out the lists
 
             Cars = new List<Car>();
 
             this.initPoints();
         }
 
+        /// <summary>
+        /// initiates the points for the lane
+        /// </summary>
         private void initPoints()
         {
             if (parent is Crossing_A)
@@ -105,6 +120,10 @@ namespace ProCP
             this.Points = processAndReturnPointsForCrossingB();
         }
 
+        /// <summary>
+        /// returns the list of points of crossing A
+        /// </summary>
+        /// <returns></returns>
         private List<Point> processAndReturnPointsForCrossingA()
         {
             int[] xOffset = { 134, 157, 77, 5, 77, 104, 157, 157, 134, 107, 5, 5 };
@@ -113,6 +132,10 @@ namespace ProCP
             return getPointList(xOffset, yOffset);
         }
 
+        /// <summary>
+        /// returns the list of points of crossing B
+        /// </summary>
+        /// <returns></returns>
         private List<Point> processAndReturnPointsForCrossingB()
         {
             int[] xOffset = { 128, 157, 85, 5, 85, 157, 157, 128, 5, 5 };
@@ -121,6 +144,12 @@ namespace ProCP
             return getPointList(xOffset, yOffset);
         }
 
+        /// <summary>
+        /// Uses 2 arrays one x the other yto create the list of points
+        /// </summary>
+        /// <param name="xOffset"></param>
+        /// <param name="yOffset"></param>
+        /// <returns></returns>
         private List<Point> getPointList(int[] xOffset, int[] yOffset)
         {
             List<Point> points = new List<Point>();
@@ -149,11 +178,20 @@ namespace ProCP
             return points;
         }
 
+        /// <summary>
+        /// returns the next point in the list
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         public Point GetNextPoint(Point point)
         {
             return this.Points.ElementAt(Points.FindIndex(x => x == point) + 1);
         }
 
+        /// <summary>
+        /// returns the number of cars on the points in the list
+        /// </summary>
+        /// <returns></returns>
         public int NumEmptyPoints()
         {
             int count = 0;
@@ -170,6 +208,11 @@ namespace ProCP
             return count;
         }
 
+        /// <summary>
+        /// checks if there is a car on the next point
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         internal bool IsNextPointEmpty(Point point)
         {
             if (Cars.Exists(x=>x.CurPoint == Points.ElementAt(Points.FindIndex(y=>y == point)+1)))
@@ -179,6 +222,10 @@ namespace ProCP
             return true;
         }
 
+        /// <summary>
+        /// checkls if the first point of the list has a car on it.
+        /// </summary>
+        /// <returns></returns>
         public bool IsFirstPointEmpty()
         {
             return Cars.Exists(x => x.CurPoint == Points.First());

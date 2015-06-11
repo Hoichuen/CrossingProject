@@ -26,7 +26,7 @@ namespace ProCP
         /// <summary>
         /// The crossing type B constructor
         /// </summary>
-        public Crossing_B(int crossingId, Point position) : base(crossingId, position)
+        public Crossing_B(int crossingId, Point position) : base(crossingId)
         {
             this.NumPeds = 0;
 
@@ -83,12 +83,12 @@ namespace ProCP
             //top lane
             PedestrianLight pLight = new PedestrianLight(new TimeSpan(), false, false);
             //PedestrianLight pLight = new PedestrianLight(0, new TimeSpan(), false, false);//this needs to be fixed after we figure out the timings
-            pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), false, pLight));
+            pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), pLight));
             //bottom lane
             pLight = new PedestrianLight(new TimeSpan(), false, false);
             //pLight = new PedestrianLight(0, new TimeSpan(), false, false);
 
-            pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), false, pLight));
+            pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), pLight));
             
         }
         private List<Point> CalculatePedestrianLanePoints(int ID)
