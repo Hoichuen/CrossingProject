@@ -13,6 +13,7 @@ namespace ProCP
         int id;
         bool state;
         public delegate void LightSwitch(TimeSpan time, bool state);
+        public event LightSwitch LightSwitchEvent;
 
         public TimeSpan Time
         {
