@@ -27,7 +27,7 @@ namespace ProCP
 
         /// <param name="crossingId">The Id of the crossing</param>
         /// <param name="position"></param>
-        public Crossing_B(int crossingId, Point position) : base(crossingId)
+        public Crossing_B(int crossingId) : base(crossingId)
         {
             
 

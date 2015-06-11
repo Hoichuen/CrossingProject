@@ -131,12 +131,12 @@ namespace ProCP
 
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
                 {
-                    result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
+                    result = Simulation.AddCrossing(new Crossing_A(picBoxNumber));
                     finalImage = ProCP.Properties.Resources.Crossing_a;
                 }
                 else
                 {
-                    result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
+                    result = Simulation.AddCrossing(new Crossing_B(picBoxNumber));
                     finalImage = ProCP.Properties.Resources.Crossing_b;
                 }
 
@@ -178,6 +178,10 @@ namespace ProCP
 
         private void unselectCurrentCrossing()
         {
+            if (selectedPicBox == null)
+            {
+                return;
+            }
             PictureBox selectedBefore = selectedPicBox;
 
             selectedPicBox = null;
@@ -192,6 +196,10 @@ namespace ProCP
 
         private void pictureBoxOnClick(object sender, EventArgs e)
         {
+            if (play)
+            {
+                return;
+            }
             int x = 0;
             int y = 0;
             string z = "";
@@ -201,8 +209,6 @@ namespace ProCP
 
             selectedID = GetNumberOfPicturebox(self);
 
-            surrounded = Simulation.Surrounded(selectedID);
-
             if (!Simulation.CrossingExist(selectedID))
             {
                 selectedID = 0;
@@ -210,6 +216,7 @@ namespace ProCP
                 MessageBox.Show("No crossing selected.");
                 return;
             }
+            surrounded = Simulation.Surrounded(selectedID);
             if (self.Image == crossingType1.Image)
             {
                 Simulation.getProperties(selectedID, ref x, ref y, ref z);
@@ -322,20 +329,28 @@ namespace ProCP
         private void Play()
         {
             play = true;
+            this.unselectCurrentCrossing();
             btnPlay.Text = "STOP SIMULATION";
             btnToggleLight.Enabled = true;
             enableNum();
-
+            this.DisableEditing();
             Simulation.Start();
-            //Simulation.CreateCars();
+            this.unselectCurrentCrossing();
         }
 
         private void Stop()
         {
+            Simulation.ClearCrossings();
+            Simulation.Stop();
+            TimerSimulation.Stop();
             play = false;
             btnPlay.Text = "PLAY SIMULATION";
             btnToggleLight.Enabled = false;
-            Unlock();
+            this.EnableEditing();
+            Unlock(); foreach (PictureBox i in ControlList)
+            {
+                i.Invalidate();
+            }
         }
 
         private void Lock()
@@ -969,5 +984,22 @@ namespace ProCP
             }
         }
 
+        private void DisableEditing()
+        {
+            numericCars.Enabled = false;
+            numericTrafficTime.Enabled = false;
+            cBPedTraffic.Enabled = false;
+            btnFinishCrossing.Enabled = false;
+            btnRemove.Enabled = false;
+        }
+
+        private void EnableEditing()
+        {
+            numericCars.Enabled = true;
+            numericTrafficTime.Enabled = true;
+            cBPedTraffic.Enabled = true;
+            btnFinishCrossing.Enabled = true;
+            btnRemove.Enabled = true;
+        }
     }
 }

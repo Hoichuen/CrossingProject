@@ -74,7 +74,9 @@ namespace ProCP
         /// </summary>
         public void Start()
         {
+            TotalNumberCars = 0;
             Watch.Reset();
+            TotalNumberofSwitches = 0;
             foreach (Crossing i in Crossings)
             {
                 TotalNumberCars += i.NumCars;
@@ -90,7 +92,10 @@ namespace ProCP
         /// stops the stopwatch
         /// </summary>
         public void Stop() 
-        { 
+        {
+            aTimer.Stop();
+            t.Join();
+            t.Interrupt();
             Watch.Stop(); 
         }
 
@@ -622,5 +627,25 @@ namespace ProCP
         }
 
         #endregion
+
+        public void ClearCrossings()
+        {
+            List<Crossing> tmp = new List<Crossing>();
+            foreach (Crossing i in crossings)
+            {
+                Crossing temp = new Crossing(-1);
+                if (i.GetType() == typeof(Crossing_A))
+                {
+                    temp = new Crossing_A(i.CrossingId);
+                }
+                else
+                {
+                    temp = new Crossing_B(i.CrossingId);
+                }
+                tmp.Add(temp);
+            }
+            crossings.Clear();
+            crossings.AddRange(tmp);
+        }
     }
 }

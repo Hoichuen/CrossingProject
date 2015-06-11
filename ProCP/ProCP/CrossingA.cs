@@ -19,7 +19,7 @@ namespace ProCP
         /// Constructor where the intra crossing connections are made
         /// </summary>
         /// <param name="crossingId"></param>
-        public Crossing_A(int crossingId, Point position) : base(crossingId)
+        public Crossing_A(int crossingId) : base(crossingId)
         {
             lanes = new List<TrafficLane>();
             tLanes = new List<TrafficLane>();
