@@ -127,21 +127,17 @@ namespace ProCP
                 bool result = false;
                 int picBoxNumber = GetNumberOfPicturebox(self);
 
-                Image finalImage;
-
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
                 {
                     result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
-                    finalImage = ProCP.Properties.Resources.Crossing_a;
                 }
                 else
                 {
                     result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
-                    finalImage = ProCP.Properties.Resources.Crossing_b;
                 }
 
                 if (result)
-                    self.Image = finalImage;
+                    self.Image = (Image)e.Data.GetData(DataFormats.Bitmap);
 
                 return;
             }
@@ -457,8 +453,11 @@ namespace ProCP
         private void pictureBoxOnPaint(object sender, PaintEventArgs e)
         {
             PictureBox self = (PictureBox)sender;
+
             Artist painter = new Artist(e);
             Crossing crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
+
+            if (crossing == null)
 
             if (null != selectedPicBox)
             {
@@ -495,8 +494,6 @@ namespace ProCP
             List<Car> tempCars = new List<Car>();
             foreach (Crossing item in Simulation.Crossings)
             {
-                crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
-
                 if (!item.Equals(crossing))
                     continue;
 

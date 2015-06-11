@@ -348,7 +348,6 @@ namespace ProCP
             DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(Simulation));
             dataContractSerializer.WriteObject(writer, this);
 
-
             writer.Close();
         }
 
