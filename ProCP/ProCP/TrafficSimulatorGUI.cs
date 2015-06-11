@@ -946,7 +946,7 @@ namespace ProCP
                 if (play)
                 {
                     
-                    this.labelTime.Text = Simulation.Watch.Elapsed.Minutes +":"+ Simulation.Watch.Elapsed.Seconds;
+                    this.labelTime.Text = Simulation.Watch.Elapsed.Minutes +" Minutes "+ Simulation.Watch.Elapsed.Seconds+" Seconds";
                     foreach (Crossing c in Simulation.Crossings)
                     {
                         foreach (TrafficLane l in c.Lanes)
