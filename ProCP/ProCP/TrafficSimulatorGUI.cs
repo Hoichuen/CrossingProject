@@ -973,9 +973,9 @@ namespace ProCP
                         if (c.GetType() == typeof(Crossing_B))
                         {
                             Crossing_B b = (Crossing_B)c;
-                            foreach (Pedestrian p in b.pedestrians)
+                            for (int p=0; p < b.GetNumberOfPedesToMove();p++ )
                             {
-                                p.Walk();
+                                b.pedestrians[p].Walk();
                             }
                         }
 

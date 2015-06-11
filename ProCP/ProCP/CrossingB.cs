@@ -121,7 +121,9 @@ namespace ProCP
         }
         public void CreatePedestrians()
         {
-            for (int i = 0; i < numPeds; i++)
+            int howMany=0;
+            if (style == "Quiet") howMany = 15; if (style == "Busy") howMany = 50;
+            for (int i = 0; i < howMany; i++)
             {
                 pedestrians.Add(new Pedestrian(i, Color.Black, 1, this)); //pedid and color are not needed as far as i can see 
                 // but i left them just in case
