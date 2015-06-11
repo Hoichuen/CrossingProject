@@ -26,11 +26,6 @@ namespace ProCP
             set { pLight = value; }
         }
 
-        //Constructor
-<<<<<<< HEAD
-
-        public PedestrianLane(int iD, List<Point> points, PedestrianLight pLight)
-=======
         /// <summary>
         /// A constructor for Pedestrian lane
         /// </summary>
@@ -39,7 +34,6 @@ namespace ProCP
         /// <param name="pLight">the light object on the lane</param>
         /// <param name="crossing">the crossing this lane belongs to</param>
         public PedestrianLane(int iD, List<Point> points, PedestrianLight pLight,Crossing_B crossing)
->>>>>>> origin/master
             : base(iD, points)
         {
             this.PLight = pLight;
