@@ -153,7 +153,7 @@ namespace ProCP
             else
             {
                 this.CurrentLane.Cars.Remove(this);
-                TrafficSimulatorGUI.count++;
+                TrafficSimulatorGUI.count--;
             }
         }
 

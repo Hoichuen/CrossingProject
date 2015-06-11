@@ -78,16 +78,16 @@
             this.aboutTrafficSimulatorToolStripMenuAboutTFS = new System.Windows.Forms.ToolStripMenuItem();
             this.TimerSimulation = new System.Windows.Forms.Timer(this.components);
             this.gBStatistics = new System.Windows.Forms.GroupBox();
-            this.labelPedestrians = new System.Windows.Forms.Label();
             this.labelLightSwitches = new System.Windows.Forms.Label();
             this.labelCarsRemaining = new System.Windows.Forms.Label();
             this.labelCarsAdded = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
             this.labelTimer = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.labelCrossingNumbers = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericTrafficTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid16)).BeginInit();
@@ -642,11 +642,11 @@
             // gBStatistics
             // 
             this.gBStatistics.BackColor = System.Drawing.Color.Transparent;
-            this.gBStatistics.Controls.Add(this.labelPedestrians);
+            this.gBStatistics.Controls.Add(this.labelCrossingNumbers);
+            this.gBStatistics.Controls.Add(this.label7);
             this.gBStatistics.Controls.Add(this.labelLightSwitches);
             this.gBStatistics.Controls.Add(this.labelCarsRemaining);
             this.gBStatistics.Controls.Add(this.labelCarsAdded);
-            this.gBStatistics.Controls.Add(this.label7);
             this.gBStatistics.Controls.Add(this.label6);
             this.gBStatistics.Controls.Add(this.label5);
             this.gBStatistics.Controls.Add(this.label1);
@@ -660,85 +660,65 @@
             this.gBStatistics.TabStop = false;
             this.gBStatistics.Text = "Statistics";
             // 
-            // labelPedestrians
-            // 
-            this.labelPedestrians.AutoSize = true;
-            this.labelPedestrians.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPedestrians.Location = new System.Drawing.Point(163, 152);
-            this.labelPedestrians.Name = "labelPedestrians";
-            this.labelPedestrians.Size = new System.Drawing.Size(51, 18);
-            this.labelPedestrians.TabIndex = 9;
-            this.labelPedestrians.Text = "label11";
-            // 
             // labelLightSwitches
             // 
             this.labelLightSwitches.AutoSize = true;
             this.labelLightSwitches.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLightSwitches.Location = new System.Drawing.Point(177, 120);
+            this.labelLightSwitches.Location = new System.Drawing.Point(177, 164);
             this.labelLightSwitches.Name = "labelLightSwitches";
-            this.labelLightSwitches.Size = new System.Drawing.Size(51, 18);
+            this.labelLightSwitches.Size = new System.Drawing.Size(15, 18);
             this.labelLightSwitches.TabIndex = 8;
-            this.labelLightSwitches.Text = "label10";
+            this.labelLightSwitches.Text = "0";
             // 
             // labelCarsRemaining
             // 
             this.labelCarsRemaining.AutoSize = true;
             this.labelCarsRemaining.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCarsRemaining.Location = new System.Drawing.Point(177, 83);
+            this.labelCarsRemaining.Location = new System.Drawing.Point(177, 119);
             this.labelCarsRemaining.Name = "labelCarsRemaining";
-            this.labelCarsRemaining.Size = new System.Drawing.Size(44, 18);
+            this.labelCarsRemaining.Size = new System.Drawing.Size(15, 18);
             this.labelCarsRemaining.TabIndex = 7;
-            this.labelCarsRemaining.Text = "label9";
+            this.labelCarsRemaining.Text = "0";
             // 
             // labelCarsAdded
             // 
             this.labelCarsAdded.AutoSize = true;
             this.labelCarsAdded.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCarsAdded.Location = new System.Drawing.Point(158, 46);
+            this.labelCarsAdded.Location = new System.Drawing.Point(177, 82);
             this.labelCarsAdded.Name = "labelCarsAdded";
-            this.labelCarsAdded.Size = new System.Drawing.Size(44, 18);
+            this.labelCarsAdded.Size = new System.Drawing.Size(15, 18);
             this.labelCarsAdded.TabIndex = 6;
-            this.labelCarsAdded.Text = "label8";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 152);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(151, 18);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "How many pedestrians:";
+            this.labelCarsAdded.Text = "0";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 120);
+            this.label6.Location = new System.Drawing.Point(6, 164);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(165, 18);
+            this.label6.Size = new System.Drawing.Size(163, 18);
             this.label6.TabIndex = 4;
-            this.label6.Text = "How many light switches:";
+            this.label6.Text = "Number of light switches:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 46);
+            this.label5.Location = new System.Drawing.Point(6, 82);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(146, 18);
+            this.label5.Size = new System.Drawing.Size(144, 18);
             this.label5.TabIndex = 3;
-            this.label5.Text = "How many cars added:";
+            this.label5.Text = "Number of cars added:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 83);
+            this.label1.Location = new System.Drawing.Point(6, 119);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 18);
+            this.label1.Size = new System.Drawing.Size(165, 18);
             this.label1.TabIndex = 2;
-            this.label1.Text = "How many cars remaning:";
+            this.label1.Text = "Number of cars remaning:";
             // 
             // labelTime
             // 
@@ -759,6 +739,26 @@
             this.labelTimer.Size = new System.Drawing.Size(47, 18);
             this.labelTimer.TabIndex = 0;
             this.labelTimer.Text = "Timer:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(6, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(135, 18);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Number of crossings:";
+            // 
+            // labelCrossingNumbers
+            // 
+            this.labelCrossingNumbers.AutoSize = true;
+            this.labelCrossingNumbers.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCrossingNumbers.Location = new System.Drawing.Point(177, 46);
+            this.labelCrossingNumbers.Name = "labelCrossingNumbers";
+            this.labelCrossingNumbers.Size = new System.Drawing.Size(15, 18);
+            this.labelCrossingNumbers.TabIndex = 10;
+            this.labelCrossingNumbers.Text = "0";
             // 
             // TrafficSimulatorGUI
             // 
@@ -871,10 +871,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelTimer;
-        private System.Windows.Forms.Label labelPedestrians;
         private System.Windows.Forms.Label labelLightSwitches;
         private System.Windows.Forms.Label labelCarsRemaining;
         private System.Windows.Forms.Label labelCarsAdded;
+        private System.Windows.Forms.Label labelCrossingNumbers;
         private System.Windows.Forms.Label label7;
 
 
