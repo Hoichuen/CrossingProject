@@ -45,16 +45,5 @@ namespace ProCP
         {
             this.ID = iD++;
         }
-
-        //Methods
-
-        /// <summary>
-        /// Returns the crossing this lane is on
-        /// </summary>
-        /// <returns></returns>
-        public Crossing GetCrossing()
-        {
-            return null;
-        }
     }
 }

@@ -17,12 +17,14 @@ namespace ProCP
 
         private const int TRAFFIC_LIGHT_BOX_WIDTH = 7;
         private const int TRAFFIC_LIGHT_BOX_HEIGHT = 5;
+        private const int TRAFFIC_LIGHT_WIDTH = 6;
+        private const int TRAFFIC_LIGHT_HEIGHT = 4;
         private const int NUM_TRAFFIC_LIGHTS_A = 8;
         private const int NUM_TRAFFIC_LIGHTS_B = 6;
         private const int NUM_TRAFFIC_LIGHTS_SPOTS = 3;
 
         private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_A = { 51, 58, 160, 160, 160, 167, 42, 42 };
-        private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_A = { 30, 30, 37, 42, 112, 112, 112, 117 };
+        private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_A = { 30, 30, 37, 42, 112, 112, 117, 112 };
 
         private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_B = { 55, 159, 159, 156, 41, 41 };
         private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_B = { 0, 36, 41, 142, 111, 116 };
@@ -36,7 +38,60 @@ namespace ProCP
 
         #region Lights
 
+        public void drawTrafficLight(TrafficLane lane, bool state)
+        {
+            Rectangle r;
+            SolidBrush brush = new SolidBrush(Color.Red);
 
+            if (state)
+                brush.Color = Color.Green;
+
+            Point point = getCoordinatesForTrafficLight(lane, state);
+
+            r = new Rectangle(point.X, point.Y, TRAFFIC_LIGHT_WIDTH, TRAFFIC_LIGHT_HEIGHT);
+
+            painter.Graphics.FillRectangle(brush, r);
+        }
+
+        private Point getCoordinatesForTrafficLight(TrafficLane l, bool state)
+        {
+            Crossing c = l.Parent;
+            bool isVertical = false;
+            int x = 0;
+            int y = 0;
+
+            if (c is Crossing_A)
+            {
+                x = LIGHT_STRUCT_X_SPOTS_CROSSING_A[l.ID - 4] + 1;
+                y = LIGHT_STRUCT_Y_SPOTS_CROSSING_A[l.ID - 4] + 1;
+
+                switch (l.ID)
+                {
+                    case 4:
+                    case 5:
+                    case 8:
+                    case 9:
+                        isVertical = true;
+                        break;
+                    default:
+                        isVertical = false;
+                        break;
+                }
+            }
+
+            if (state)
+            {
+                if (isVertical) {
+                    y += TRAFFIC_LIGHT_BOX_HEIGHT * 2;
+                }
+                else
+                {
+                    x += TRAFFIC_LIGHT_BOX_WIDTH * 2;
+                }
+            }
+
+            return new Point(x, y);
+        }
 
         /*
         public void drawLightStructureCrossingA()

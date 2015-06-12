@@ -490,7 +490,7 @@ namespace ProCP
 
             #region Drawing Cars
 
-            // Drawing cars, yay
+            // Drawing cars and lights, yay
             List<Car> tempCars = new List<Car>();
             foreach (Crossing item in Simulation.Crossings)
             {
@@ -499,6 +499,9 @@ namespace ProCP
 
                 foreach (TrafficLane j in item.Lanes)
                 {
+                    if (j.TrafficLight != null)
+                        painter.drawTrafficLight(j, j.TrafficLight.State);
+
                     foreach (Car c in j.Cars)
                     {
                         painter.drawCar(c, j.Direction);
