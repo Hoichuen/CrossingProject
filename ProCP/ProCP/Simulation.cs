@@ -80,10 +80,10 @@ namespace ProCP
             foreach (Crossing i in Crossings)
             {
                 TotalNumberCars += i.NumCars;
-                if (i.GetType() == typeof(Crossing_B))
-                {
-                    Crossing_B temp = (Crossing_B)i;
-                }
+                //if (i.GetType() == typeof(Crossing_B))
+                //{
+                //    Crossing_B temp = (Crossing_B)i;
+                //}
             }
             Watch.Start();
             CreateCars();
@@ -323,6 +323,7 @@ namespace ProCP
 
                     // car = new Car(count, c, item); // DEBUG
                     car = new Car(c, tmp.ElementAt(rnd.Next(tmp.Count())));
+                    
 
                     cars.Add(car);
                 }
