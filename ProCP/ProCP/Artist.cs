@@ -78,6 +78,22 @@ namespace ProCP
                         break;
                 }
             }
+            else
+            {
+                x = LIGHT_STRUCT_X_SPOTS_CROSSING_B[l.ID - 4] + 1;
+                y = LIGHT_STRUCT_Y_SPOTS_CROSSING_B[l.ID - 4] + 1;
+
+                switch (l.ID)
+                {
+                    case 4:
+                    case 7:
+                        isVertical = true;
+                        break;
+                    default:
+                        isVertical = false;
+                        break;
+                }
+            }
 
             if (state)
             {
