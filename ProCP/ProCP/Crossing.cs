@@ -4,9 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ProCP
 {
+    [KnownType(typeof(Crossing))]
+    [KnownType(typeof(Crossing_A))]
+    [KnownType(typeof(Crossing_B))]
+    [KnownType(typeof(Car))]
+    [KnownType(typeof(Light))]
+    [KnownType(typeof(TrafficLane))]
+    [KnownType(typeof(Lane))]
+    [KnownType(typeof(Pedestrian))]
+    [KnownType(typeof(PedestrianLane))]
+    [KnownType(typeof(PedestrianLight))]
+    [DataContract(Name = "Crossing")]
     class Crossing
     {
         //Fields
@@ -30,6 +42,8 @@ namespace ProCP
         /// <summary>
         /// The Green time
         /// </summary>
+        /// 
+        [DataMember(Name = "Time")]
         public TimeSpan Time
         {
             get { return time; }
@@ -39,6 +53,8 @@ namespace ProCP
         /// <summary>
         /// the total number of Cars in this crossing
         /// </summary>
+        /// 
+         [DataMember(Name = "NumCars")]
         public int NumCars
         {
             get { return numCars; }
@@ -48,6 +64,8 @@ namespace ProCP
         /// <summary>
         /// Each crossing is unique and cannot have more than 12
         /// </summary>
+        /// 
+        [DataMember(Name = "CrossingId")]
         public int CrossingId
         {
             get { return crossingId; }
@@ -57,6 +75,8 @@ namespace ProCP
         /// <summary>
         /// The list of traffic lanes on the crossing
         /// </summary>
+        /// 
+        [DataMember(Name = "Lanes")]
         public List<TrafficLane> Lanes
         {
             get { return lanes; }

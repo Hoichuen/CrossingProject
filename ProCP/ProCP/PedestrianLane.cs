@@ -4,18 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ProCP
 {
+    [DataContract(Name = "PedestrianLane")]
     class PedestrianLane : Lane
     {
         //Fields
-     
-        PedestrianLight pLight; 
+
+        PedestrianLight pLight;
         Crossing_B parent;
 
         //Properties
-    
+
 
         /// <summary>
         /// A light object on the pedestrian lane
@@ -33,7 +35,7 @@ namespace ProCP
         /// <param name="points">a list of points on the lane</param>
         /// <param name="pLight">the light object on the lane</param>
         /// <param name="crossing">the crossing this lane belongs to</param>
-        public PedestrianLane(int iD, List<Point> points, PedestrianLight pLight,Crossing_B crossing)
+        public PedestrianLane(int iD, List<Point> points, PedestrianLight pLight, Crossing_B crossing)
             : base(iD, points)
         {
             this.PLight = pLight;
@@ -45,7 +47,7 @@ namespace ProCP
         /// Gets the crossing that owns the lane
         /// </summary>
         /// <returns>an object of type crossing B</returns>
-       
+
         public Crossing_B GetCrossingB()
         {
             return parent;

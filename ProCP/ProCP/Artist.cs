@@ -68,7 +68,8 @@ namespace ProCP
             {
                 for (int j = 0; j < NUM_TRAFFIC_LIGHTS_SPOTS; j++)
                 {
-                    if (isNextTrafficLightVertical(t, i)) {
+                    if (isNextTrafficLightVertical(t, i))
+                    {
                         drawEmptyRect(
                             LIGHT_STRUCTURE_COLOR,
                             xSpots[i],
@@ -91,10 +92,14 @@ namespace ProCP
 
         private bool isNextTrafficLightVertical(System.Type t, int index)
         {
-            if (t.Equals(typeof(Crossing_A))) {
+            if (t.Equals(typeof(Crossing_A)))
+            {
                 switch (index)
-	            {
-                    case 0: case 1: case 4: case 5:
+                {
+                    case 0:
+                    case 1:
+                    case 4:
+                    case 5:
                         return true;
                 }
             }
@@ -104,7 +109,7 @@ namespace ProCP
 
             return false;
         }
-        
+
         #endregion
 
         #region Cars

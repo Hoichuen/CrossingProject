@@ -12,7 +12,17 @@ using System.Threading;
 
 namespace ProCP
 {
-
+    [KnownType(typeof(Crossing))]
+    [KnownType(typeof(Crossing_A))]
+    [KnownType(typeof(Crossing_B))]
+    [KnownType(typeof(Car))]
+    [KnownType(typeof(Light))]
+    [KnownType(typeof(TrafficLane))]
+    [KnownType(typeof(Lane))]
+    [KnownType(typeof(Pedestrian))]
+    [KnownType(typeof(PedestrianLane))]
+    [KnownType(typeof(PedestrianLight))]
+    [DataContract(Name = "Simulation")]
     class Simulation
     {
         /// <summary>
@@ -91,12 +101,12 @@ namespace ProCP
         /// <summary>
         /// stops the stopwatch
         /// </summary>
-        public void Stop() 
+        public void Stop()
         {
             aTimer.Stop();
             t.Join();
             t.Interrupt();
-            Watch.Stop(); 
+            Watch.Stop();
         }
 
         /// <summary>
@@ -323,7 +333,7 @@ namespace ProCP
 
                     // car = new Car(count, c, item); // DEBUG
                     car = new Car(c, tmp.ElementAt(rnd.Next(tmp.Count())));
-                    
+
 
                     cars.Add(car);
                 }
@@ -351,8 +361,8 @@ namespace ProCP
             Saved = true;
 
             FileStream writer = new FileStream(filename, FileMode.Create);
-            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(Simulation));
-            dataContractSerializer.WriteObject(writer, this);
+            DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(List<Crossing>));
+            dataContractSerializer.WriteObject(writer, crossings);
 
 
             writer.Close();
@@ -363,19 +373,21 @@ namespace ProCP
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public static Simulation Load(string filename)
+        public bool Load(string filename)
         {
-            Simulation ret;
+            //List<Crossing> ret;
 
             FileStream fs = new FileStream(filename, FileMode.Open);
             XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
-            DataContractSerializer ser = new DataContractSerializer(typeof(Simulation));
-            ret = (Simulation)ser.ReadObject(reader, true);
+            DataContractSerializer ser = new DataContractSerializer(typeof(List<Crossing>));
+            List<Crossing> deserializedCrossings = (List<Crossing>)ser.ReadObject(reader, true);
+           // ret = (Simulation)ser.ReadObject(reader, true);
 
+            crossings = deserializedCrossings;
             reader.Close();
             fs.Close();
 
-            return ret;
+            return true;
         }
 
         /// <summary>

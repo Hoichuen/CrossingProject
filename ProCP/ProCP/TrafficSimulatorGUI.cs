@@ -402,7 +402,7 @@ namespace ProCP
                 }
                 if (!surrounded)
                 {
-                numericCars.Enabled = true;
+                    numericCars.Enabled = true;
                 }
 
                 this.numericTrafficTime.Enabled = true;
@@ -807,7 +807,7 @@ namespace ProCP
             Simulation = new Simulation();
             //Making a new instance of the circuit object
             ClearAll();
-            this.Invalidate();        
+            this.Invalidate();
         }
 
         public void ClearAll()
@@ -870,20 +870,20 @@ namespace ProCP
 
         public bool LoadFromFile()
         {
-            Simulation ret = GetFromFile();
+            //Simulation ret = GetFromFile();
 
-            if (ret == null)
-            {
-                return false;
-            }
+            //if (ret == null)
+            //{
+            //    return false;
+            //}
 
-            this.Invalidate();
-            return true;
+            //this.Invalidate();
+            return GetFromFile();
         }
 
-        private Simulation GetFromFile()
+        private bool GetFromFile()
         {
-            Simulation ret;
+            //Simulation ret;
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML file|*.xml";
@@ -892,22 +892,27 @@ namespace ProCP
 
             if (openFileDialog.ShowDialog() != DialogResult.OK)
             {
-                return null;
+                return false;
             }
 
-            try
-            {
-                ret = Simulation.Load(openFileDialog.FileName);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Something went wrong");
-                return null;
-            }
+            Simulation.Name = openFileDialog.FileName;
+            Simulation.Load(openFileDialog.FileName);
+            this.Invalidate();
 
-            ret.Name = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+            //try
+            //{
+            //    ret = Simulation.Load(openFileDialog.FileName);
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Something went wrong");
+            //    return null;
+            //}
 
-            return ret;
+           // ret.Name = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
+
+            //return ret;
+            return true;
         }
 
         private void saveAsToolStripMenuSaveAs_Click(object sender, EventArgs e)
@@ -933,8 +938,8 @@ namespace ProCP
             {
                 if (play)
                 {
-                    
-                    this.labelTime.Text = Simulation.Watch.Elapsed.Minutes +" Minutes "+ Simulation.Watch.Elapsed.Seconds+" Seconds";
+
+                    this.labelTime.Text = Simulation.Watch.Elapsed.Minutes + " Minutes " + Simulation.Watch.Elapsed.Seconds + " Seconds";
                     this.labelCarsAdded.Text = Simulation.TotalNumberCars.ToString();
                     this.labelCarsRemaining.Text = count.ToString();
                     this.labelLightSwitches.Text = Simulation.TotalNumberofSwitches.ToString();
@@ -967,7 +972,7 @@ namespace ProCP
                         if (c.GetType() == typeof(Crossing_B))
                         {
                             Crossing_B b = (Crossing_B)c;
-                            for (int p=0; p < b.GetNumberOfPedesToMove();p++ )
+                            for (int p = 0; p < b.GetNumberOfPedesToMove(); p++)
                             {
                                 b.pedestrians[p].Walk();
                             }
