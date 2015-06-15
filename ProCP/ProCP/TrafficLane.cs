@@ -32,6 +32,8 @@ namespace ProCP
         /// <summary>
         /// Feeder or end lane, or just a connecting lane
         /// </summary>
+        /// 
+        [DataMember(Name = "LaneType")]
         public bool? LaneType
         {
             get { return laneType; }
@@ -41,6 +43,8 @@ namespace ProCP
         /// <summary>
         /// Whether or not the lane is going toward or away from the crossing 
         /// </summary>
+        /// 
+        [DataMember(Name = "ToFromCross")]
         public bool ToFromCross
         {
             get { return toFromCross; }
@@ -50,6 +54,8 @@ namespace ProCP
         /// <summary>
         /// List of trafficlights within this lane
         /// </summary>
+        /// 
+        [DataMember(Name = "TrafficLight")]
         public Light TrafficLight
         {
             get { return trafficLight; }
@@ -59,6 +65,8 @@ namespace ProCP
         /// <summary>
         /// List of cars in this lane
         /// </summary>
+        /// 
+        [DataMember(Name = "Cars")]
         public List<Car> Cars
         {
             get { return cars; }
@@ -68,6 +76,8 @@ namespace ProCP
         /// <summary>
         /// List of lanes connecting to this lane
         /// </summary>
+        /// 
+        [DataMember(Name = "Lanes")]
         public List<TrafficLane> Lanes
         {
             get { return lanes; }
@@ -78,6 +88,8 @@ namespace ProCP
         /// Which direction the lane is going much easier as an int as we can do 0 is left to right
         /// 1 is right to left, 2 is up to down, and 3 is down to up.
         /// </summary>
+        /// 
+        [DataMember(Name = "Direction")]
         public Direction Direction
         {
             get { return direction; }

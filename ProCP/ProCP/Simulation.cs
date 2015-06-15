@@ -28,8 +28,12 @@ namespace ProCP
         /// <summary>
         /// properties
         /// </summary>
+        /// 
+        [DataMember(Name = "TotalNumberCars")]
         public int TotalNumberCars { get; set; }
+        [DataMember(Name = "TotalNumberofSwitches")]
         public int TotalNumberofSwitches { get; set; }
+        [DataMember(Name = "Watch")]
         public System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
         /// <summary>
@@ -382,8 +386,8 @@ namespace ProCP
             DataContractSerializer ser = new DataContractSerializer(typeof(List<Crossing>));
             List<Crossing> deserializedCrossings = (List<Crossing>)ser.ReadObject(reader, true);
            // ret = (Simulation)ser.ReadObject(reader, true);
-
-            crossings = deserializedCrossings;
+            Crossings.Clear();
+            Crossings = deserializedCrossings;
             reader.Close();
             fs.Close();
 

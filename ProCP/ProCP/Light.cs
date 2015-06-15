@@ -11,11 +11,13 @@ namespace ProCP
     class Light
     {
 
+
         bool state;
 
         /// <summary>
         /// the state of the light
         /// </summary>
+        [DataMember(Name = "State")]
         public bool State
         {
             get { return state; }

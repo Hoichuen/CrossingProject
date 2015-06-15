@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace ProCP
 {
@@ -860,25 +861,46 @@ namespace ProCP
             }
         }
 
+        private void CrossingType(Crossing crossing)
+        {
+            string sPattern = @"[0-9]+";
+
+            foreach (PictureBox pic in ControlList)
+            {
+                Match m = Regex.Match(pic.Name, sPattern);
+                int number = Convert.ToInt32(m.Value);
+                if (crossing.CrossingId == number)
+                {
+                    if (crossing.GetType() == typeof(Crossing_A))
+                    {
+                        pic.Image = ProCP.Properties.Resources.Crossing_a;
+                    }
+                    else if (crossing.GetType() == typeof(Crossing_B))
+                    {
+                        pic.Image = ProCP.Properties.Resources.Crossing_b;
+                    }
+                }
+
+            }
+
+        }
+
         private void openToolStripMenuOpen_Click(object sender, EventArgs e)
         {
-            if (!LoadFromFile())
+
+            //crossingGrid4 = 13([0-9]+)
+            if (!GetFromFile())
             {
                 MessageBox.Show("Error whilst loading file");
             }
-        }
-
-        public bool LoadFromFile()
-        {
-            //Simulation ret = GetFromFile();
-
-            //if (ret == null)
-            //{
-            //    return false;
-            //}
-
-            //this.Invalidate();
-            return GetFromFile();
+            else
+            {
+                foreach (Crossing item in Simulation.Crossings)
+                {
+                    CrossingType(item);
+                }
+                
+            }
         }
 
         private bool GetFromFile()
@@ -899,19 +921,6 @@ namespace ProCP
             Simulation.Load(openFileDialog.FileName);
             this.Invalidate();
 
-            //try
-            //{
-            //    ret = Simulation.Load(openFileDialog.FileName);
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Something went wrong");
-            //    return null;
-            //}
-
-           // ret.Name = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
-
-            //return ret;
             return true;
         }
 

@@ -14,6 +14,7 @@ namespace ProCP
         //Fields
         int pedId = 1;
         PedestrianLane lane;
+        [DataMember(Name = "position")]
         Point position = new Point();
         Crossing_B crossing;
         Point StartPosition = new Point();
@@ -23,6 +24,7 @@ namespace ProCP
         /// <summary>
         /// Each pedestrian is unique
         /// </summary>
+        [DataMember(Name = "State")]
         public int PedId
         {
             get { return pedId; }
@@ -32,6 +34,8 @@ namespace ProCP
         /// <summary>
         /// The lane of the pedestrian
         /// </summary>
+
+        [DataMember(Name = "PedLane")]
         public PedestrianLane Lane
         {
             get { return lane; }
@@ -60,19 +64,12 @@ namespace ProCP
         /// Returns the Point position of the pedestrian
         /// </summary>
         /// <returns></returns>
+
+
         public Point getPosition()
         {
 
             return position;
-        }
-
-        /// <summary>
-        /// Returns the pedestrian's lane
-        /// </summary>
-        /// <returns></returns>
-        PedestrianLane getLane()
-        {
-            return lane;
         }
 
         /// <summary>

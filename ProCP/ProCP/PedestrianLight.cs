@@ -13,6 +13,7 @@ namespace ProCP
         //Fields
         bool sensor = false;
 
+        [DataMember(Name = "Sensor")]
         public bool Sensor
         {
             get { return sensor; }
