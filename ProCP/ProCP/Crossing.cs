@@ -67,8 +67,6 @@ namespace ProCP
         /// <summary>
         /// The list of traffic lanes on the crossing
         /// </summary>
-        /// 
-        [DataMember(Name = "Lanes")]
         public List<TrafficLane> Lanes
         {
             get { return lanes; }

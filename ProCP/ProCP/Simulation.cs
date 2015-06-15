@@ -18,12 +18,8 @@ namespace ProCP
         /// <summary>
         /// properties
         /// </summary>
-        /// 
-        [DataMember(Name = "TotalNumberCars")]
         public int TotalNumberCars { get; set; }
-        [DataMember(Name = "TotalNumberofSwitches")]
         public int TotalNumberofSwitches { get; set; }
-        [DataMember(Name = "Watch")]
         public System.Diagnostics.Stopwatch Watch = new System.Diagnostics.Stopwatch();
 
         /// <summary>
