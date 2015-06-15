@@ -12,16 +12,6 @@ using System.Threading;
 
 namespace ProCP
 {
-    [KnownType(typeof(Crossing))]
-    [KnownType(typeof(Crossing_A))]
-    [KnownType(typeof(Crossing_B))]
-    [KnownType(typeof(Car))]
-    [KnownType(typeof(Light))]
-    [KnownType(typeof(TrafficLane))]
-    [KnownType(typeof(Lane))]
-    [KnownType(typeof(Pedestrian))]
-    [KnownType(typeof(PedestrianLane))]
-    [KnownType(typeof(PedestrianLight))]
     [DataContract(Name = "Simulation")]
     class Simulation
     {

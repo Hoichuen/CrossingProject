@@ -8,7 +8,6 @@ using System.Runtime.Serialization;
 
 namespace ProCP
 {
-    [DataContract(Name = "Car")]
     class Car
     {
         //Fields

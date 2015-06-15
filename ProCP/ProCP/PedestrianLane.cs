@@ -22,8 +22,6 @@ namespace ProCP
         /// <summary>
         /// A light object on the pedestrian lane
         /// </summary>
-        
-        [DataMember(Name = "PLight")]
         public PedestrianLight PLight
         {
             get { return pLight; }

@@ -13,7 +13,6 @@ namespace ProCP
     {
         public List<PedestrianLane> pLanes;
         public List<Pedestrian> pedestrians;
-        [DataMember(Name = "Style")]
         public string style;
         List<TrafficLane> lanes;
         List<TrafficLane> tLanes;

@@ -30,6 +30,7 @@ namespace ProCP
         List<Control> ControlList = new List<Control>();
         PictureBox selectedPicBox = null;
         List<PictureBox> crossPic = new List<PictureBox>();
+        List<Crossing> tempCrossing = new List<Crossing>();
 
         //Crossing CurrentCrossing; //Never used
         Simulation Simulation;
@@ -887,8 +888,35 @@ namespace ProCP
 
         private void openToolStripMenuOpen_Click(object sender, EventArgs e)
         {
+            debug = this.cBDebugPoint.Checked;
+            cardebug = this.cBDebugCars.Checked;
 
-            //crossingGrid4 = 13([0-9]+)
+            if (selectedPicBox != null)
+            {
+                unselectCurrentCrossing();
+            }
+
+            if (Simulation.Saved == true)
+            {
+                Clear();
+            }
+            else
+            {
+                DialogResult dResult = MessageBox.Show("Would you like to save your changes? Unsaved changes will be lost.", "New simulation", MessageBoxButtons.YesNoCancel);
+                if (dResult == DialogResult.Yes)
+                {
+                    Simulation.SaveAs(Simulation.Name);
+                    SaveToFile();
+
+                    Clear();
+                }
+                else if (dResult == DialogResult.No)
+                {
+                    Clear();
+                }
+            }
+
+
             if (!GetFromFile())
             {
                 MessageBox.Show("Error whilst loading file");
@@ -897,16 +925,32 @@ namespace ProCP
             {
                 foreach (Crossing item in Simulation.Crossings)
                 {
-                    CrossingType(item);
+                    tempCrossing.Add(item);
                 }
-                
+                Simulation.Crossings.Clear();
+
+                foreach (Crossing cr in tempCrossing)
+                {
+                    if (cr.GetType() == typeof(Crossing_A))
+                    {
+                        Crossing_A cra = new Crossing_A(cr.CrossingId);
+                        Simulation.AddCrossing(cra);
+                        CrossingType(cra);
+                    }
+                    else
+                    {
+                        Crossing_B crb = new Crossing_B(cr.CrossingId);
+                        Simulation.AddCrossing(crb);
+                        CrossingType(crb);
+                    }
+
+                }
+
             }
         }
 
         private bool GetFromFile()
         {
-            //Simulation ret;
-
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML file|*.xml";
             openFileDialog.Title = "Load a circuit file";

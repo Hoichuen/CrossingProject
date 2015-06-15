@@ -11,13 +11,9 @@ namespace ProCP
     [KnownType(typeof(Crossing))]
     [KnownType(typeof(Crossing_A))]
     [KnownType(typeof(Crossing_B))]
-    [KnownType(typeof(Car))]
-    [KnownType(typeof(Light))]
     [KnownType(typeof(TrafficLane))]
     [KnownType(typeof(Lane))]
-    [KnownType(typeof(Pedestrian))]
     [KnownType(typeof(PedestrianLane))]
-    [KnownType(typeof(PedestrianLight))]
     [DataContract(Name = "Crossing")]
     class Crossing
     {
@@ -42,8 +38,6 @@ namespace ProCP
         /// <summary>
         /// The Green time
         /// </summary>
-        /// 
-        [DataMember(Name = "Time")]
         public TimeSpan Time
         {
             get { return time; }
@@ -53,8 +47,6 @@ namespace ProCP
         /// <summary>
         /// the total number of Cars in this crossing
         /// </summary>
-        /// 
-         [DataMember(Name = "NumCars")]
         public int NumCars
         {
             get { return numCars; }

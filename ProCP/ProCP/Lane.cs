@@ -15,7 +15,6 @@ namespace ProCP
         List<Point> points;
 
         //Properties
-        [DataMember(Name = "ID")]
         public int ID
         {
             get { return iD; }
@@ -25,7 +24,6 @@ namespace ProCP
         /// <summary>
         /// List of points the cars use
         /// </summary>
-        [DataMember(Name = "Points")]
         public List<Point> Points
         {
             get { return points; }
