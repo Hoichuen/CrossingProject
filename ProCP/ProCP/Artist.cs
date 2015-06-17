@@ -29,6 +29,9 @@ namespace ProCP
         private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_B = { 55, 159, 159, 156, 41, 41 };
         private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_B = { 0, 36, 41, 142, 111, 116 };
 
+        private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS = { 52, 157, 52, 157 };
+        private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS = { 30, 28, 126, 124 };
+
         PaintEventArgs painter;
 
         public Artist(PaintEventArgs e)
@@ -109,76 +112,60 @@ namespace ProCP
             return new Point(x, y);
         }
 
-        /*
-        public void drawLightStructureCrossingA()
+        public void drawPedestrianLight(PedestrianLane lane, bool state)
         {
-            drawLightStructure(typeof(Crossing_A));
-        }
+            Rectangle r;
+            SolidBrush brush = new SolidBrush(Color.Red);
 
-        public void drawLightStructureCrossingB()
-        {
-            drawLightStructure(typeof(Crossing_B));
-        }
+            if (state)
+                brush.Color = Color.Green;
 
-        public void drawLightStructure(System.Type t)
-        {
-            int[] xSpots = new int[8];
-            int[] ySpots = new int[8];
-            int totalTrafficLights = NUM_TRAFFIC_LIGHTS_A;
+            Point[] points = getCoordinatesForPedestrianLights(lane, state);
 
-            LIGHT_STRUCT_X_SPOTS_CROSSING_A.CopyTo(xSpots, 0);
-            LIGHT_STRUCT_Y_SPOTS_CROSSING_A.CopyTo(ySpots, 0);
-
-            // Pre-draw
-            if (t.Equals(typeof(Crossing_B)))
+            foreach (Point p in points)
             {
-                LIGHT_STRUCT_X_SPOTS_CROSSING_B.CopyTo(xSpots, 0);
-                LIGHT_STRUCT_Y_SPOTS_CROSSING_B.CopyTo(ySpots, 0);
+                r = new Rectangle(p.X, p.Y, TRAFFIC_LIGHT_WIDTH, TRAFFIC_LIGHT_HEIGHT);
 
-                totalTrafficLights = NUM_TRAFFIC_LIGHTS_B;
-            }
-
-            for (int i = 0; i < totalTrafficLights; i++)
-            {
-                for (int j = 0; j < NUM_TRAFFIC_LIGHTS_SPOTS; j++)
-                {
-                    if (isNextTrafficLightVertical(t, i)) {
-                        drawEmptyRect(
-                            LIGHT_STRUCTURE_COLOR,
-                            xSpots[i],
-                            ySpots[i] + (j * TRAFFIC_LIGHT_BOX_HEIGHT),
-                            TRAFFIC_LIGHT_BOX_WIDTH,
-                            TRAFFIC_LIGHT_BOX_HEIGHT);
-                    }
-                    else
-                    {
-                        drawEmptyRect(
-                            LIGHT_STRUCTURE_COLOR,
-                            xSpots[i] + (j * TRAFFIC_LIGHT_BOX_WIDTH),
-                            ySpots[i],
-                            TRAFFIC_LIGHT_BOX_WIDTH,
-                            TRAFFIC_LIGHT_BOX_HEIGHT);
-                    }
-                }
+                painter.Graphics.FillRectangle(brush, r);
             }
         }
 
-        private bool isNextTrafficLightVertical(System.Type t, int index)
+        private Point[] getCoordinatesForPedestrianLights(PedestrianLane l, bool state)
         {
-            if (t.Equals(typeof(Crossing_A))) {
-                switch (index)
-	            {
-                    case 0: case 1: case 4: case 5:
-                        return true;
-                }
+            Point[] points = new Point[2];
+            int x = 0;
+            int y = 0;
+            int x2 = 0;
+            int y2 = 0;
+
+            if (l.ID == 1)
+            {
+                x = LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS[0];
+                x2 = LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS[1];
+
+                y = LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS[0];
+                y2 = LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS[1];
+            }
+            else
+            {
+                x = LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS[2];
+                x2 = LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS[3];
+
+                y = LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS[2];
+                y2 = LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS[3];
             }
 
-            if ((t.Equals(typeof(Crossing_B))) && (index == 0 || index == 3))
-                return true;
+            if (state)
+            {
+                x += 7;
+                x2 += 7;
+            }
 
-            return false;
+            points[0] = new Point(x, y);
+            points[1] = new Point(x2, y2);
+
+            return points;
         }
-        */
 
         #endregion
 

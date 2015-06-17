@@ -504,17 +504,6 @@ namespace ProCP
                 }
             }
 
-            #region Drawing Lights
-
-            /*
-            if (crossing is Crossing_A)
-                painter.drawLightStructureCrossingA();
-            else if (crossing is Crossing_B)
-                painter.drawLightStructureCrossingB();
-            */
-
-            #endregion
-
             #region Drawing Cars
 
             // Drawing cars and lights, yay
@@ -523,6 +512,17 @@ namespace ProCP
             {
                 if (!item.Equals(crossing))
                     continue;
+
+                if (item is Crossing_B)
+                {
+                    foreach (PedestrianLane p in ((Crossing_B)item).pLanes)
+                    {
+                        if (p.PLight != null)
+                        {
+                            painter.drawPedestrianLight(p, p.PLight.State);
+                        }
+                    }
+                }
 
                 foreach (TrafficLane j in item.Lanes)
                 {
