@@ -160,32 +160,8 @@ namespace ProCP
 
             if (state)
             {
-<<<<<<< HEAD
-                for (int j = 0; j < NUM_TRAFFIC_LIGHTS_SPOTS; j++)
-                {
-                    if (isNextTrafficLightVertical(t, i))
-                    {
-                        drawEmptyRect(
-                            LIGHT_STRUCTURE_COLOR,
-                            xSpots[i],
-                            ySpots[i] + (j * TRAFFIC_LIGHT_BOX_HEIGHT),
-                            TRAFFIC_LIGHT_BOX_WIDTH,
-                            TRAFFIC_LIGHT_BOX_HEIGHT);
-                    }
-                    else
-                    {
-                        drawEmptyRect(
-                            LIGHT_STRUCTURE_COLOR,
-                            xSpots[i] + (j * TRAFFIC_LIGHT_BOX_WIDTH),
-                            ySpots[i],
-                            TRAFFIC_LIGHT_BOX_WIDTH,
-                            TRAFFIC_LIGHT_BOX_HEIGHT);
-                    }
-                }
-=======
                 x += 7;
                 x2 += 7;
->>>>>>> origin/17-06-Drawing-Peds
             }
 
             points[0] = new Point(x, y);
@@ -194,27 +170,11 @@ namespace ProCP
             return points;
         }
 
-<<<<<<< HEAD
-        private bool isNextTrafficLightVertical(System.Type t, int index)
-        {
-            if (t.Equals(typeof(Crossing_A)))
-            {
-                switch (index)
-                {
-                    case 0:
-                    case 1:
-                    case 4:
-                    case 5:
-                        return true;
-                }
-            }
-=======
         public void drawPedestrians(PedestrianLane lane, string pStyle) {
             Rectangle r;
             SolidBrush brush;
             Color c;
             Random random = new Random();
->>>>>>> origin/17-06-Drawing-Peds
 
             foreach (Point p in lane.Points)
             {
@@ -236,11 +196,6 @@ namespace ProCP
                 painter.Graphics.FillRectangle(brush, r);
             }
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        */
-=======
->>>>>>> origin/17-06-Drawing-Peds
 
         #endregion
 

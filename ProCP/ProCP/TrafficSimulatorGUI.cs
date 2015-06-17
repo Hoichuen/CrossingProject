@@ -421,7 +421,7 @@ namespace ProCP
             btnFinishCrossing.Text = "Lock Crossing";
 
             this.numericCars.Value = 0;
-            this.numericTrafficTime.Value = 0;
+            this.numericTrafficTime.Value = 5;
             this.cBPedTraffic.SelectedIndex = -1;
 
             btnPlay.Enabled = false;
