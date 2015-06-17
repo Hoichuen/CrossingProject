@@ -47,9 +47,5 @@ namespace ProCP
         {
             this.ID = iD++;
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/SavingLoading
     }
 }
