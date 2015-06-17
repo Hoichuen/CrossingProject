@@ -20,7 +20,6 @@ namespace ProCP
         bool debug;
         bool cardebug;
         bool eraseFlag = false;
-        bool surrounded = false;
 
         public static int count = 0;
 
@@ -337,7 +336,7 @@ namespace ProCP
 
                 Play();
                 count = Simulation.TotalNumberCars;
-                Simulation.StartThread();
+                Simulation.StartTimers();
 
             }
             else if (play)

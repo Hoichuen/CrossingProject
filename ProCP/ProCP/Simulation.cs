@@ -93,7 +93,7 @@ namespace ProCP
         /// </summary>
         public void Stop()
         {
-            StopThread();
+            StopTimers();
             Watch.Stop();
         }
 
@@ -400,35 +400,34 @@ namespace ProCP
         /// <summary>
         /// fields of the light logic
         /// </summary>
-        Thread t;
-        System.Windows.Forms.Timer aTimer;
+        System.Windows.Forms.Timer temp;
         List<System.Windows.Forms.Timer> timers = new List<System.Windows.Forms.Timer>();
 
         /// <summary>
         /// starts the thread
         /// </summary>
-        public void StartThread()
+        public void StartTimers()
         {
             foreach (Crossing c in Crossings)
             {
-                aTimer = new System.Windows.Forms.Timer();
-                aTimer.Interval = c.Time.Seconds * 1000;
-                aTimer.Enabled = true;
-                aTimer.Tick += new EventHandler((sender, e) => TickEvent(sender, e, c));
-                timers.Add(aTimer);
+                temp = new System.Windows.Forms.Timer();
+                temp.Interval = c.Time.Seconds * 1000;
+                temp.Enabled = true;
+                temp.Tick += new EventHandler((sender, e) => TickEvent(sender, e, c));
+                c.ATimer = temp;
             }
-
-            t = new Thread(Run);
-            t.Start();
+            this.StartT();
         }
 
-        private void StopThread()
+        /// <summary>
+        /// Stops the Timers
+        /// </summary>
+        private void StopTimers()
         {
-            foreach (System.Windows.Forms.Timer i in timers)
+            foreach (Crossing i in crossings)
             {
-                i.Stop();
+                i.ATimer.Start();
             }
-            t.Abort();
         }
 
         /// <summary>
@@ -549,6 +548,7 @@ namespace ProCP
                 switch (c.Turn)
                 {
                     case 1:
+                        cb.ATimer.Interval = cb.Time.Milliseconds;
                         foreach (TrafficLane l in c.Lanes)
                         {
                             if (l.TrafficLight != null)
@@ -623,6 +623,14 @@ namespace ProCP
                         }
                         break;
                     case 4:
+                        if (cb.style == "Quiet")
+                        {
+                            cb.ATimer.Interval = (int)((double)cb.Time.Milliseconds * 0.25);
+                        }
+                        else
+                        {
+                            cb.ATimer.Interval = (int)((double)cb.Time.Milliseconds * 0.75);
+                        }
                         foreach (PedestrianLane pl in cb.pLanes)
                         {
                             if (pl.PLight != null)
@@ -648,11 +656,11 @@ namespace ProCP
         /// <summary>
         /// runs the thread
         /// </summary>
-        public void Run()
+        private void StartT()
         {
-            foreach (System.Windows.Forms.Timer i in timers)
+            foreach (Crossing i in crossings)
             {
-                i.Start();
+                i.ATimer.Start();
             }
         }
 

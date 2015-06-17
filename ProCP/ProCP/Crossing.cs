@@ -24,7 +24,15 @@ namespace ProCP
         TimeSpan time;
         int numCars;
 
+        private System.Windows.Forms.Timer aTimer;
+
         //Properties
+
+        public System.Windows.Forms.Timer ATimer
+        {
+            get { return aTimer; }
+            set { aTimer = value; }
+        }
 
         /// <summary>
         /// which rotation of the lights
