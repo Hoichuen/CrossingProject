@@ -104,23 +104,24 @@ namespace ProCP
             row = this.CrossingId / 4;
             column = (this.CrossingId % 4) - 1;
             x = column * 225; y = row * 160;
+
+            int tempX = 0;
+            int tempY = 0;
+
             if (ID == 1)//this is for the top lane
             {
-
                 for (int i = 0; i < 4; i++)
                 {
-                    points.Add(new Point(x + 45, y + 20));
-                    x += 45;
-
+                    points.Add(new Point(tempX + 45, tempY + 20));
+                    tempX += 45;
                 }
             }
             else //this is for the bottom
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    points.Add(new Point(x + 45, y + 135));
-                    x += 45;
-
+                    points.Add(new Point(tempX + 45, tempY + 135));
+                    tempX += 45;
                 }
             }
             return points;
