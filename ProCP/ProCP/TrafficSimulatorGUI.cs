@@ -504,7 +504,7 @@ namespace ProCP
                 }
             }
 
-            #region Drawing Cars
+            #region Drawing Stuff
 
             // Drawing cars and lights, yay
             List<Car> tempCars = new List<Car>();
@@ -520,6 +520,7 @@ namespace ProCP
                         if (p.PLight != null)
                         {
                             painter.drawPedestrianLight(p, p.PLight.State);
+
                             if (p.PLight.State) {
                                 painter.drawPedestrians(p, ((Crossing_B)item).style);
                             }

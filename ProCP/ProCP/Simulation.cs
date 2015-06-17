@@ -410,10 +410,11 @@ namespace ProCP
             foreach (Crossing c in Crossings)
             {
                 aTimer = new System.Windows.Forms.Timer();
-                aTimer.Interval = c.Time.Seconds * 500;
+                aTimer.Interval = c.Time.Seconds * 1000;
                 aTimer.Enabled = true;
                 aTimer.Tick += new EventHandler((sender, e) => TickEvent(sender, e, c));
             }
+
             t = new Thread(Run);
             t.Start();
         }
