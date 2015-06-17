@@ -127,9 +127,11 @@ namespace ProCP
                 bool result = false;
                 int picBoxNumber = GetNumberOfPicturebox(self);
 
+                Image finalImage;
+
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
                 {
-<<<<<<< HEAD
+//<<<<<<< HEAD
                     result = Simulation.AddCrossing(new Crossing_A(picBoxNumber));
                     finalImage = ProCP.Properties.Resources.Crossing_a;
                 }
@@ -137,13 +139,13 @@ namespace ProCP
                 {
                     result = Simulation.AddCrossing(new Crossing_B(picBoxNumber));
                     finalImage = ProCP.Properties.Resources.Crossing_b;
-=======
-                    result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
-                }
-                else
-                {
-                    result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
->>>>>>> origin/15-06-Drawing-Lights
+//=======
+//                    result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
+//                }
+////                else
+////                {
+////                    result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
+//>>>>>>> origin/15-06-Drawing-Lights
                 }
 
                 if (result)
