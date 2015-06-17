@@ -13,6 +13,9 @@ namespace ProCP
         private const int CAR_WIDTH = 13;
         private const int CAR_HEIGHT = 10;
 
+        private const int PED_WIDTH = 5;
+        private const int PED_HEIGHT = 5;
+
         private readonly Color LIGHT_STRUCTURE_COLOR = Color.Black;
 
         private const int TRAFFIC_LIGHT_BOX_WIDTH = 7;
@@ -165,6 +168,33 @@ namespace ProCP
             points[1] = new Point(x2, y2);
 
             return points;
+        }
+
+        public void drawPedestrians(PedestrianLane lane, string pStyle) {
+            Rectangle r;
+            SolidBrush brush;
+            Color c;
+            Random random = new Random();
+
+            foreach (Point p in lane.Points)
+            {
+                switch (random.Next(4))
+                {
+                    case 1:
+                        c = Color.Red;
+                        break;
+                    case 2:
+                        c = Color.Blue;
+                        break;
+                    default: 
+                        c = Color.Orange;
+                        break;
+                }
+
+                brush = new SolidBrush(c);
+                r = new Rectangle(p.X, p.Y, PED_WIDTH, PED_HEIGHT);
+                painter.Graphics.FillRectangle(brush, r);
+            }
         }
 
         #endregion

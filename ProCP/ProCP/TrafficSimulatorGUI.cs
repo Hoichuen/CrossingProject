@@ -520,6 +520,9 @@ namespace ProCP
                         if (p.PLight != null)
                         {
                             painter.drawPedestrianLight(p, p.PLight.State);
+                            if (p.PLight.State) {
+                                painter.drawPedestrians(p, ((Crossing_B)item).style);
+                            }
                         }
                     }
                 }
