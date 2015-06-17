@@ -13,6 +13,9 @@ namespace ProCP
         private const int CAR_WIDTH = 13;
         private const int CAR_HEIGHT = 10;
 
+        private const int PED_WIDTH = 5;
+        private const int PED_HEIGHT = 5;
+
         private readonly Color LIGHT_STRUCTURE_COLOR = Color.Black;
 
         private const int TRAFFIC_LIGHT_BOX_WIDTH = 7;
@@ -28,6 +31,9 @@ namespace ProCP
 
         private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_B = { 55, 159, 159, 156, 41, 41 };
         private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_B = { 0, 36, 41, 142, 111, 116 };
+
+        private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS = { 52, 157, 52, 157 };
+        private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS = { 30, 28, 126, 124 };
 
         PaintEventArgs painter;
 
@@ -109,37 +115,52 @@ namespace ProCP
             return new Point(x, y);
         }
 
-        /*
-        public void drawLightStructureCrossingA()
+        public void drawPedestrianLight(PedestrianLane lane, bool state)
         {
-            drawLightStructure(typeof(Crossing_A));
-        }
+            Rectangle r;
+            SolidBrush brush = new SolidBrush(Color.Red);
 
-        public void drawLightStructureCrossingB()
-        {
-            drawLightStructure(typeof(Crossing_B));
-        }
+            if (state)
+                brush.Color = Color.Green;
 
-        public void drawLightStructure(System.Type t)
-        {
-            int[] xSpots = new int[8];
-            int[] ySpots = new int[8];
-            int totalTrafficLights = NUM_TRAFFIC_LIGHTS_A;
+            Point[] points = getCoordinatesForPedestrianLights(lane, state);
 
-            LIGHT_STRUCT_X_SPOTS_CROSSING_A.CopyTo(xSpots, 0);
-            LIGHT_STRUCT_Y_SPOTS_CROSSING_A.CopyTo(ySpots, 0);
-
-            // Pre-draw
-            if (t.Equals(typeof(Crossing_B)))
+            foreach (Point p in points)
             {
-                LIGHT_STRUCT_X_SPOTS_CROSSING_B.CopyTo(xSpots, 0);
-                LIGHT_STRUCT_Y_SPOTS_CROSSING_B.CopyTo(ySpots, 0);
+                r = new Rectangle(p.X, p.Y, TRAFFIC_LIGHT_WIDTH, TRAFFIC_LIGHT_HEIGHT);
 
-                totalTrafficLights = NUM_TRAFFIC_LIGHTS_B;
+                painter.Graphics.FillRectangle(brush, r);
+            }
+        }
+
+        private Point[] getCoordinatesForPedestrianLights(PedestrianLane l, bool state)
+        {
+            Point[] points = new Point[2];
+            int x = 0;
+            int y = 0;
+            int x2 = 0;
+            int y2 = 0;
+
+            if (l.ID == 1)
+            {
+                x = LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS[0];
+                x2 = LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS[1];
+
+                y = LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS[0];
+                y2 = LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS[1];
+            }
+            else
+            {
+                x = LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS[2];
+                x2 = LIGHT_STRUCT_X_SPOTS_CROSSING_B_PEDS[3];
+
+                y = LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS[2];
+                y2 = LIGHT_STRUCT_Y_SPOTS_CROSSING_B_PEDS[3];
             }
 
-            for (int i = 0; i < totalTrafficLights; i++)
+            if (state)
             {
+<<<<<<< HEAD
                 for (int j = 0; j < NUM_TRAFFIC_LIGHTS_SPOTS; j++)
                 {
                     if (isNextTrafficLightVertical(t, i))
@@ -161,9 +182,19 @@ namespace ProCP
                             TRAFFIC_LIGHT_BOX_HEIGHT);
                     }
                 }
+=======
+                x += 7;
+                x2 += 7;
+>>>>>>> origin/17-06-Drawing-Peds
             }
+
+            points[0] = new Point(x, y);
+            points[1] = new Point(x2, y2);
+
+            return points;
         }
 
+<<<<<<< HEAD
         private bool isNextTrafficLightVertical(System.Type t, int index)
         {
             if (t.Equals(typeof(Crossing_A)))
@@ -177,14 +208,39 @@ namespace ProCP
                         return true;
                 }
             }
+=======
+        public void drawPedestrians(PedestrianLane lane, string pStyle) {
+            Rectangle r;
+            SolidBrush brush;
+            Color c;
+            Random random = new Random();
+>>>>>>> origin/17-06-Drawing-Peds
 
-            if ((t.Equals(typeof(Crossing_B))) && (index == 0 || index == 3))
-                return true;
+            foreach (Point p in lane.Points)
+            {
+                switch (random.Next(4))
+                {
+                    case 1:
+                        c = Color.Red;
+                        break;
+                    case 2:
+                        c = Color.Blue;
+                        break;
+                    default: 
+                        c = Color.Orange;
+                        break;
+                }
 
-            return false;
+                brush = new SolidBrush(c);
+                r = new Rectangle(p.X, p.Y, PED_WIDTH, PED_HEIGHT);
+                painter.Graphics.FillRectangle(brush, r);
+            }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         */
+=======
+>>>>>>> origin/17-06-Drawing-Peds
 
         #endregion
 

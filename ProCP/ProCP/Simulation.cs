@@ -417,6 +417,7 @@ namespace ProCP
                 aTimer.Tick += new EventHandler((sender, e) => TickEvent(sender, e, c));
                 timers.Add(aTimer);
             }
+
             t = new Thread(Run);
             t.Start();
         }
