@@ -350,14 +350,23 @@ namespace ProCP
 
         private void Stop()
         {
-            Simulation.ClearCrossings();
             Simulation.Stop();
             TimerSimulation.Stop();
             play = false;
             btnPlay.Text = "PLAY SIMULATION";
             btnToggleLight.Enabled = false;
             this.EnableEditing();
-            Unlock(); foreach (PictureBox i in ControlList)
+            Unlock();
+
+            foreach (Crossing item in Simulation.Crossings)
+            {
+                foreach (TrafficLane j in item.Lanes)
+                {
+                    j.Cars.Clear();
+                }
+            }
+
+            foreach (PictureBox i in ControlList)
             {
                 i.Invalidate();
             }

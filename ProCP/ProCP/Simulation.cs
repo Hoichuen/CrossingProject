@@ -389,6 +389,7 @@ namespace ProCP
             if ((crossings.Exists(x => x.CrossingId == id - 4)) && ((crossings.Exists(x => x.CrossingId == id - 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 1)))
                  && (crossings.Exists(x => x.CrossingId == id + 4)) && ((crossings.Exists(x => x.CrossingId == id + 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 0))))
             {
+                crossings.Find(x => x.CrossingId == id).NumCars = 0;
                 return true;
             }
             else
@@ -655,24 +656,5 @@ namespace ProCP
 
         #endregion
 
-        public void ClearCrossings()
-        {
-            List<Crossing> tmp = new List<Crossing>();
-            foreach (Crossing i in crossings)
-            {
-                Crossing temp = new Crossing(-1);
-                if (i.GetType() == typeof(Crossing_A))
-                {
-                    temp = new Crossing_A(i.CrossingId);
-                }
-                else
-                {
-                    temp = new Crossing_B(i.CrossingId);
-                }
-                tmp.Add(temp);
-            }
-            crossings.Clear();
-            crossings.AddRange(tmp);
-        }
     }
 }
