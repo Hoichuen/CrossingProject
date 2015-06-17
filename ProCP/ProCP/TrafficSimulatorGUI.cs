@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace ProCP
 {
@@ -29,6 +30,7 @@ namespace ProCP
         List<Control> ControlList = new List<Control>();
         PictureBox selectedPicBox = null;
         List<PictureBox> crossPic = new List<PictureBox>();
+        List<Crossing> tempCrossing = new List<Crossing>();
 
         //Crossing CurrentCrossing; //Never used
         Simulation Simulation;
@@ -410,7 +412,7 @@ namespace ProCP
                 }
                 if (!surrounded)
                 {
-                numericCars.Enabled = true;
+                    numericCars.Enabled = true;
                 }
 
                 this.numericTrafficTime.Enabled = true;
@@ -819,7 +821,7 @@ namespace ProCP
             Simulation = new Simulation();
             //Making a new instance of the circuit object
             ClearAll();
-            this.Invalidate();        
+            this.Invalidate();
         }
 
         public void ClearAll()
@@ -872,31 +874,95 @@ namespace ProCP
             }
         }
 
+        private void CrossingType(Crossing crossing)
+        {
+            string sPattern = @"[0-9]+";
+
+            foreach (PictureBox pic in ControlList)
+            {
+                Match m = Regex.Match(pic.Name, sPattern);
+                int number = Convert.ToInt32(m.Value);
+                if (crossing.CrossingId == number)
+                {
+                    if (crossing.GetType() == typeof(Crossing_A))
+                    {
+                        pic.Image = ProCP.Properties.Resources.Crossing_a;
+                    }
+                    else if (crossing.GetType() == typeof(Crossing_B))
+                    {
+                        pic.Image = ProCP.Properties.Resources.Crossing_b;
+                    }
+                }
+
+            }
+
+        }
+
         private void openToolStripMenuOpen_Click(object sender, EventArgs e)
         {
-            if (!LoadFromFile())
+            debug = this.cBDebugPoint.Checked;
+            cardebug = this.cBDebugCars.Checked;
+
+            if (selectedPicBox != null)
+            {
+                unselectCurrentCrossing();
+            }
+
+            if (Simulation.Saved == true)
+            {
+                Clear();
+            }
+            else
+            {
+                DialogResult dResult = MessageBox.Show("Would you like to save your changes? Unsaved changes will be lost.", "New simulation", MessageBoxButtons.YesNoCancel);
+                if (dResult == DialogResult.Yes)
+                {
+                    Simulation.SaveAs(Simulation.Name);
+                    SaveToFile();
+
+                    Clear();
+                }
+                else if (dResult == DialogResult.No)
+                {
+                    Clear();
+                }
+            }
+
+
+            if (!GetFromFile())
             {
                 MessageBox.Show("Error whilst loading file");
             }
-        }
-
-        public bool LoadFromFile()
-        {
-            Simulation ret = GetFromFile();
-
-            if (ret == null)
+            else
             {
-                return false;
-            }
+                foreach (Crossing item in Simulation.Crossings)
+                {
+                    tempCrossing.Add(item);
+                }
+                Simulation.Crossings.Clear();
 
-            this.Invalidate();
-            return true;
+                foreach (Crossing cr in tempCrossing)
+                {
+                    if (cr.GetType() == typeof(Crossing_A))
+                    {
+                        Crossing_A cra = new Crossing_A(cr.CrossingId);
+                        Simulation.AddCrossing(cra);
+                        CrossingType(cra);
+                    }
+                    else
+                    {
+                        Crossing_B crb = new Crossing_B(cr.CrossingId);
+                        Simulation.AddCrossing(crb);
+                        CrossingType(crb);
+                    }
+
+                }
+
+            }
         }
 
-        private Simulation GetFromFile()
+        private bool GetFromFile()
         {
-            Simulation ret;
-
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "XML file|*.xml";
             openFileDialog.Title = "Load a circuit file";
@@ -904,22 +970,14 @@ namespace ProCP
 
             if (openFileDialog.ShowDialog() != DialogResult.OK)
             {
-                return null;
+                return false;
             }
 
-            try
-            {
-                ret = Simulation.Load(openFileDialog.FileName);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Something went wrong");
-                return null;
-            }
+            Simulation.Name = openFileDialog.FileName;
+            Simulation.Load(openFileDialog.FileName);
+            this.Invalidate();
 
-            ret.Name = Path.GetFileNameWithoutExtension(openFileDialog.FileName);
-
-            return ret;
+            return true;
         }
 
         private void saveAsToolStripMenuSaveAs_Click(object sender, EventArgs e)
@@ -945,8 +1003,8 @@ namespace ProCP
             {
                 if (play)
                 {
-                    
-                    this.labelTime.Text = Simulation.Watch.Elapsed.Minutes +" Minutes "+ Simulation.Watch.Elapsed.Seconds+" Seconds";
+
+                    this.labelTime.Text = Simulation.Watch.Elapsed.Minutes + " Minutes " + Simulation.Watch.Elapsed.Seconds + " Seconds";
                     this.labelCarsAdded.Text = Simulation.TotalNumberCars.ToString();
                     this.labelCarsRemaining.Text = count.ToString();
                     this.labelLightSwitches.Text = Simulation.TotalNumberofSwitches.ToString();
@@ -979,7 +1037,7 @@ namespace ProCP
                         if (c.GetType() == typeof(Crossing_B))
                         {
                             Crossing_B b = (Crossing_B)c;
-                            for (int p=0; p < b.GetNumberOfPedesToMove();p++ )
+                            for (int p = 0; p < b.GetNumberOfPedesToMove(); p++)
                             {
                                 b.pedestrians[p].Walk();
                             }

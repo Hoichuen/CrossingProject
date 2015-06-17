@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ProCP
 {
-    class Crossing_B:Crossing
+    [DataContract(Name = "Crossing_B")]
+    class Crossing_B : Crossing
     {
         public List<PedestrianLane> pLanes;
         public List<Pedestrian> pedestrians;
@@ -27,9 +29,10 @@ namespace ProCP
 
         /// <param name="crossingId">The Id of the crossing</param>
         /// <param name="position"></param>
-        public Crossing_B(int crossingId) : base(crossingId)
+        public Crossing_B(int crossingId)
+            : base(crossingId)
         {
-            
+
 
             lanes = new List<TrafficLane>();
             tLanes = new List<TrafficLane>();
@@ -56,7 +59,7 @@ namespace ProCP
             tLanes.AddRange(new TrafficLane[] { lanes.ElementAt(0), lanes.ElementAt(3) });
             lanes.Add(new TrafficLane(5, true, Direction.WEST, lightWEST, tLanes, this));
             tLanes = new List<TrafficLane>();
-            
+
             tLanes.Add(lanes.ElementAt(2));
             lanes.Add(new TrafficLane(6, true, Direction.WEST, lightWEST, tLanes, this));
             tLanes = new List<TrafficLane>();
@@ -82,14 +85,14 @@ namespace ProCP
             //Adding the pedestrian lane list and the pedestrian lights
             pLanes = new List<PedestrianLane>();
             //top lane
-            PedestrianLight pLight = new PedestrianLight( false, false);
-            
-            pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), pLight,this));
+            PedestrianLight pLight = new PedestrianLight(false, false);
+
+            pLanes.Add(new PedestrianLane(1, CalculatePedestrianLanePoints(1), pLight, this));
             //bottom lane
-            pLight = new PedestrianLight( false, false);
-            
-            pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), pLight,this));
-            
+            pLight = new PedestrianLight(false, false);
+
+            pLanes.Add(new PedestrianLane(2, CalculatePedestrianLanePoints(2), pLight, this));
+
         }
         /// <summary>
         /// Calculates the points for pedestrian lanes
@@ -98,7 +101,7 @@ namespace ProCP
         /// <returns></returns>
         private List<Point> CalculatePedestrianLanePoints(int ID)
         {
-            
+
             List<Point> points = new List<Point>();
             int row, column, x, y;
             row = this.CrossingId / 4;
@@ -130,11 +133,11 @@ namespace ProCP
         /// </summary>
         public void CreatePedestrians()
         {
-            int howMany=0;
+            int howMany = 0;
             if (style == "Quiet") howMany = 15; if (style == "Busy") howMany = 50;
             for (int i = 0; i < howMany; i++)
             {
-                pedestrians.Add(new Pedestrian(i, this)); 
+                pedestrians.Add(new Pedestrian(i, this));
             }
         }
         /// <summary>

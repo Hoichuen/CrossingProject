@@ -4,9 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ProCP
 {
+    [KnownType(typeof(Crossing))]
+    [KnownType(typeof(Crossing_A))]
+    [KnownType(typeof(Crossing_B))]
+    [KnownType(typeof(TrafficLane))]
+    [KnownType(typeof(Lane))]
+    [KnownType(typeof(PedestrianLane))]
+    [DataContract(Name = "Crossing")]
     class Crossing
     {
         //Fields
@@ -48,6 +56,8 @@ namespace ProCP
         /// <summary>
         /// Each crossing is unique and cannot have more than 12
         /// </summary>
+        /// 
+        [DataMember(Name = "CrossingId")]
         public int CrossingId
         {
             get { return crossingId; }

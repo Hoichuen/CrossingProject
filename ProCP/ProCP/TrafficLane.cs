@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ProCP
 {
+    [DataContract(Name = "TrafficLane")]
     class TrafficLane : Lane
     {
         /// <summary>
@@ -15,7 +17,7 @@ namespace ProCP
         const int MAX_POINTS_PER_VERTICAL_LANE = 3;
         const int MAX_POINTS_PER_HORIZONTAL_LANE = 4;
         const int VERTICAL_SPACE_BETWEEN_POINTS = 15;
-         
+
         //Fields
         bool? laneType = null;
         bool toFromCross;
@@ -62,7 +64,7 @@ namespace ProCP
             get { return trafficLight; }
             set { trafficLight = value; }
         }
-        
+
         /// <summary>
         /// List of cars in this lane
         /// </summary>
@@ -101,7 +103,8 @@ namespace ProCP
         /// <param name="trafficLight"></param>
         /// <param name="connLanes"></param>
         /// <param name="parent"></param>
-        public TrafficLane(int iD, bool toFromCross, Direction direction, Light trafficLight, List<TrafficLane> connLanes, Crossing parent) : base(iD)
+        public TrafficLane(int iD, bool toFromCross, Direction direction, Light trafficLight, List<TrafficLane> connLanes, Crossing parent)
+            : base(iD)
         {
             this.ID = iD;
             this.ToFromCross = toFromCross;
@@ -176,7 +179,8 @@ namespace ProCP
                     continue;
                 }
 
-                if (!vertical) {
+                if (!vertical)
+                {
                     points.Add(new Point(curOffsetX + (VERTICAL_SPACE_BETWEEN_POINTS * i), curOffsetY));
                 }
             }
@@ -224,7 +228,7 @@ namespace ProCP
         /// <returns></returns>
         internal bool IsNextPointEmpty(Point point)
         {
-            if (Cars.Exists(x=>x.CurPoint == Points.ElementAt(Points.FindIndex(y=>y == point)+1)))
+            if (Cars.Exists(x => x.CurPoint == Points.ElementAt(Points.FindIndex(y => y == point) + 1)))
             {
                 return false;
             }

@@ -27,7 +27,7 @@ namespace ProCP
             string lineBreak = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~";
             string programmers = "\nJoao Barbosa\nJean Chan\nDragan Draganov\nLoic Motheu\nBen Umbach";
 
-            this.rTBAbout.AppendText(lineBreak+"\nTraffic Simulator\n\n   Version 1.0\n\n\tThis product is licensed under the Mircosoft Software License Terms to:\n\n\t\tGroup E:"+programmers+"\n"+lineBreak);
+            this.rTBAbout.AppendText(lineBreak + "\nTraffic Simulator\n\n   Version 1.0\n\n\tThis product is licensed under the Mircosoft Software License Terms to:\n\n\t\tGroup E:" + programmers + "\n" + lineBreak);
         }
     }
 }

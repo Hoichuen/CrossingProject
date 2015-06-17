@@ -29,7 +29,7 @@ namespace ProCP
             string lineBreak = "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
             string help = "\tSelect an item from the drop down list!";
 
-            this.rTBHelp.AppendText(lineBreak+help+lineBreak+updateHelp(this.cBoxHelpItems.SelectedIndex));
+            this.rTBHelp.AppendText(lineBreak + help + lineBreak + updateHelp(this.cBoxHelpItems.SelectedIndex));
 
         }
 

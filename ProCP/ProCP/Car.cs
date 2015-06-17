@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ProCP
 {
@@ -92,7 +93,7 @@ namespace ProCP
                 {
                     //if (!this.Route.ElementAt(1).IsFirstPointEmpty() || this.Route.Count == 1)
                     //{
-                        this.SwitchLane();
+                    this.SwitchLane();
                     //}
                 }
             }

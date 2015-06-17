@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ProCP
 {
-    class Crossing_A:Crossing
+    [DataContract(Name = "Crossing_A")]
+    class Crossing_A : Crossing
     {
         /// <summary>
         /// fields
@@ -19,7 +21,8 @@ namespace ProCP
         /// Constructor where the intra crossing connections are made
         /// </summary>
         /// <param name="crossingId"></param>
-        public Crossing_A(int crossingId) : base(crossingId)
+        public Crossing_A(int crossingId)
+            : base(crossingId)
         {
             lanes = new List<TrafficLane>();
             tLanes = new List<TrafficLane>();
@@ -30,7 +33,7 @@ namespace ProCP
 
             for (int i = 0; i < 4; i++)
             {
-                lanes.Add(new TrafficLane(i, false, (Direction) i, null, tLanes, this));
+                lanes.Add(new TrafficLane(i, false, (Direction)i, null, tLanes, this));
                 tLanes = new List<TrafficLane>();
             }
 

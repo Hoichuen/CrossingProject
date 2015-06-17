@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.Serialization;
 
 namespace ProCP
 {
+    [DataContract(Name = "Pedestrian")]
     class Pedestrian
     {
         //Fields
@@ -14,7 +16,7 @@ namespace ProCP
         PedestrianLane lane;
         Point position = new Point();
         Crossing_B crossing;
-        Point StartPosition = new Point(); 
+        Point StartPosition = new Point();
 
         //Properties
 
@@ -42,7 +44,7 @@ namespace ProCP
         /// </summary>
         /// <param name="pedId">which pedestrian</param>
         /// <param name="Crossing">on which crossing should it be created</param>
-        
+
         public Pedestrian(int pedId, Crossing_B Crossing)
         {
             this.pedId = pedId;
@@ -58,19 +60,12 @@ namespace ProCP
         /// Returns the Point position of the pedestrian
         /// </summary>
         /// <returns></returns>
+
+
         public Point getPosition()
         {
 
             return position;
-        }
-
-        /// <summary>
-        /// Returns the pedestrian's lane
-        /// </summary>
-        /// <returns></returns>
-        PedestrianLane getLane()
-        {
-            return lane;
         }
 
         /// <summary>
@@ -98,10 +93,10 @@ namespace ProCP
                     Pedestrian p = lane.GetCrossingB().pedestrians.Find(x => x.PedId == this.PedId);
                     for (int i = 0; i < lane.GetCrossingB().pedestrians.Count; i++)
                     {
-                        if (lane.GetCrossingB().pedestrians[i].lane == p.lane && p.pedId != lane.GetCrossingB().pedestrians[i].pedId) 
+                        if (lane.GetCrossingB().pedestrians[i].lane == p.lane && p.pedId != lane.GetCrossingB().pedestrians[i].pedId)
                             PressSensor();
-                            if (lane.GetCrossingB().pedestrians[i] == p) 
-                                lane.GetCrossingB().pedestrians.RemoveAt(i);
+                        if (lane.GetCrossingB().pedestrians[i] == p)
+                            lane.GetCrossingB().pedestrians.RemoveAt(i);
                     }
                 }
 
