@@ -426,7 +426,7 @@ namespace ProCP
         {
             foreach (Crossing i in crossings)
             {
-                i.ATimer.Start();
+                i.ATimer.Stop();
             }
         }
 
@@ -548,7 +548,7 @@ namespace ProCP
                 switch (c.Turn)
                 {
                     case 1:
-                        cb.ATimer.Interval = cb.Time.Milliseconds;
+                        cb.ATimer.Interval = 1000 * cb.Time.Seconds;
                         foreach (TrafficLane l in c.Lanes)
                         {
                             if (l.TrafficLight != null)
@@ -625,11 +625,11 @@ namespace ProCP
                     case 4:
                         if (cb.style == "Quiet")
                         {
-                            cb.ATimer.Interval = (int)((double)cb.Time.Milliseconds * 0.25);
+                            cb.ATimer.Interval = (int)(1000* (double)cb.Time.Seconds * 0.25);
                         }
                         else
                         {
-                            cb.ATimer.Interval = (int)((double)cb.Time.Milliseconds * 0.75);
+                            cb.ATimer.Interval = (int)(1000* (double)cb.Time.Seconds * 0.75);
                         }
                         foreach (PedestrianLane pl in cb.pLanes)
                         {
