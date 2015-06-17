@@ -131,7 +131,7 @@ namespace ProCP
         public void CreatePedestrians()
         {
             int howMany=0;
-            if (style == "Quiet") howMany = 2; if (style == "Busy") howMany = 4;
+            if (style == "Quiet") howMany = 15; if (style == "Busy") howMany = 50;
             for (int i = 0; i < howMany; i++)
             {
                 pedestrians.Add(new Pedestrian(i, this)); 
