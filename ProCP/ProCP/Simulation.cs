@@ -354,7 +354,6 @@ namespace ProCP
             DataContractSerializer dataContractSerializer = new DataContractSerializer(typeof(Simulation));
             dataContractSerializer.WriteObject(writer, this);
 
-
             writer.Close();
         }
 
@@ -429,6 +428,31 @@ namespace ProCP
 
             if (c.GetType() == typeof(Crossing_A))
             {
+                /*
+                #region A Crossing
+
+                foreach (TrafficLane l in c.Lanes)
+                {
+                    if (l.TrafficLight != null)
+                    {
+                        if (l.Direction == (Direction)(c.Turn - 1))
+                        {
+                            l.TrafficLight.State = true;
+                        }
+                        else
+                        {
+                            l.TrafficLight.State = false;
+                        }
+                    }
+                    c.Turn = ((c.Turn + 1) % 4);
+
+                    if (c.Turn == 0)
+                        c.Turn = 1;
+                }
+
+                #endregion
+                */
+
                 #region A Crossing
                 switch (c.Turn)
                 {

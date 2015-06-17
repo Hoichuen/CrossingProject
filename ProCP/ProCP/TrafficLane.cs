@@ -24,8 +24,17 @@ namespace ProCP
         List<Car> cars;
         List<TrafficLane> lanes;
         Crossing parent;
-       
+
         //Properties
+
+        /// <summary>
+        /// Parent Crossing
+        /// </summary>
+        public Crossing Parent
+        {
+            get { return parent; }
+            set { parent = value; }
+        }
 
         /// <summary>
         /// Feeder or end lane, or just a connecting lane

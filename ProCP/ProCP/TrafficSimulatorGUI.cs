@@ -127,10 +127,9 @@ namespace ProCP
                 bool result = false;
                 int picBoxNumber = GetNumberOfPicturebox(self);
 
-                Image finalImage;
-
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
                 {
+<<<<<<< HEAD
                     result = Simulation.AddCrossing(new Crossing_A(picBoxNumber));
                     finalImage = ProCP.Properties.Resources.Crossing_a;
                 }
@@ -138,10 +137,17 @@ namespace ProCP
                 {
                     result = Simulation.AddCrossing(new Crossing_B(picBoxNumber));
                     finalImage = ProCP.Properties.Resources.Crossing_b;
+=======
+                    result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
+                }
+                else
+                {
+                    result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
+>>>>>>> origin/15-06-Drawing-Lights
                 }
 
                 if (result)
-                    self.Image = finalImage;
+                    self.Image = (Image)e.Data.GetData(DataFormats.Bitmap);
 
                 return;
             }
@@ -472,6 +478,7 @@ namespace ProCP
         private void pictureBoxOnPaint(object sender, PaintEventArgs e)
         {
             PictureBox self = (PictureBox)sender;
+
             Artist painter = new Artist(e);
             Crossing crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
 
@@ -497,26 +504,29 @@ namespace ProCP
 
             #region Drawing Lights
 
+            /*
             if (crossing is Crossing_A)
                 painter.drawLightStructureCrossingA();
             else if (crossing is Crossing_B)
                 painter.drawLightStructureCrossingB();
+            */
 
             #endregion
 
             #region Drawing Cars
 
-            // Drawing cars, yay
+            // Drawing cars and lights, yay
             List<Car> tempCars = new List<Car>();
             foreach (Crossing item in Simulation.Crossings)
             {
-                crossing = Simulation.getCrossing(GetNumberOfPicturebox(self));
-
                 if (!item.Equals(crossing))
                     continue;
 
                 foreach (TrafficLane j in item.Lanes)
                 {
+                    if (j.TrafficLight != null)
+                        painter.drawTrafficLight(j, j.TrafficLight.State);
+
                     foreach (Car c in j.Cars)
                     {
                         painter.drawCar(c, j.Direction);

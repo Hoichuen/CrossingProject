@@ -350,7 +350,7 @@
             // 
             // crossingType2
             // 
-            this.crossingType2.Image = global::ProCP.Properties.Resources.Crossing_b_dirty;
+            this.crossingType2.Image = global::ProCP.Properties.Resources.Crossing_b;
             this.crossingType2.Location = new System.Drawing.Point(10, 166);
             this.crossingType2.Name = "crossingType2";
             this.crossingType2.Size = new System.Drawing.Size(202, 144);
@@ -360,7 +360,7 @@
             // 
             // crossingType1
             // 
-            this.crossingType1.Image = global::ProCP.Properties.Resources.Crossing_a_dirty;
+            this.crossingType1.Image = global::ProCP.Properties.Resources.Crossing_a;
             this.crossingType1.Location = new System.Drawing.Point(10, 16);
             this.crossingType1.Name = "crossingType1";
             this.crossingType1.Size = new System.Drawing.Size(202, 144);
