@@ -13,8 +13,8 @@ namespace ProCP
         private const int CAR_WIDTH = 13;
         private const int CAR_HEIGHT = 10;
 
-        private const int PED_WIDTH = 5;
-        private const int PED_HEIGHT = 5;
+        private const int PED_WIDTH = 7;
+        private const int PED_HEIGHT = 7;
 
         private readonly Color LIGHT_STRUCTURE_COLOR = Color.Black;
 
