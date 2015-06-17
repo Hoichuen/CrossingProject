@@ -93,9 +93,7 @@ namespace ProCP
         /// </summary>
         public void Stop()
         {
-            aTimer.Stop();
-            t.Join();
-            t.Interrupt();
+            StopThread();
             Watch.Stop();
         }
 
@@ -386,8 +384,8 @@ namespace ProCP
         /// <returns></returns>
         public bool Surrounded(int id)
         {
-            if ((crossings.Exists(x => x.CrossingId == id - 4)) && ((crossings.Exists(x => x.CrossingId == id - 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 1)))
-                 && (crossings.Exists(x => x.CrossingId == id + 4)) && ((crossings.Exists(x => x.CrossingId == id + 1) || (crossings.Find(x => x.CrossingId == id).CrossingId % 4 == 0))))
+            if ((crossings.Exists(x => x.CrossingId == id - 4)) && ((crossings.Exists(x => x.CrossingId == id - 1) && (crossings.Find(x => x.CrossingId == id).CrossingId % 4 != 1)))
+                 && (crossings.Exists(x => x.CrossingId == id + 4)) && ((crossings.Exists(x => x.CrossingId == id + 1) && (crossings.Find(x => x.CrossingId == id).CrossingId % 4 != 0))))
             {
                 crossings.Find(x => x.CrossingId == id).NumCars = 0;
                 return true;
@@ -404,6 +402,7 @@ namespace ProCP
         /// </summary>
         Thread t;
         System.Windows.Forms.Timer aTimer;
+        List<System.Windows.Forms.Timer> timers = new List<System.Windows.Forms.Timer>();
 
         /// <summary>
         /// starts the thread
@@ -413,12 +412,22 @@ namespace ProCP
             foreach (Crossing c in Crossings)
             {
                 aTimer = new System.Windows.Forms.Timer();
-                aTimer.Interval = c.Time.Seconds * 500;
+                aTimer.Interval = c.Time.Seconds * 1000;
                 aTimer.Enabled = true;
                 aTimer.Tick += new EventHandler((sender, e) => TickEvent(sender, e, c));
+                timers.Add(aTimer);
             }
             t = new Thread(Run);
             t.Start();
+        }
+
+        private void StopThread()
+        {
+            foreach (System.Windows.Forms.Timer i in timers)
+            {
+                i.Stop();
+            }
+            t.Abort();
         }
 
         /// <summary>
@@ -640,7 +649,10 @@ namespace ProCP
         /// </summary>
         public void Run()
         {
-            aTimer.Start();
+            foreach (System.Windows.Forms.Timer i in timers)
+            {
+                i.Start();
+            }
         }
 
         /// <summary>

@@ -82,7 +82,7 @@ namespace ProCP
         {
             this.CrossingId = crossingId;
 
-            this.Time = TimeSpan.Zero;
+            this.Time = TimeSpan.FromSeconds(5);
             this.NumCars = 0;
         }
 

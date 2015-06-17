@@ -78,6 +78,8 @@
             this.aboutTrafficSimulatorToolStripMenuAboutTFS = new System.Windows.Forms.ToolStripMenuItem();
             this.TimerSimulation = new System.Windows.Forms.Timer(this.components);
             this.gBStatistics = new System.Windows.Forms.GroupBox();
+            this.labelCrossingNumbers = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.labelLightSwitches = new System.Windows.Forms.Label();
             this.labelCarsRemaining = new System.Windows.Forms.Label();
             this.labelCarsAdded = new System.Windows.Forms.Label();
@@ -86,8 +88,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelTime = new System.Windows.Forms.Label();
             this.labelTimer = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.labelCrossingNumbers = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericTrafficTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.crossingGrid16)).BeginInit();
@@ -117,11 +117,25 @@
             // 
             // numericTrafficTime
             // 
-            this.numericTrafficTime.Enabled = false;
             this.numericTrafficTime.Location = new System.Drawing.Point(83, 41);
+            this.numericTrafficTime.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.numericTrafficTime.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numericTrafficTime.Name = "numericTrafficTime";
             this.numericTrafficTime.Size = new System.Drawing.Size(78, 20);
             this.numericTrafficTime.TabIndex = 5;
+            this.numericTrafficTime.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // crossingGrid14
             // 
@@ -233,8 +247,12 @@
             // 
             // numericCars
             // 
-            this.numericCars.Enabled = false;
             this.numericCars.Location = new System.Drawing.Point(101, 15);
+            this.numericCars.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
             this.numericCars.Name = "numericCars";
             this.numericCars.Size = new System.Drawing.Size(58, 20);
             this.numericCars.TabIndex = 3;
@@ -311,6 +329,7 @@
             // 
             this.btnPlay.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPlay.BackgroundImage")));
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPlay.Enabled = false;
             this.btnPlay.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
             this.btnPlay.Location = new System.Drawing.Point(9, 431);
@@ -416,6 +435,7 @@
             this.gBSettings.Controls.Add(this.numericCars);
             this.gBSettings.Controls.Add(this.label3);
             this.gBSettings.Controls.Add(this.label2);
+            this.gBSettings.Enabled = false;
             this.gBSettings.ForeColor = System.Drawing.Color.White;
             this.gBSettings.Location = new System.Drawing.Point(215, 16);
             this.gBSettings.Name = "gBSettings";
@@ -437,7 +457,6 @@
             // cBPedTraffic
             // 
             this.cBPedTraffic.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBPedTraffic.Enabled = false;
             this.cBPedTraffic.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cBPedTraffic.FormattingEnabled = true;
             this.cBPedTraffic.Items.AddRange(new object[] {
@@ -452,7 +471,6 @@
             // 
             this.btnFinishCrossing.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFinishCrossing.BackgroundImage")));
             this.btnFinishCrossing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFinishCrossing.Enabled = false;
             this.btnFinishCrossing.FlatAppearance.BorderSize = 0;
             this.btnFinishCrossing.Font = new System.Drawing.Font("Palatino Linotype", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFinishCrossing.ForeColor = System.Drawing.Color.Red;
@@ -660,6 +678,26 @@
             this.gBStatistics.TabStop = false;
             this.gBStatistics.Text = "Statistics";
             // 
+            // labelCrossingNumbers
+            // 
+            this.labelCrossingNumbers.AutoSize = true;
+            this.labelCrossingNumbers.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCrossingNumbers.Location = new System.Drawing.Point(177, 46);
+            this.labelCrossingNumbers.Name = "labelCrossingNumbers";
+            this.labelCrossingNumbers.Size = new System.Drawing.Size(15, 18);
+            this.labelCrossingNumbers.TabIndex = 10;
+            this.labelCrossingNumbers.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(6, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(135, 18);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Number of crossings:";
+            // 
             // labelLightSwitches
             // 
             this.labelLightSwitches.AutoSize = true;
@@ -739,26 +777,6 @@
             this.labelTimer.Size = new System.Drawing.Size(47, 18);
             this.labelTimer.TabIndex = 0;
             this.labelTimer.Text = "Timer:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 46);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(135, 18);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Number of crossings:";
-            // 
-            // labelCrossingNumbers
-            // 
-            this.labelCrossingNumbers.AutoSize = true;
-            this.labelCrossingNumbers.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCrossingNumbers.Location = new System.Drawing.Point(177, 46);
-            this.labelCrossingNumbers.Name = "labelCrossingNumbers";
-            this.labelCrossingNumbers.Size = new System.Drawing.Size(15, 18);
-            this.labelCrossingNumbers.TabIndex = 10;
-            this.labelCrossingNumbers.Text = "0";
             // 
             // TrafficSimulatorGUI
             // 

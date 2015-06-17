@@ -47,7 +47,7 @@ namespace ProCP
             AddDragDropToPictureBoxes();
             Simulation = new Simulation();
             isLocked = false;
-            btnPlay.Enabled = false;
+           // btnPlay.Enabled = false;
             btnToggleLight.Enabled = false;
         }
 
@@ -133,7 +133,6 @@ namespace ProCP
 
                 if ((Image)e.Data.GetData(DataFormats.Bitmap) == crossingType1.Image)
                 {
-//<<<<<<< HEAD
                     result = Simulation.AddCrossing(new Crossing_A(picBoxNumber));
                     finalImage = ProCP.Properties.Resources.Crossing_a;
                 }
@@ -141,13 +140,7 @@ namespace ProCP
                 {
                     result = Simulation.AddCrossing(new Crossing_B(picBoxNumber));
                     finalImage = ProCP.Properties.Resources.Crossing_b;
-//=======
-//                    result = Simulation.AddCrossing(new Crossing_A(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
-//                }
-////                else
-////                {
-////                    result = Simulation.AddCrossing(new Crossing_B(picBoxNumber, new Point(self.Location.X, self.Location.Y)));
-//>>>>>>> origin/15-06-Drawing-Lights
+
                 }
 
                 if (result)
@@ -181,7 +174,15 @@ namespace ProCP
 
             selectedPicBox = pBox;
 
-            enableNum();
+            if (isLocked)
+            {
+                EnableEditing();
+            }
+            else
+            {
+                btnRemove.Enabled = true;
+            }
+            //enableNum();
 
             pBox.Refresh();
         }
@@ -199,7 +200,9 @@ namespace ProCP
             crossLocked = false;
             eraseFlag = true;
 
-            enableNum();//check this out
+            //enableNum();//check this out
+            DisableEditing();
+            btnRemove.Enabled = false;
 
             selectedBefore.Refresh();
         }
@@ -226,7 +229,6 @@ namespace ProCP
                 MessageBox.Show("No crossing selected.");
                 return;
             }
-            surrounded = Simulation.Surrounded(selectedID);
             if (self.Image == crossingType1.Image)
             {
                 Simulation.getProperties(selectedID, ref x, ref y, ref z);
@@ -253,7 +255,14 @@ namespace ProCP
                 //cBPedTraffic.SelectedValue = z;
                 //cBPedTraffic.SelectedIndex = cBPedTraffic.FindStringExact(z1);
             }
-
+            if (Simulation.Surrounded(selectedID))
+            {
+                numericCars.Enabled = false;
+            }
+            else
+            {
+                numericCars.Enabled = true;
+            }
             return;
         }
 
@@ -310,6 +319,7 @@ namespace ProCP
             if (!isLocked)
             {
                 Lock();
+
             }
             else if (isLocked)
             {
@@ -321,6 +331,7 @@ namespace ProCP
         {
             if (!play)
             {
+                btnToggleLight.Enabled = true;
                 TimerSimulation.Interval = 1000;
                 TimerSimulation.Start();
 
@@ -342,8 +353,8 @@ namespace ProCP
             this.unselectCurrentCrossing();
             btnPlay.Text = "STOP SIMULATION";
             btnToggleLight.Enabled = true;
-            enableNum();
-            this.DisableEditing();
+            //enableNum();
+            //this.DisableEditing();
             Simulation.Start();
             this.unselectCurrentCrossing();
         }
@@ -355,7 +366,7 @@ namespace ProCP
             play = false;
             btnPlay.Text = "PLAY SIMULATION";
             btnToggleLight.Enabled = false;
-            this.EnableEditing();
+            //this.EnableEditing();
             Unlock();
 
             foreach (Crossing item in Simulation.Crossings)
@@ -377,10 +388,23 @@ namespace ProCP
             isLocked = true;
             btnLock.Text = "Unlock Grid";
 
-            enableNum();
+            //enableNum();
+            
+            if (selectedPicBox != null)
+            {
+                EnableEditing();
+                btnRemove.Enabled = false;
+            }
 
-            Simulation.MarkLanes();
-            Simulation.LaneCrossingConnection();
+            if (Simulation.Crossings.Count != 0)
+            {
+                btnPlay.Enabled = true;
+
+                Simulation.MarkLanes();
+                Simulation.LaneCrossingConnection();
+            }
+
+
         }
 
         private void CrossLock()
@@ -388,7 +412,7 @@ namespace ProCP
             crossLocked = true;
             btnFinishCrossing.Text = "Unlock Crossing"; ;
 
-            enableNum();
+            //enableNum();
         }
 
         private void CrossUnlock()
@@ -400,7 +424,9 @@ namespace ProCP
             this.numericTrafficTime.Value = 0;
             this.cBPedTraffic.SelectedIndex = -1;
 
-            enableNum();
+            btnPlay.Enabled = false;
+
+           // enableNum();
         }
 
         private void Unlock()
@@ -408,83 +434,92 @@ namespace ProCP
             isLocked = false;
             btnLock.Text = "Lock Grid";
 
-            enableNum();
+            DisableEditing();
+
+            if (selectedPicBox != null)
+            {
+                btnRemove.Enabled = true;
+            }
+
+            btnPlay.Enabled = false;
+
+            //enableNum();
         }
 
-        public void enableNum()
-        {
-            if (isLocked && !eraseFlag)
-            {
-                if (surrounded)
-                {
-                    numericCars.Enabled = false;
-                }
-                if (!surrounded)
-                {
-                    numericCars.Enabled = true;
-                }
+        //public void enableNum()
+        //{
+        //    if (isLocked && !eraseFlag)
+        //    {
+        //        if (surrounded)
+        //        {
+        //            numericCars.Enabled = false;
+        //        }
+        //        if (!surrounded)
+        //        {
+        //            numericCars.Enabled = true;
+        //        }
 
-                this.numericTrafficTime.Enabled = true;
-                //this.cBPedTraffic.Enabled = true;
-                this.btnFinishCrossing.Enabled = true;
-                this.btnRemove.Enabled = false;
+        //        this.numericTrafficTime.Enabled = true;
+        //        //this.cBPedTraffic.Enabled = true;
+        //        this.btnFinishCrossing.Enabled = true;
+        //        this.btnRemove.Enabled = false;
 
-            }
+        //    }
 
-            if (isLocked && eraseFlag)
-            {
-                this.numericCars.Enabled = false;
-                this.numericTrafficTime.Enabled = false;
-                this.cBPedTraffic.Enabled = false;
-                this.btnFinishCrossing.Enabled = false;
-                this.btnRemove.Enabled = false;
-                selectedID = 0;
-            }
+        //    if (isLocked && eraseFlag)
+        //    {
+        //        this.numericCars.Enabled = false;
+        //        this.numericTrafficTime.Enabled = false;
+        //        this.cBPedTraffic.Enabled = false;
+        //        this.btnFinishCrossing.Enabled = false;
+        //        this.btnRemove.Enabled = false;
+        //        selectedID = 0;
+        //    }
 
-            if (!eraseFlag && !isLocked)
-            {
-                this.numericCars.Enabled = false;
-                this.numericTrafficTime.Enabled = false;
-                this.cBPedTraffic.Enabled = false;
-                this.btnFinishCrossing.Enabled = false;
-                this.btnRemove.Enabled = true;
-            }
+        //    if (!eraseFlag && !isLocked)
+        //    {
+        //        this.numericCars.Enabled = false;
+        //        this.numericTrafficTime.Enabled = false;
+        //        this.cBPedTraffic.Enabled = false;
+        //        this.btnFinishCrossing.Enabled = false;
+        //        this.btnRemove.Enabled = true;
+        //    }
 
-            if (!isLocked && eraseFlag)
-            {
-                this.numericCars.Enabled = false;
-                this.numericTrafficTime.Enabled = false;
-                this.cBPedTraffic.Enabled = false;
-                this.btnFinishCrossing.Enabled = false;
-                this.btnRemove.Enabled = false;
-                selectedID = 0;
-            }
+        //    if (!isLocked && eraseFlag)
+        //    {
+        //        this.numericCars.Enabled = false;
+        //        this.numericTrafficTime.Enabled = false;
+        //        this.cBPedTraffic.Enabled = false;
+        //        this.btnFinishCrossing.Enabled = false;
+        //        this.btnRemove.Enabled = false;
+        //        selectedID = 0;
+        //    }
 
-            if (crossLocked)
-            {
-                this.numericCars.Enabled = false;
-                this.numericTrafficTime.Enabled = false;
-                this.cBPedTraffic.Enabled = false;
-            }
+        //    if (crossLocked)
+        //    {
+        //        this.numericCars.Enabled = false;
+        //        this.numericTrafficTime.Enabled = false;
+        //        this.cBPedTraffic.Enabled = false;
+        //    }
 
-            if (isLocked)
-            {
-                btnPlay.Enabled = true;
-            }
+        //    if (isLocked)
+        //    {
+        //        btnPlay.Enabled = true;
+        //    }
 
-            if (!play)
-            {
-                btnLock.Enabled = true;
-                btnToggleLight.Enabled = false;
-            }
+        //    if (!play)
+        //    {
+        //        btnLock.Enabled = true;
+        //        btnToggleLight.Enabled = false;
+        //    }
 
-            if (play)
-            {
-                btnLock.Enabled = false;
-                btnToggleLight.Enabled = true;
-            }
+        //    if (play)
+        //    {
+        //        btnLock.Enabled = false;
+        //        btnToggleLight.Enabled = true;
+        //    }
 
-        }
+        //}
 
         #endregion
 
@@ -502,14 +537,14 @@ namespace ProCP
                     painter.paintSelectionOutline();
                     crossLocked = false;
                     this.btnFinishCrossing.Text = "Lock Crossing";
-                    enableNum();
+                    //enableNum();
                 }
 
                 if (eraseFlag)
                 {
                     eraseFlag = false;
                     this.btnFinishCrossing.Text = "Unlock Crossing";
-                    enableNum();
+                    //enableNum();
 
                     self.Invalidate();
                 }
@@ -1065,20 +1100,31 @@ namespace ProCP
 
         private void DisableEditing()
         {
-            numericCars.Enabled = false;
-            numericTrafficTime.Enabled = false;
-            cBPedTraffic.Enabled = false;
-            btnFinishCrossing.Enabled = false;
-            btnRemove.Enabled = false;
+            gBSettings.Enabled = false;
         }
+
 
         private void EnableEditing()
         {
-            numericCars.Enabled = true;
-            numericTrafficTime.Enabled = true;
-            cBPedTraffic.Enabled = true;
-            btnFinishCrossing.Enabled = true;
-            btnRemove.Enabled = true;
+            gBSettings.Enabled = true;
         }
+
+        //private void DisableEditing()
+        //{
+        //    numericCars.Enabled = false;
+        //    numericTrafficTime.Enabled = false;
+        //    cBPedTraffic.Enabled = false;
+        //    btnFinishCrossing.Enabled = false;
+        //    btnRemove.Enabled = false;
+        //}
+
+        //private void EnableEditing()
+        //{
+        //    numericCars.Enabled = true;
+        //    numericTrafficTime.Enabled = true;
+        //    cBPedTraffic.Enabled = true;
+        //    btnFinishCrossing.Enabled = true;
+        //    btnRemove.Enabled = true;
+        //}
     }
 }
