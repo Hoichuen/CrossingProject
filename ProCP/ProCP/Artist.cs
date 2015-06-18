@@ -10,22 +10,42 @@ namespace ProCP
 {
     class Artist
     {
+		/// <summary>
+		/// Car dimensions
+		/// </summary>
         private const int CAR_WIDTH = 13;
         private const int CAR_HEIGHT = 10;
 
+		/// <summary>
+		/// Pedestrian Dimensions
+		/// </summary>
         private const int PED_WIDTH = 7;
         private const int PED_HEIGHT = 7;
 
+		/// <summary>
+		/// Light structure color
+		/// </summary>
         private readonly Color LIGHT_STRUCTURE_COLOR = Color.Black;
 
+		/// <summary>
+		/// Traffic light size
+		/// </summary>
         private const int TRAFFIC_LIGHT_BOX_WIDTH = 7;
         private const int TRAFFIC_LIGHT_BOX_HEIGHT = 5;
         private const int TRAFFIC_LIGHT_WIDTH = 6;
         private const int TRAFFIC_LIGHT_HEIGHT = 4;
+
+		/// <summary>
+		/// Number of traffic lights 
+		/// </summary>
         private const int NUM_TRAFFIC_LIGHTS_A = 8;
         private const int NUM_TRAFFIC_LIGHTS_B = 6;
         private const int NUM_TRAFFIC_LIGHTS_SPOTS = 3;
 
+
+		/// <summary>
+		/// Points about traffic and pedestrian lights
+		/// </summary>
         private readonly int[] LIGHT_STRUCT_X_SPOTS_CROSSING_A = { 51, 58, 160, 160, 160, 167, 42, 42 };
         private readonly int[] LIGHT_STRUCT_Y_SPOTS_CROSSING_A = { 30, 30, 37, 42, 112, 112, 117, 112 };
 
@@ -37,6 +57,9 @@ namespace ProCP
 
         PaintEventArgs painter;
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
         public Artist(PaintEventArgs e)
         {
             painter = e;
@@ -44,6 +67,11 @@ namespace ProCP
 
         #region Lights
 
+		/// <summary>
+		/// Draw traffic lights
+		/// </summary>
+		/// <param name="lane">Traffic Lane</param>
+		/// <param name="state">Current state of the traffic light</param>
         public void drawTrafficLight(TrafficLane lane, bool state)
         {
             Rectangle r;
@@ -57,8 +85,14 @@ namespace ProCP
             r = new Rectangle(point.X, point.Y, TRAFFIC_LIGHT_WIDTH, TRAFFIC_LIGHT_HEIGHT);
 
             painter.Graphics.FillRectangle(brush, r);
-        }
+		}
 
+		/// <summary>
+		/// Get the coordinates to draw the traffic lights
+		/// </summary>
+		/// <param name="lane">Traffic Lane</param>
+		/// <param name="state">Current state of the traffic light</param>
+		/// <returns>Point with the correct coordinates</returns>
         private Point getCoordinatesForTrafficLight(TrafficLane l, bool state)
         {
             Crossing c = l.Parent;
@@ -115,6 +149,11 @@ namespace ProCP
             return new Point(x, y);
         }
 
+		/// <summary>
+		/// Draws pedestrian lights
+		/// </summary>
+		/// <param name="lane">Pedestrian Lane</param>
+		/// <param name="state">Current state of the pedestrian light</param>
         public void drawPedestrianLight(PedestrianLane lane, bool state)
         {
             Rectangle r;
@@ -132,7 +171,13 @@ namespace ProCP
                 painter.Graphics.FillRectangle(brush, r);
             }
         }
-
+			
+		/// <summary>
+		/// Get coordinates to draw pedestrian lights
+		/// </summary>
+		/// <param name="lane">Pedestrian Lane</param>
+		/// <param name="state">Current state of the pedestrian light</param>
+		/// <returns>List of Points with the correct coordinates</returns>
         private Point[] getCoordinatesForPedestrianLights(PedestrianLane l, bool state)
         {
             Point[] points = new Point[2];
@@ -169,7 +214,13 @@ namespace ProCP
 
             return points;
         }
-
+			
+		/// <summary>
+		/// Draw pedestrians
+		/// </summary>
+		/// <param name="lane">Traffic Lane</param>
+		/// <param name="state">Current state of the traffic light</param>
+		/// <returns>Point with the correct coordinates</returns>
         public void drawPedestrians(PedestrianLane lane, string pStyle) {
             Rectangle r;
             SolidBrush brush;
@@ -201,7 +252,12 @@ namespace ProCP
 
         #region Cars
 
-        public void drawCar(Car c, Direction d)
+		/// <summary>
+		/// Draw cars
+		/// </summary>
+		/// <param name="c">Car instance</param>
+		/// <param name="d">Direction the car is heading to</param>
+		public void drawCar(Car c, Direction d)
         {
             Rectangle r;
             SolidBrush brush = new SolidBrush(c.Color);
@@ -218,6 +274,14 @@ namespace ProCP
 
         #region General-use Methods
 
+		/// <summary>
+		/// Draw empty rectangles
+		/// </summary>
+		/// <param name="c">Color to draw</param>
+		/// <param name="x">X axis</param>
+		/// <param name="y">Y axis</param>
+		/// <param name="w">Width</param>
+		/// <param name="h">Height</param>
         private void drawEmptyRect(Color c, int x, int y, int w, int h)
         {
             painter.Graphics.DrawRectangle(new Pen(c, 1), x, y, w, h);
@@ -225,6 +289,9 @@ namespace ProCP
 
         #endregion
 
+		/// <summary>
+		/// Draw the outline when selecting a cross
+		/// </summary>
         public void paintSelectionOutline()
         {
             painter.Graphics.DrawRectangle(new Pen(Color.Red, 3), 1, 1, 220, 155);
